@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+
+  namespace :xapi, defaults: {format: 'json'} do
+    get 'about' => 'about#index'
+    get 'abouts', to: proc { [400, {'Content-Type' => 'application/json'}, [{error: true, success: false, message: '', code: 400}.to_json]] }
+    match 'about', to: proc { [405, {'Content-Type' => 'application/json'}, [{error: true, success: false, message: '', code: 405}.to_json]] }, via: [:put, :post, :delete]
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
