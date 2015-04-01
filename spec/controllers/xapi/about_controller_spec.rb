@@ -15,28 +15,4 @@ RSpec.describe Xapi::AboutController, type: :controller do
     end
   end
 
-  describe 'GET /abouts' do
-    it 'fails' do
-      expect(get: '/xapi/abouts', format: :json).not_to be_routable
-    end
-  end
-
-  describe 'POST /about' do
-    it 'fails' do
-      expect(post: '/xapi/about', format: :json).not_to be_routable
-    end
-  end
-
-  describe 'PUT /about' do
-    it 'fails' do
-      expect(put: '/xapi/about', format: :json).not_to be_routable
-    end
-  end
-
-  describe 'DELETE /about' do
-    it 'fails' do
-      expect(delete: '/xapi/about', format: :json).not_to be_routable
-    end
-  end
-
 end

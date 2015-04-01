@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  namespace :xapi, defaults: {format: 'json'} do
+  namespace :xapi, defaults: {format: :json} do
     get 'about' => 'about#index'
-    get 'abouts', to: proc { [400, {'Content-Type' => 'application/json'}, [{error: true, success: false, message: '', code: 400}.to_json]] }
-    match 'about', to: proc { [405, {'Content-Type' => 'application/json'}, [{error: true, success: false, message: '', code: 405}.to_json]] }, via: [:put, :post, :delete]
+    get 'abouts', to: 'errors#error400', default: {error: {error: true, success: false, message: '', code: 400}}
+    match 'about', to: 'errors#error405', via: [:put, :post, :delete], default: {error: {error: true, success: false, message: '', code: 405}}
   end
 
 
