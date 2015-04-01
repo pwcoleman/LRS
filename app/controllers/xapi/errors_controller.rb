@@ -1,6 +1,7 @@
 class Xapi::ErrorsController < Xapi::BaseController
 
   skip_before_action :authenticate
+  skip_before_action :validate_xapi_version
 
   def error400
     render json: params['default'], status: :bad_request
