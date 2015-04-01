@@ -4,6 +4,7 @@ class Xapi::BaseController < ApplicationController
 
   before_action :set_default_api_response_headers
   before_action :authenticate
+  before_action :validate_xapi_version
 
   private
 
@@ -25,6 +26,13 @@ class Xapi::BaseController < ApplicationController
 
   def render_unauthorized
     render json: {error: true, success: false, message: 'Unauthorised request', code: 401}.to_json, status: 401
+  end
+
+  def validate_xapi_version
+    xapi_version = request.headers['X-Experience-API-Version']
+    unless xapi_version && (xapi_version == '1.0.0' || xapi_version == '1.0.1')
+      render json: {error: true, success: false, message: 'Invalid XAPI version', code: 400}.to_json, status: 400
+    end
   end
 
 end
