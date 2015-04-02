@@ -5,6 +5,7 @@ class Xapi::BaseController < ApplicationController
   before_action :set_default_api_response_headers
   before_action :authenticate
   before_action :validate_xapi_version
+  before_action :fetch_lrs
 
   private
 
@@ -33,6 +34,11 @@ class Xapi::BaseController < ApplicationController
     unless xapi_version && (xapi_version == '1.0.0' || xapi_version == '1.0.1')
       render json: {error: true, success: false, message: 'Invalid XAPI version', code: 400}.to_json, status: 400
     end
+  end
+
+  def fetch_lrs
+    # TODO FIX THIS  -- need to be able to retrieve based upon credentials
+    @lrs = Lrs.all.first
   end
 
 end

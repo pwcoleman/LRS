@@ -10,15 +10,23 @@ class Xapi::StatementsController < Xapi::BaseController
   # stores a statement or set of statements
   # This is used if a statement doesn't have client generated ID
   def create
-    statement = Statement.create({statement: statement_parameters})
-    @statement_ids = [statement.statement[:id]]
+    statement = Statement.create({lrs: @lrs, statement: statement_parameters})
+    if statement.valid?
+      @statement_ids = [statement.statement[:id]]
+    else
+      render json: {error: true, success: false, message: statement.errors[:statement].join('. '), code: 400}, status: :bad_request
+    end
   end
 
   # PUT /statements
   # stores a statement with the given statementId
   def update
-    @statement = Statement.create({statement: statement_parameters})
-    render status: :no_content
+    statement = Statement.create({lrs: @lrs, statement: statement_parameters})
+    if statement.valid?
+      render status: :no_content
+    else
+      render json: {error: true, success: false, message: statement.errors[:statement].join('. '), code: 400}, status: :bad_request
+    end
   end
 
   private
