@@ -2,6 +2,8 @@ class Lrs
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  has_many :statements
+
   field :title
   field :description
   field :api, type: Hash
