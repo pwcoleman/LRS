@@ -42,7 +42,11 @@ group :development, :test do
 
   gem 'rspec-rails', '~>3.2.1'
   gem 'mongoid-rspec', '~> 2.2.0'
+  gem 'cucumber-rails', '~> 1.4.2', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner', '~> 1.4.1'
 end
 
 # use Mongodb via mongoid
 gem 'mongoid',  '~> 4.0.0'
+
