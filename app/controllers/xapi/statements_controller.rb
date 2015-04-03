@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Xapi::StatementsController < Xapi::BaseController
 
   # GET /statements

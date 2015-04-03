@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Xapi::AboutController < Xapi::BaseController
 
   skip_before_action :authenticate
