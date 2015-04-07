@@ -1,5 +1,5 @@
 # encoding: UTF-8
-Feature: saveStatement
+Feature: Save statement
 
   Scenario Outline: Good save statement: [<type>] request
 

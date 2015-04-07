@@ -1,5 +1,5 @@
 # encoding: UTF-8
-Feature: about
+Feature: About
 
   Scenario Outline: Good about: [<type>] request
 
