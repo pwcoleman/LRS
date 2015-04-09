@@ -23,17 +23,41 @@ class Statement
     end
   end
 
+  def actor
+    statement[:actor]
+  end
+
+  def actor=(value)
+    statement[:actor] = value
+  end
+
+  def verb
+    statement[:verb]
+  end
+
+  def verb=(value)
+    statement[:verb] = value
+  end
+
+  def object
+    statement[:object]
+  end
+
+  def object=(value)
+    statement[:object] = value
+  end
+
   private
 
   def check_actor
-    errors.add(:statement, "Missing property actor in statement") if statement[:actor].nil?
+    errors.add(:statement, "Missing property actor in statement") if actor.nil?
   end
 
   def check_verb
-    errors.add(:statement, "Missing property verb in statement") if statement[:verb].nil?
+    errors.add(:statement, "Missing property verb in statement") if verb.nil?
   end
 
   def check_object
-    errors.add(:statement, "Missing property object in statement") if statement[:object].nil?
+    errors.add(:statement, "Missing property object in statement") if object.nil?
   end
 end
