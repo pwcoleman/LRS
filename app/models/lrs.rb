@@ -21,4 +21,12 @@ class Lrs
     end
   end
 
+  def username
+    api[:basic_key]
+  end
+
+  def password
+    api[:basic_secret]
+  end
+
 end

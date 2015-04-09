@@ -22,7 +22,8 @@ class Xapi::BaseController < ApplicationController
   def authenticate_basic_auth
     authenticate_with_http_basic do |username, password|
       # TODO: FIX THIS -- we need to be able to authenticate properly
-      username == 'username' && password == 'password'
+      @lrs = Lrs.where(api: {'basic_key' => username, 'basic_secret' => password}).first
+      @lrs.present?
     end
   end
 
@@ -39,7 +40,7 @@ class Xapi::BaseController < ApplicationController
 
   def fetch_lrs
     # TODO FIX THIS  -- need to be able to retrieve based upon credentials
-    @lrs = Lrs.all.first
+    @lrs
   end
 
 end

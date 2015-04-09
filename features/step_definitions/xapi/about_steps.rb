@@ -36,21 +36,6 @@ Given(/^the \[method\] is set to '\[(.*?)\]'$/) do |method|
   @context['method'] = method
 end
 
-
-When(/^the request is made$/) do
-  case @context['method']
-    when 'GET'
-      get "/xapi/#{@context['resource']}"
-    when 'PUT'
-      put "/xapi/#{@context['resource']}"
-    when 'POST'
-      post "/xapi/#{@context['resource']}"
-    when 'DELETE'
-      delete  "/xapi/#{@context['resource']}"
-  end
-end
-
-
 Then(/^the response is a valid about response$/) do
   body = JSON.parse(last_response.body)
   expect(body['X-Experience-API-Version']).to eq('1.0.1')
