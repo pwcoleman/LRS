@@ -46,6 +46,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.5.0'
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner', '~> 1.4.1'
+  gem 'puma', '~> 2.11.1'
 end
 
 # use Mongodb via mongoid
