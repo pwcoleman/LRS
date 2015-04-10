@@ -9,6 +9,7 @@ end
 
 Given(/^the \[Content\-Type header\] is set to '\[(.*?)\]'$/) do |value|
   pending # express the regexp above with the code you wish you had
+  header('Content-Type', value)
 end
 
 Given(/^the \[authority header\] is deleted$/) do
@@ -20,6 +21,6 @@ Given(/^the \[version header\] is deleted$/) do
 end
 
 Given(/^the \[Content\-Type header\] is deleted$/) do
-  pending # express the regexp above with the code you wish you had
+  header('Content-Type', nil)
 end
 

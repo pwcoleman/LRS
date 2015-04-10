@@ -4,7 +4,7 @@ Given(/^the \[statementId parameter\] is set to '\[(.*?)\]'$/) do |value|
 end
 
 Given(/^the \[statementId parameter\] is deleted$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params'].delete('statementId')
 end
 
 

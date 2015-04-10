@@ -13,7 +13,6 @@ Feature: Save statement
     | 204  | typical    |
 # TODO: PWC INCLUDE THIS    | 204  | attachment |
 
-  @focus
   Scenario Outline: Bad save statement: [<type>] request with [<property>] set to '[<value>]'
 
     Given a [<type>] saveStatement request
@@ -30,6 +29,7 @@ Feature: Save statement
     | 400  | minimal    | content             | null              |
 # TODO: PWC INCLUDE THIS    | 400  | attachment | Content-Type header | application/json  |
 
+  @focus
   Scenario Outline: Bad save statement: [<type>] request missing [<property>]
 
     Given a [<type>] saveStatement request
