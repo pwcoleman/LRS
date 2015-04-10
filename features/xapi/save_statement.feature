@@ -1,7 +1,6 @@
 # encoding: UTF-8
 Feature: Save statement
 
-  @focus
   Scenario Outline: Good save statement: [<type>] request
 
     Given a [<type>] saveStatement request
@@ -14,6 +13,7 @@ Feature: Save statement
     | 204  | typical    |
 # TODO: PWC INCLUDE THIS    | 204  | attachment |
 
+  @focus
   Scenario Outline: Bad save statement: [<type>] request with [<property>] set to '[<value>]'
 
     Given a [<type>] saveStatement request

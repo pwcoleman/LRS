@@ -11,11 +11,15 @@ class Xapi::StatementsController < Xapi::BaseController
   # stores a statement or set of statements
   # This is used if a statement doesn't have client generated ID
   def create
-    statement = Statement.create({lrs: @lrs, statement: statement_parameters})
-    if statement.valid?
-      @statement_ids = [statement.statement[:id]]
+    if params[:statementId]
+      render json: {error: true, success: false, message: 'Statement ID parameter is invalid.', code: 400}, status: :bad_request
     else
-      render json: {error: true, success: false, message: statement.errors[:statement].join('. '), code: 400}, status: :bad_request
+      statement = Statement.create({lrs: @lrs, statement: statement_parameters})
+      if statement.valid?
+        @statement_ids = [statement.statement[:id]]
+      else
+        render json: {error: true, success: false, message: statement.errors[:statement].join('. '), code: 400}, status: :bad_request
+      end
     end
   end
 
@@ -24,11 +28,15 @@ class Xapi::StatementsController < Xapi::BaseController
   def update
     # TODO: Check the parameter
     # TODO: Check if statement exists and if so check if they are the same
-    statement = Statement.create({lrs: @lrs, statement: statement_parameters})
-    if statement.valid?
-      render status: :no_content
+    if params[:statementId]
+      statement = Statement.create({lrs: @lrs, statement: statement_parameters})
+      if statement.valid?
+        render status: :no_content
+      else
+        render json: {error: true, success: false, message: statement.errors[:statement].join('. '), code: 400}, status: :bad_request
+      end
     else
-      render json: {error: true, success: false, message: statement.errors[:statement].join('. '), code: 400}, status: :bad_request
+      render json: {error: true, success: false, message: 'A statement ID is required to PUT.', code: 400}, status: :bad_request
     end
   end
 

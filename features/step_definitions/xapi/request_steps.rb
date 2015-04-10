@@ -1,14 +1,41 @@
 # encoding: UTF-8
 
+def perform_get
+  get "/xapi/#{@context['resource']}"
+end
+
+def perform_post
+  if @context['content']
+    body = @context['content'].merge(@context['params']).to_json
+  else
+    body = @context['params'].to_json
+  end
+  post "/xapi/#{@context['resource']}", body
+end
+
+def perform_put
+  if @context['content']
+    body = @context['content'].merge(@context['params']).to_json
+  else
+    body = @context['params'].to_json
+  end
+  put "/xapi/#{@context['resource']}", body
+end
+
+def perform_delete
+  delete "/xapi/#{@context['resource']}"
+end
+
+
 When(/^the request is made$/) do
   case @context['method']
     when 'GET'
-      get "/xapi/#{@context['resource']}"
+      perform_get
     when 'PUT'
-      put "/xapi/#{@context['resource']}", @context['content'].to_json
+      perform_put
     when 'POST'
-      post "/xapi/#{@context['resource']}", @context['content'].to_json
+      perform_post
     when 'DELETE'
-      delete "/xapi/#{@context['resource']}"
+      perform_delete
   end
 end

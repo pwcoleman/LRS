@@ -48,6 +48,7 @@ def create_save_statement_context(type)
           'X-Experience-API-Version' => '1.0.1',
           'Content-Type' => 'application/json'
       },
+      'params' => {},
       'content' => ''
   }
   case type
@@ -80,6 +81,6 @@ Given(/^a \[(.*?)\] saveStatement request$/) do |type|
 end
 
 Given(/^the \[content\] is set to '\[null\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content'] = nil
 end
 
