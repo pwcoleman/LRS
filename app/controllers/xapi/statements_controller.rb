@@ -29,7 +29,7 @@ class Xapi::StatementsController < Xapi::BaseController
     # TODO: Check the parameter
     # TODO: Check if statement exists and if so check if they are the same
     if params[:statementId]
-      statement = Statement.create({lrs: @lrs, statement: statement_parameters})
+      statement = Statement.create({lrs: @lrs, statement: statement_parameters.merge({id: params[:statementId]})})
       if statement.valid?
         render status: :no_content
       else

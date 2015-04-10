@@ -16,6 +16,7 @@ class Statement
   validate :check_actor
   validate :check_verb
   validate :check_object
+  validate :check_statement_id
 
   set_callback(:validation, :before) do |document|
     unless document.statement[:id]
@@ -25,6 +26,7 @@ class Statement
       end
     end
     unless statement_id
+      document.statement[:id].downcase!
       document.statement_id = document.statement[:id]
     end
   end
@@ -65,5 +67,9 @@ class Statement
 
   def check_object
     errors.add(:statement, "Missing property object in statement") if object.nil?
+  end
+
+  def check_statement_id
+    errors.add(:statement, "Invalid statement ID") unless statement[:id] =~ /\A(urn:uuid:)?[\da-f]{8}-([\da-f]{4}-){3}[\da-f]{12}\z/i
   end
 end

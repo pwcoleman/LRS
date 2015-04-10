@@ -29,7 +29,6 @@ Feature: Save statement
     | 400  | minimal    | content             | null              |
 # TODO: PWC INCLUDE THIS    | 400  | attachment | Content-Type header | application/json  |
 
-  @focus
   Scenario Outline: Bad save statement: [<type>] request missing [<property>]
 
     Given a [<type>] saveStatement request

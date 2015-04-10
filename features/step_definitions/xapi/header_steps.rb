@@ -8,7 +8,6 @@ Given(/^the \[version header\] is set to '\[(.*?)\]'$/) do |version|
 end
 
 Given(/^the \[Content\-Type header\] is set to '\[(.*?)\]'$/) do |value|
-  pending # express the regexp above with the code you wish you had
   header('Content-Type', value)
 end
 
