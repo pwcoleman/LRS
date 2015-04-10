@@ -6,20 +6,23 @@ end
 
 def perform_post
   if @context['content']
-    body = @context['content'].merge(@context['params']).to_json
+    body = @context['content']
+    if @context['content'].is_a?(Hash)
+      body = body.merge(@context['params'])
+    end
   else
-    body = @context['params'].to_json
+    body = @context['params']
   end
-  post "/xapi/#{@context['resource']}", body
+  post "/xapi/#{@context['resource']}", body.to_json
 end
 
 def perform_put
   if @context['content']
-    body = @context['content'].merge(@context['params']).to_json
+    body = @context['content'].merge(@context['params'])
   else
-    body = @context['params'].to_json
+    body = @context['params']
   end
-  put "/xapi/#{@context['resource']}", body
+  put "/xapi/#{@context['resource']}", body.to_json
 end
 
 def perform_delete
