@@ -1,11 +1,43 @@
 # encoding: UTF-8
 
 def create_minimal_statement
-  {}
+  {
+      'actor' => {
+          'mbox' => 'mailto:conformancetest@tincanapi.com',
+          'objectType' => 'Agent'
+      },
+      'verb' =>  {
+          'id' => 'http://tincanapi.com/conformancetest/verbid',
+          'display' => {
+              'en-US' => 'test'
+          }
+      },
+      'object' => {
+          'id' => 'http://tincanapi.com/conformancetest/activityid',
+          'objectType' => 'Activity'
+      }
+  }
 end
 
-def create_typical_statement
-  {}
+def create_typical_statement(id=nil)
+  {
+      'actor' => {
+          'mbox' => 'mailto:conformancetest@tincanapi.com',
+          'objectType' => 'Agent'
+      },
+      'verb' =>  {
+          'id' => 'http://tincanapi.com/conformancetest/verbid',
+          'display' => {
+              'en-US' => 'test'
+          }
+      },
+      'object' => {
+          'id' => 'http://tincanapi.com/conformancetest/activityid',
+          'objectType' => 'Activity'
+      },
+      'id' => id,
+      'timestamp' => '2014-07-23T12:34:02-05:00'
+  }
 end
 
 def create_save_statement_context(type)
@@ -20,50 +52,12 @@ def create_save_statement_context(type)
   }
   case type
     when 'minimal'
-      context.merge!(
-                 {
-                     'content' =>
-                      {
-                          'actor' => {
-                              'mbox' => 'mailto:conformancetest@tincanapi.com',
-                              'objectType' => 'Agent'
-                          },
-                          'verb' =>  {
-                              'id' => 'http://tincanapi.com/conformancetest/verbid',
-                              'display' => {
-                                  'en-US' => 'test'
-                              }
-                          },
-                          'object' => {
-                              'id' => 'http://tincanapi.com/conformancetest/activityid',
-                              'objectType' => 'Activity'
-                          }
-                      }
-                 }
-      )
+      context.merge!({'content' => create_minimal_statement})
     when 'typical'
       id = SecureRandom.uuid
       context.merge!({
                          'method' => 'PUT',
-                         'content' =>
-                             {
-                                 'actor' => {
-                                     'mbox' => 'mailto:conformancetest@tincanapi.com',
-                                     'objectType' => 'Agent'
-                                 },
-                                 'verb' =>  {
-                                     'id' => 'http://tincanapi.com/conformancetest/verbid',
-                                     'display' => {
-                                         'en-US' => 'test'
-                                     }
-                                 },
-                                 'object' => {
-                                     'id' => 'http://tincanapi.com/conformancetest/activityid',
-                                     'objectType' => 'Activity'
-                                 },
-                                 'id' => id,
-                                 'timestamp' => '2014-07-23T12:34:02-05:00'
-                             },
+                         'content' => create_typical_statement(id),
                          'params' => {
                              'statementId' => id
                          }

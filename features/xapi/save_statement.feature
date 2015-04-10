@@ -12,7 +12,7 @@ Feature: Save statement
     | HTTP | type       |
     | 200  | minimal    |
     | 204  | typical    |
-    | 204  | attachment |
+# TODO: PWC INCLUDE THIS    | 204  | attachment |
 
   Scenario Outline: Bad save statement: [<type>] request with [<property>] set to '[<value>]'
 
@@ -28,7 +28,7 @@ Feature: Save statement
     | 400  | minimal    | method              | PUT               |
     | 400  | minimal    | resource            | statement         |
     | 400  | minimal    | content             | null              |
-    | 400  | attachment | Content-Type header | application/json  |
+# TODO: PWC INCLUDE THIS    | 400  | attachment | Content-Type header | application/json  |
 
   Scenario Outline: Bad save statement: [<type>] request missing [<property>]
 

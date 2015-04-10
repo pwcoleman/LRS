@@ -8,6 +8,9 @@ class Statement
   field :statement, type: Hash, default: {}
   field :active, type: Boolean, default: false
   field :voided, type: Boolean, default: false
+  field :statement_id, type: String
+
+  index({ statement_id: 1 }, { unique: true, name: "statement_id_index" })
 
   validates :lrs, presence: true
   validate :check_actor
@@ -20,6 +23,9 @@ class Statement
         token = SecureRandom.uuid
         break token unless Statement.where(:'statement.id' => token).any?
       end
+    end
+    unless statement_id
+      document.statement_id = document.statement[:id]
     end
   end
 

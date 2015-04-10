@@ -9,6 +9,6 @@ When(/^the request is made$/) do
     when 'POST'
       post "/xapi/#{@context['resource']}", @context['content'].to_json
     when 'DELETE'
-      delete  "/xapi/#{@context['resource']}"
+      delete "/xapi/#{@context['resource']}"
   end
 end

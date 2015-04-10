@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get 'statements' => 'statements#show'
     post 'statements' => 'statements#create'
     put 'statements' => 'statements#update'
+    match 'statement', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
   end
 
 end

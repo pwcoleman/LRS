@@ -22,6 +22,8 @@ class Xapi::StatementsController < Xapi::BaseController
   # PUT /statements
   # stores a statement with the given statementId
   def update
+    # TODO: Check the parameter
+    # TODO: Check if statement exists and if so check if they are the same
     statement = Statement.create({lrs: @lrs, statement: statement_parameters})
     if statement.valid?
       render status: :no_content
