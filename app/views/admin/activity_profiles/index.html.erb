@@ -9,9 +9,12 @@
   </tr>
   </thead>
 
-  <% @store.activity_profiles.each do |activity| %>
+  <% @activity_profiles.each do |activity| %>
       <tr>
         <td><%= activity.id %></td>
       </tr>
   <% end %>
 </table>
+
+<%= paginate @activity_profiles %>
+

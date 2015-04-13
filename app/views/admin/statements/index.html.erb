@@ -9,9 +9,11 @@
   </tr>
   </thead>
 
-  <% @store.statements.each do |statement| %>
+  <% @statements.each do |statement| %>
       <tr>
         <td><%= statement.id %></td>
       </tr>
   <% end %>
 </table>
+
+<%= paginate @statements %>

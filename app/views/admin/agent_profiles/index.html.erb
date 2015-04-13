@@ -9,9 +9,12 @@
   </tr>
   </thead>
 
-  <% @store.agent_profiles.each do |agent| %>
+  <% @agent_profiles.each do |agent| %>
       <tr>
         <td><%= agent.id %></td>
       </tr>
   <% end %>
 </table>
+
+
+<%= paginate @agent_profiles %>

@@ -9,9 +9,12 @@
   </tr>
   </thead>
 
-  <% @store.activity_states.each do |state| %>
+  <% @activity_states.each do |state| %>
       <tr>
         <td><%= state.id %></td>
       </tr>
   <% end %>
 </table>
+
+<%= paginate @activity_states %>
+
