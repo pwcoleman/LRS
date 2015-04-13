@@ -1,0 +1,17 @@
+<h1>Agent profiles for <%= @store.title %> </h1>
+
+<%= link_to 'Back', admin_lrs_index_path, class: "btn btn-default btn-xs" %>
+
+<table id="agent_profiles" class="table table-hover table-striped table-condensed">
+  <thead>
+  <tr>
+    <td>ID</td>
+  </tr>
+  </thead>
+
+  <% @store.agent_profiles.each do |agent| %>
+      <tr>
+        <td><%= agent.id %></td>
+      </tr>
+  <% end %>
+</table>

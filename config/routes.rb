@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :lrs, only: [:index] do
       resources :statements, only: [:index]
+      resources :activity_states, ony: [:index]
+      resources :activity_profiles, ony: [:index]
+      resources :agent_profiles, ony: [:index]
     end
   end
 

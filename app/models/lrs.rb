@@ -5,6 +5,8 @@ class Lrs
 
   has_many :statements
   has_many :activity_states
+  has_many :agent_profiles
+  has_many :activity_profiles
 
   field :title
   field :description

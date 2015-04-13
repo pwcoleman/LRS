@@ -17,9 +17,9 @@
     <td><%= store.description %></td>
     <td>
       <%= link_to 'Statements', admin_lrs_statements_path(store), class: "btn btn-primary btn-xs" %>
-      <%= link_to 'States', '#', class: "btn btn-primary btn-xs" %>
-      <%= link_to 'Activities', '#', class: "btn btn-primary btn-xs" %>
-      <%= link_to 'Agents', '#', class: "btn btn-primary btn-xs" %>
+      <%= link_to 'States', admin_lrs_activity_states_path(store), class: "btn btn-primary btn-xs" %>
+      <%= link_to 'Activities', admin_lrs_activity_profiles_path(store), class: "btn btn-primary btn-xs" %>
+      <%= link_to 'Agents', admin_lrs_agent_profiles_path(store), class: "btn btn-primary btn-xs" %>
     </td>
   </tr>
   <% end %>
