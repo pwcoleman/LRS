@@ -1,0 +1,21 @@
+<h1>Learning Record Stores</h1>
+
+<table id="stores" class="table table-hover table-striped table-condensed">
+  <thead>
+  <tr>
+    <td>ID</td>
+    <td>Title</td>
+    <td>Description</td>
+    <td></td>
+  </tr>
+  </thead>
+
+  <% @stores.each do |store| %>
+  <tr>
+    <td><%= store.id %></td>
+    <td><%= store.title %></td>
+    <td><%= store.description %></td>
+    <td></td>
+  </tr>
+  <% end %>
+</table>

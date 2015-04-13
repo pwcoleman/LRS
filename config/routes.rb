@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :lrs, only: [:index]
+  end
+
   namespace :xapi, defaults: {format: :json} do
     # NB all the xapi routes have been created manually rather than using the Rails resource style as the LRS spec
     # doesn't use standard CRUD routes
@@ -20,5 +24,7 @@ Rails.application.routes.draw do
     put 'activities/state' => 'activity_states#update'
     delete 'activities/state' => 'activity_states#destroy'
   end
+
+  root to: 'admin/lrs#index'
 
 end
