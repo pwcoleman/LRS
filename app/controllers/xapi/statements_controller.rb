@@ -3,7 +3,7 @@ class Xapi::StatementsController < Xapi::BaseController
 
   # GET /statements
   # get a single statement or multiple statements
-  def show
+  def index
     pp params
   end
 
