@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    resources :lrs, only: [:index]
+    resources :lrs, only: [:index] do
+      resources :statements, only: [:index]
+    end
   end
 
   namespace :xapi, defaults: {format: :json} do

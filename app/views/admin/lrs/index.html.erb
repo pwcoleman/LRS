@@ -15,7 +15,14 @@
     <td><%= store.id %></td>
     <td><%= store.title %></td>
     <td><%= store.description %></td>
-    <td></td>
+    <td>
+      <%= link_to 'Statements', admin_lrs_statements_path(store), class: "btn btn-primary btn-xs" %>
+      <%= link_to 'States', '#', class: "btn btn-primary btn-xs" %>
+      <%= link_to 'Activities', '#', class: "btn btn-primary btn-xs" %>
+      <%= link_to 'Agents', '#', class: "btn btn-primary btn-xs" %>
+    </td>
   </tr>
   <% end %>
 </table>
+
+<%= paginate @stores %>

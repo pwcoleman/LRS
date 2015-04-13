@@ -4,6 +4,7 @@ class Lrs
   include Mongoid::Timestamps
 
   has_many :statements
+  has_many :activity_states
 
   field :title
   field :description
