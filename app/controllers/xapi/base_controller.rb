@@ -1,6 +1,10 @@
 # encoding: UTF-8
 class Xapi::BaseController < ApplicationController
 
+  VALID_EXPERIENCE_API_VERSIONS = [
+      X_EXPERIENCE_API_VERSION = '1.0.1',
+      X_EXPERIENCE_API_VERSION_1_0_0 = '1.0.0']
+
   protect_from_forgery with: :null_session, only: Proc.new { |c| c.request.format.json? }
 
   before_action :set_default_api_response_headers
@@ -11,7 +15,7 @@ class Xapi::BaseController < ApplicationController
   private
 
   def set_default_api_response_headers
-    response.headers['X-Experience-API-Version'] = '1.0.1'
+    response.headers['X-Experience-API-Version'] = X_EXPERIENCE_API_VERSION
     response.headers['Content-Type'] = 'application/json'
   end
 
@@ -33,7 +37,7 @@ class Xapi::BaseController < ApplicationController
 
   def validate_xapi_version
     xapi_version = request.headers['X-Experience-API-Version']
-    unless xapi_version && (xapi_version == '1.0.0' || xapi_version == '1.0.1')
+    unless xapi_version && (VALID_EXPERIENCE_API_VERSIONS.include?(xapi_version))
       render json: {error: true, success: false, message: 'Invalid XAPI version', code: 400}.to_json, status: 400
     end
   end
