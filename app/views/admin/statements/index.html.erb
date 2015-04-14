@@ -6,12 +6,17 @@
   <thead>
   <tr>
     <td>ID</td>
+    <td></td>
   </tr>
   </thead>
 
   <% @statements.each do |statement| %>
       <tr>
         <td><%= statement.id %></td>
+        <td>
+          <%= link_to 'View', '#', data: {toggle: 'modal', target: "##{statement.id}"} %>
+          <%= render 'statement_details', statement: statement %>
+        </td>
       </tr>
   <% end %>
 </table>
