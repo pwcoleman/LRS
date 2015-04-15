@@ -1,0 +1,4 @@
+class AgentProfile < Document
+
+
+end

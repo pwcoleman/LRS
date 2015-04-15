@@ -1,0 +1,3 @@
+class ActivityProfile < Document
+
+end

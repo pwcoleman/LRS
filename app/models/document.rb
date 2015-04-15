@@ -4,7 +4,6 @@ class Document
 
   belongs_to :lrs
 
-  field :document_type, type: String
   field :identity_id, type: String
   field :activity_id, type: String
   field :agent, type: Hash

@@ -20,11 +20,14 @@ class Xapi::ActivityStatesController < Xapi::BaseController
 
   # PUT /activities/state
   def update
-    pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    pp params
-    pp '-------------------------------------'
-    pp state_params
-    pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    state = State.create(@lrs, request.content_type, state_params)
+    if state.valid?
+      render status: :no_content
+    else
+      render json: {error: true, success: false, message: state.errors[:state].join('. '), code: 400}, status: :bad_request
+    end
+
+
   end
 
   # DELETE /activities/state

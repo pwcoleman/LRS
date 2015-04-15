@@ -7,6 +7,6 @@ Then(/^the LRS responds with HTTP \[(\d+)\]$/) do |http|
   expect(last_response.status).to eq(http)
 end
 
-Then(/^the LRS responds with HTTP (\d+)$/) do |arg1|
+Then(/^the LRS responds with HTTP (\d+)$/) do |http|
   expect(last_response.status).to eq(http)
 end
