@@ -23,3 +23,8 @@ Given(/^the \[Content\-Type header\] is deleted$/) do
   header('Content-Type', nil)
 end
 
+Given(/^the \[Content\-Type header\] is removed$/) do
+  header('Content-Type', nil)
+end
+
+

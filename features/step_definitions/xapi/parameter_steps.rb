@@ -7,4 +7,6 @@ Given(/^the \[statementId parameter\] is deleted$/) do
   @context['params'].delete('statementId')
 end
 
-
+Given(/^the \[content\] is removed$/) do
+  @context['content'] = nil
+end
