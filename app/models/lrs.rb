@@ -4,9 +4,7 @@ class Lrs
   include Mongoid::Timestamps
 
   has_many :statements
-  has_many :activity_states
-  has_many :agent_profiles
-  has_many :activity_profiles
+  has_many :documents
 
   field :title
   field :description
