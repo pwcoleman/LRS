@@ -1,26 +1,8 @@
 # encoding: UTF-8
 
-def create_about_context(type)
-  case type
-    when 'typical'
-       {
-          'resource' => 'about',
-          'headers' => {
-              'X-Experience-API-Version' => '1.0.1',
-              'Authorization' => ''
-          },
-          'method' => 'GET'
-      }
-    when 'minimal'
-      {
-          'resource' => 'about',
-          'method' => 'GET'
-      }
-  end
-end
-
 Given(/^a \[(.*?)\] about request$/) do |type|
-  @context = create_about_context(type)
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Request::About.build(@lrs, type)
   if @context['headers']
     @context['headers'].each_pair do |key, value|
       header(key, value) if value
