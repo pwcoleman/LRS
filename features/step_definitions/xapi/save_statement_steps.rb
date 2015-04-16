@@ -2,10 +2,7 @@
 
 def create_minimal_statement
   {
-      'actor' => {
-          'mbox' => 'mailto:conformancetest@tincanapi.com',
-          'objectType' => 'Agent'
-      },
+      'actor' => create_agent('typical'),
       'verb' =>  {
           'id' => 'http://tincanapi.com/conformancetest/verbid',
           'display' => {
@@ -21,10 +18,7 @@ end
 
 def create_typical_statement(id=nil)
   {
-      'actor' => {
-          'mbox' => 'mailto:conformancetest@tincanapi.com',
-          'objectType' => 'Agent'
-      },
+      'actor' => create_agent('typical'),
       'verb' =>  {
           'id' => 'http://tincanapi.com/conformancetest/verbid',
           'display' => {

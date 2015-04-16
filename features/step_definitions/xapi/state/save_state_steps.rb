@@ -11,10 +11,7 @@ Given(/^a \[typical\] saveState request$/) do
       'params' => {
           'stateId' => 'http://tincanapi.com/conformancetest/statedoc',
           'activityId' => 'http://tincanapi.com/conformancetest/activityid',
-          'agent' => {
-              'mbox' => 'mailto:conformancetest@tincanapi.com',
-              'objectType' => 'Agent'
-          }
+          'agent' => create_agent('typical')
       },
       'content' => {}
   }
@@ -38,20 +35,17 @@ Given(/^a \[JSON\] saveState request$/) do
       'params' => {
           'stateId' => 'http://tincanapi.com/conformancetest/statedoc',
           'activityId' => 'http://tincanapi.com/conformancetest/activityid',
-          'agent' => {
-              'mbox' => 'mailto:conformancetest@tincanapi.com',
-              'objectType' => 'Agent'
-          }.to_json
+          'agent' => create_agent('typical').to_json
       },
       'content' => {
           test: 'JSON content',
           obj: {
               subObj: {
-                  nested: "content"
+                  nested: 'content'
               },
-              arr: [0, 1, "str"]
+              arr: [0, 1, 'str']
           },
-          arr: [1.3, "item", 3.1]
+          arr: [1.3, 'item', 3.1]
       }
   }
   if @context['headers']
@@ -74,10 +68,7 @@ Given(/^a \[withRegistration\] saveState request$/) do
       'params' => {
           'stateId' => 'http://tincanapi.com/conformancetest/statedoc',
           'activityId' => 'http://tincanapi.com/conformancetest/activityid',
-          'agent' => {
-              'mbox' => 'mailto:conformancetest@tincanapi.com',
-              'objectType' => 'Agent'
-          },
+          'agent' => create_agent('typical'),
           'registration' => '39e24cc4-69af-4b01-a824-1fdc6ea8a3af'
       },
       'content' => {}

@@ -35,3 +35,8 @@ grunt --feature=features/saveStatement.feature
   9) saveStatement Bad save statement: minimal request with bad statementId parameter 'bad statementId' Then the LRS responds with HTTP 400:
      Uncaught AssertionError: Response status: 200, expected: [400]
 
+grunt --feature=features/state/saveState.feature --diagnostics --reporter
+
+    9 passing (940ms)
+    256 pending
+
