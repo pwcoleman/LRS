@@ -8,6 +8,7 @@ class Lrs
 
   field :title
   field :description
+  field :version, type: String, default: '1.0.1'
   field :api, type: Hash
 
   validates :title, presence: true

@@ -18,7 +18,10 @@ end
 
 def perform_put
   if @context['content']
-    body = @context['content'].merge(@context['params'])
+    body = @context['content']
+    if body.is_a?(Hash)
+      body = body.merge(@context['params'])
+    end
   else
     body = @context['params']
   end
