@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class State < Document
 
   def self.create(lrs, content_type, params)

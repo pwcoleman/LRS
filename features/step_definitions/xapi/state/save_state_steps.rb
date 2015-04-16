@@ -11,7 +11,7 @@ Given(/^a \[typical\] saveState request$/) do
       'params' => {
           'stateId' => 'http://tincanapi.com/conformancetest/statedoc',
           'activityId' => 'http://tincanapi.com/conformancetest/activityid',
-          'agent' => create_agent('typical')
+          'agent' =>  Property::Agent.build('typical')
       },
       'content' => {}
   }
@@ -35,7 +35,7 @@ Given(/^a \[JSON\] saveState request$/) do
       'params' => {
           'stateId' => 'http://tincanapi.com/conformancetest/statedoc',
           'activityId' => 'http://tincanapi.com/conformancetest/activityid',
-          'agent' => create_agent('typical').to_json
+          'agent' => Property::Agent.build('typical').to_json
       },
       'content' => {
           test: 'JSON content',
@@ -68,7 +68,7 @@ Given(/^a \[withRegistration\] saveState request$/) do
       'params' => {
           'stateId' => 'http://tincanapi.com/conformancetest/statedoc',
           'activityId' => 'http://tincanapi.com/conformancetest/activityid',
-          'agent' => create_agent('typical'),
+          'agent' =>  Property::Agent.build('typical'),
           'registration' => '39e24cc4-69af-4b01-a824-1fdc6ea8a3af'
       },
       'content' => {}

@@ -2,7 +2,7 @@
 
 def create_minimal_statement
   {
-      'actor' => create_agent('typical'),
+      'actor' => Property::Agent.build('typical'),
       'verb' =>  {
           'id' => 'http://tincanapi.com/conformancetest/verbid',
           'display' => {
@@ -18,7 +18,7 @@ end
 
 def create_typical_statement(id=nil)
   {
-      'actor' => create_agent('typical'),
+      'actor' => Property::Agent.build('typical'),
       'verb' =>  {
           'id' => 'http://tincanapi.com/conformancetest/verbid',
           'display' => {
