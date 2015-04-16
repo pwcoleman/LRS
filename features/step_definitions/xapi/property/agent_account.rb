@@ -1,6 +1,9 @@
 # encoding: UTF-8
 module Property
   class AgentAccount
+
+    HOMEPAGE = 'https://tincanapi.com'
+
     def self.build(type)
       agent_account = {}
       case type

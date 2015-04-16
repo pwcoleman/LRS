@@ -1,7 +1,6 @@
 # encoding: UTF-8
 Feature: Save state
 
-  @focus
   Scenario Outline: Good save state: [<type>] request
 
     Given a [<type>] saveState request
@@ -29,6 +28,7 @@ Feature: Save state
     | JSON             | content                |
     | withRegistration | Content-Type header    |
     | withRegistration | content                |
+
 
   Scenario Outline: Good save state: [<type>] request with [<property>] set to [<value>]
 

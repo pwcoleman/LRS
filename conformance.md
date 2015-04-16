@@ -40,3 +40,13 @@ grunt --feature=features/state/saveState.feature --diagnostics --reporter
     9 passing (940ms)
     256 pending
 
+
+
+
+###########################################################
+
+1035 scenarios (16 failed, 953 pending, 66 passed)
+
+4517 steps (16 failed, 2925 skipped, 953 pending, 623 passed)
+
+0m16.250s
