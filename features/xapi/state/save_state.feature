@@ -28,7 +28,7 @@ Feature: Save state
     | withRegistration | Content-Type header    |
     | withRegistration | content                |
 
-
+@focus
   Scenario Outline: Good save state: [<type>] request with [<property>] set to [<value>]
 
     Given a [<type>] saveState request
