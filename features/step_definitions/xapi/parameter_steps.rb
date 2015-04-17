@@ -10,3 +10,16 @@ end
 Given(/^the \[content\] is removed$/) do
   @context['content'] = nil
 end
+
+Given(/^the \[stateId parameter\] is removed$/) do
+  @context['params'].delete('stateId')
+end
+
+Given(/^the \[activityId parameter\] is removed$/) do
+  @context['params'].delete('activityId')
+end
+
+Given(/^the \[agent parameter\] is removed$/) do
+  @context['params'].delete('agent')
+end
+

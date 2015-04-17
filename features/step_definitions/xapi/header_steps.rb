@@ -15,7 +15,15 @@ Given(/^the \[authority header\] is deleted$/) do
   header('Authorization', nil)
 end
 
+Given(/^the \[authority header\] is removed$/) do
+  header('Authorization', nil)
+end
+
 Given(/^the \[version header\] is deleted$/) do
+  header('X-Experience-API-Version', nil)
+end
+
+Given(/^the \[version header\] is removed$/) do
   header('X-Experience-API-Version', nil)
 end
 

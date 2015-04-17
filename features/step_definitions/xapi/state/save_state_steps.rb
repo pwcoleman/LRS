@@ -33,9 +33,13 @@ Given(/^a \[withRegistration\] saveState request$/) do
 end
 
 Given(/^a typical saveState request$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Request::SaveState.build(@lrs, 'typical')
+  if @context['headers']
+    @context['headers'].each_pair do |key, value|
+      header(key, value) if value
+    end
+  end
+  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
 end
 
-Given(/^the \[stateId parameter\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
-end

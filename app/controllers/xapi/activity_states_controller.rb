@@ -10,26 +10,39 @@ class Xapi::ActivityStatesController < Xapi::BaseController
 
   # POST /activities/state
   def create
-    # TODO Check if it already exists
-    # If exists and both JSON then merge
-    # else create
-    state = State.create(@lrs, request.content_type, state_params)
-    if state.valid?
-      render status: :no_content
+    errors = check_parameters
+    if errors.empty?
+      # TODO Check if it already exists
+      # If exists and both JSON then merge
+      # else create
+      state = State.create(@lrs, request.content_type, state_params)
+      if state.valid?
+        render status: :no_content
+      else
+        render json: {error: true, success: false, message: state.errors[:state].join('. '), code: 400}, status: :bad_request
+      end
     else
-      render json: {error: true, success: false, message: state.errors[:state].join('. '), code: 400}, status: :bad_request
+      render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
     end
   end
 
 
   # PUT /activities/state
   def update
-    # TODO Check if it already exists
-    state = State.create(@lrs, request.content_type, state_params)
-    if state.valid?
-      render status: :no_content
+    pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
+    pp params
+    pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    errors = check_parameters
+    if errors.empty?
+      # TODO Check if it already exists
+      state = State.create(@lrs, request.content_type, state_params)
+      if state.valid?
+        render status: :no_content
+      else
+        render json: {error: true, success: false, message: state.errors[:state].join('. '), code: 400}, status: :bad_request
+      end
     else
-      render json: {error: true, success: false, message: state.errors[:state].join('. '), code: 400}, status: :bad_request
+      render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
     end
   end
 
@@ -44,5 +57,13 @@ class Xapi::ActivityStatesController < Xapi::BaseController
 
   def state_params
     params.reject {|k,v| ['format', 'controller', 'action', 'object', 'result', 'context', 'timestamp', 'stored', 'authority', 'version', 'attachments'].include?(k) }
+  end
+
+  def check_parameters
+    errors = []
+    errors << 'State ID is missing' unless params['stateId']
+    errors << 'Activity ID is missing' unless params['activityId']
+    errors << 'Agent is missing' unless params['agent']
+    errors
   end
 end

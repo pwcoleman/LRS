@@ -11,14 +11,6 @@ Given(/^a typical deleteActivityProfile request$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Given(/^the \[authority header\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the \[activityId parameter\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
 Given(/^the \[profileId parameter\] is removed$/) do
   pending # express the regexp above with the code you wish you had
 end

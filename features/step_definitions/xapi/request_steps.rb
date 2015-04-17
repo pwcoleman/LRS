@@ -13,7 +13,7 @@ def perform_post
   else
     body = @context['params']
   end
-  post "/xapi/#{@context['resource']}", body.to_json
+  post "/xapi/#{@context['resource']}#{build_url_parameters}", body.to_json
 end
 
 def perform_put
@@ -25,7 +25,7 @@ def perform_put
   else
     body = @context['params']
   end
-  put "/xapi/#{@context['resource']}", body.to_json
+  put "/xapi/#{@context['resource']}#{build_url_parameters}", body.to_json
 end
 
 def perform_delete
@@ -44,4 +44,12 @@ When(/^the request is made$/) do
     when 'DELETE'
       perform_delete
   end
+end
+
+def build_url_parameters
+  result = ''
+  unless @context['params'].empty?
+    result = "?#{ @context['params'].to_param}"
+  end
+  result
 end
