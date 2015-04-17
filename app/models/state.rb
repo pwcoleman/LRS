@@ -7,6 +7,7 @@ class State < Document
 
   validates :activity_id, presence: true
   validates :agent, presence: true
+  validates :agent, agent: true
   validates :identity_id, presence: true
   validates :agent, presence: true
   validate :check_registration

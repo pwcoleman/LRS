@@ -140,31 +140,4 @@ Given(/^the \[ascending parameter\] is set to '\["(.*?)"\]'$/) do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 
-Given(/^the params agent \[mbox\] is set to '\[conformancetest@tincanapi\.com\]'$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the params agent \[mbox\] is set to '\[bad mbox\]'$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the params agent \[objectType\] is set to '\[notAgent\]'$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the params agent \[objectType\] is set to '\[Activity\]'$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the params agent \[objectType\] is set to '\[agent\]'$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the params agent \[openid\] is set to '\[bad URI\]'$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the params agent \[account homePage\] is set to '\[bad URI\]'$/) do
-  pending # express the regexp above with the code you wish you had
-end
 
