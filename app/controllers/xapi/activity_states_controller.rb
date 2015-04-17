@@ -29,9 +29,6 @@ class Xapi::ActivityStatesController < Xapi::BaseController
 
   # PUT /activities/state
   def update
-    pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    pp params
-    pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     errors = check_parameters
     if errors.empty?
       # TODO Check if it already exists

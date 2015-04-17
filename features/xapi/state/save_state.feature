@@ -57,7 +57,7 @@ Feature: Save state
     | withRegistration | agent parameter      | an accountOnly agent        |
     | withRegistration | content              | a typical statement         |
 
-  @focus
+
   Scenario Outline: Good save state: [<type>] request with [<property>] set to '[<value>]'
 
     Given a [<type>] saveState request
@@ -72,7 +72,7 @@ Feature: Save state
     | typical | content             | test content        |
     | JSON    | method              | POST                |
 
-    @focus
+
   Scenario Outline: Bad save state: typical request missing [<property>]
 
     Given a typical saveState request
@@ -88,6 +88,7 @@ Feature: Save state
     | 400  | activityId parameter     |
     | 400  | agent parameter          |
 
+  @focus
   Scenario Outline: Bad save state: [<type>] request with bad agent parameter an empty agent
 
     Given a [<type>] saveState request

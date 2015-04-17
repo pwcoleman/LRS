@@ -23,3 +23,8 @@ Given(/^the \[agent parameter\] is removed$/) do
   @context['params'].delete('agent')
 end
 
+Given(/^the agent parameter is set to an empty agent$/) do
+  @context['params']['agent'] = Property::Agent.build('empty')
+end
+
+
