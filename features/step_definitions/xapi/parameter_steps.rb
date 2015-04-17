@@ -64,6 +64,17 @@ Given(/^the params agent \[openid\] is set to '\[bad URI\]'$/) do
 end
 
 Given(/^the params agent \[account homePage\] is set to '\[bad URI\]'$/) do
-  # pending # express the regexp above with the code you wish you had
   @context['params']['agent']['account']['homePage'] = 'bad URI'
+end
+
+Given(/^the params agent \[mbox\] is removed$/) do
+  @context['params']['agent'].delete('mbox')
+end
+
+Given(/^the params agent \[account homePage\] is removed$/) do
+  @context['params']['agent']['account'].delete('homePage')
+end
+
+Given(/^the params agent \[account name\] is removed$/) do
+  @context['params']['agent']['account'].delete('name')
 end

@@ -43,14 +43,3 @@ Given(/^a typical deleteAgentProfile request$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Given(/^the params agent \[account homePage\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the params agent \[account name\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the params agent \[mbox\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
-end

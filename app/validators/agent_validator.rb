@@ -1,12 +1,19 @@
 class AgentValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
+    check_inverse_functional_identifier(record, attribute, value)
     check_mbox(record, attribute, value)
     check_object_type(record, attribute, value)
     check_openid(record, attribute, value)
+    check_account(record, attribute, value)
     check_account_home_page(record, attribute, value)
   end
 
   private
+
+  def check_inverse_functional_identifier(record, attribute, value)
+    return if value['mbox'] || value['mbox_sha1sum'] || value['openid'] || value['account']
+    record.errors[attribute] << (options[:message] || "Agent missing inverse functional identifier")
+  end
 
   def check_mbox(record, attribute, value)
     return unless value['mbox']
@@ -29,7 +36,7 @@ class AgentValidator < ActiveModel::EachValidator
   end
 
   def check_account_home_page(record, attribute, value)
-    return unless value['account']
+    return unless value['account'] && value['account']['homePage']
     success = false
     uri = value['account']['homePage']
     begin
@@ -40,4 +47,15 @@ class AgentValidator < ActiveModel::EachValidator
     record.errors[attribute] << (options[:message] || "invalid agent home page") unless success
   end
 
+  def check_account(record, attribute, value)
+    return unless value['account']
+    unless value['account']['homePage']
+      record.errors[attribute] << (options[:message] || "missing agent account home page")
+    end
+
+    unless value['account']['name']
+      record.errors[attribute] << (options[:message] || "missing agent account name")
+    end
+
+  end
 end

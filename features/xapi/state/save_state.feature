@@ -121,7 +121,7 @@ Feature: Save state
     | 400  | withRegistration | activityId parameter   | bad URI                                                      |
     | 400  | withRegistration | registration parameter | bad UUID                                                     |
 
-  @focus
+
   Scenario Outline: Bad save state: typical request with [<modifier>] agent parameter with bad [<property>] '[<value>]'
 
     Given a typical saveState request
@@ -144,6 +144,7 @@ Feature: Save state
     | accountAndType | account homePage | bad URI                         |
     | accountOnly    | account homePage | bad URI                         |
 
+  @focus
   Scenario Outline: Bad save state: typical request [<modifier>] agent parameter missing [<property>]
 
     Given a typical saveState request
