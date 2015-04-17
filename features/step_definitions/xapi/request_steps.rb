@@ -48,7 +48,7 @@ end
 
 def build_url_parameters
   result = ''
-  unless @context['params'].empty?
+  unless @context['params'] && @context['params'].empty?
     result = "?#{ @context['params'].to_param}"
   end
   result

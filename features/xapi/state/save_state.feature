@@ -144,7 +144,7 @@ Feature: Save state
     | accountAndType | account homePage | bad URI                         |
     | accountOnly    | account homePage | bad URI                         |
 
-  @focus
+
   Scenario Outline: Bad save state: typical request [<modifier>] agent parameter missing [<property>]
 
     Given a typical saveState request
