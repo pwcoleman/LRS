@@ -19,10 +19,6 @@ Given(/^a \[withRegistration\] clearState request$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Given(/^the \[registration parameter\] is set to '\[bad UUID\]'$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
 Given(/^a typical clearState request$/) do
   pending # express the regexp above with the code you wish you had
 end

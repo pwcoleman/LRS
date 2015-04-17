@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     arel (6.0.0)
     autoprefixer-rails (5.1.8.1)
       execjs
@@ -224,6 +225,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable (~> 2.3.8)
   bootstrap-sass (~> 3.3.4.1)
   byebug
   coffee-rails (~> 4.1.0)

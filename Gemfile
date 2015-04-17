@@ -55,3 +55,5 @@ end
 # use Mongodb via mongoid
 gem 'mongoid',  '~> 4.0.0'
 
+gem 'addressable', '~> 2.3.8'
+

@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     post 'activities/state' => 'activity_states#create'
     put 'activities/state' => 'activity_states#update'
     delete 'activities/state' => 'activity_states#destroy'
+    match 'activities/states', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
+    match 'activity/state', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
   end
 
   root to: 'admin/lrs#index'

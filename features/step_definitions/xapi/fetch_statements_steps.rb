@@ -3,9 +3,6 @@ Given(/^a query fetchStatements request$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Given(/^the agent parameter is set to a \[(.*?)\] agent$/) do |agent_type|
-  pending # express the regexp above with the code you wish you had
-end
 
 Given(/^the \[statementId\] parameter is set to good UUID$/) do
   pending # express the regexp above with the code you wish you had

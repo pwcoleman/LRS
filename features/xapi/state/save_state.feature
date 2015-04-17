@@ -88,7 +88,6 @@ Feature: Save state
     | 400  | activityId parameter     |
     | 400  | agent parameter          |
 
-  @focus
   Scenario Outline: Bad save state: [<type>] request with bad agent parameter an empty agent
 
     Given a [<type>] saveState request
@@ -100,6 +99,7 @@ Feature: Save state
     | type                |
     | typical             |
     | withRegistration    |
+
 
   Scenario Outline: Bad save state: [<type>] request with bad [<property>] '[<value>]'
 
@@ -121,6 +121,7 @@ Feature: Save state
     | 400  | withRegistration | activityId parameter   | bad URI                                                      |
     | 400  | withRegistration | registration parameter | bad UUID                                                     |
 
+  @focus
   Scenario Outline: Bad save state: typical request with [<modifier>] agent parameter with bad [<property>] '[<value>]'
 
     Given a typical saveState request

@@ -14,17 +14,28 @@ class Xapi::BaseController < ApplicationController
 
   private
 
+  BadAuthorization = Class.new(StandardError)
+
   def set_default_api_response_headers
     response.headers['X-Experience-API-Version'] = X_EXPERIENCE_API_VERSION
     response.headers['Content-Type'] = 'application/json'
   end
 
   def authenticate
-    authenticate_basic_auth || render_unauthorized
+    begin
+      authenticate_basic_auth || render_unauthorized
+    rescue BadAuthorization
+      render json: {error: true, success: false, message: 'Bad Auth', code: 400}.to_json, status: 400
+    rescue Exception
+      render json: {error: true, success: false, message: 'Unauthorised request', code: 401}.to_json, status: 401
+    end
   end
 
   def authenticate_basic_auth
     authenticate_with_http_basic do |username, password|
+      if username.nil? || password.nil?
+        raise BadAuthorization
+      end
       # TODO: FIX THIS -- we need to be able to authenticate properly
       @lrs = Lrs.where(api: {'basic_key' => username, 'basic_secret' => password}).first
       @lrs.present?

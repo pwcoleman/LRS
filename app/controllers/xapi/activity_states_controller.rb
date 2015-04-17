@@ -10,6 +10,7 @@ class Xapi::ActivityStatesController < Xapi::BaseController
 
   # POST /activities/state
   def create
+    # TODO CHeck content type
     errors = check_parameters
     if errors.empty?
       # TODO Check if it already exists
