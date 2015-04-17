@@ -9,7 +9,7 @@ end
 
 
 Given(/^the \[content\] is set to '\[test content\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content'] = 'test content'
 end
 
 Given(/^a typical saveActivityProfile request$/) do

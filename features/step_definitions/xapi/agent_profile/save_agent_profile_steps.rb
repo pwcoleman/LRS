@@ -48,5 +48,5 @@ Given(/^the \[content\] is set to \[a typical statement\]$/) do
 end
 
 Given(/^the \[stateId parameter\] is set to '\[test state id\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['stateId'] = 'test state id'
 end

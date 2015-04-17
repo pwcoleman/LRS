@@ -13,7 +13,6 @@ Feature: Save state
     | JSON              |
     | withRegistration  |
 
-    @focus
   Scenario Outline: Good save state: [<type>] request missing [<property>]
 
     Given a [<type>] saveState request
@@ -58,6 +57,7 @@ Feature: Save state
     | withRegistration | agent parameter      | an accountOnly agent        |
     | withRegistration | content              | a typical statement         |
 
+  @focus
   Scenario Outline: Good save state: [<type>] request with [<property>] set to '[<value>]'
 
     Given a [<type>] saveState request
