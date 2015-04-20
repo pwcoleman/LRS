@@ -13,7 +13,8 @@ class State < Document
   validate :check_registration
   validate :check_activity_id
 
-  def self.create(lrs, content_type, params)
+  # create a new state - this is the preferred way to create a new State
+  def self.create_from(lrs, content_type, params)
     # TODO: ADD SOME VALIDATION
     state = State.new(lrs: lrs, content_type: content_type)
     state.state_id = params['stateId']

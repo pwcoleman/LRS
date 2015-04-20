@@ -31,6 +31,17 @@ class Statement
     end
   end
 
+  # create a new statement - this is the preferred way to create a new Statement
+  def self.create_from(lrs, params)
+    statement = Statement.new(lrs: lrs)
+    statement.statement = params
+    statement.statement['stored'] = Time.now
+    statement.statement['timestamp'] = statement.statement['stored'] unless statement.statement['timestamp']
+
+    statement.save
+    statement
+  end
+
   def actor
     statement[:actor]
   end

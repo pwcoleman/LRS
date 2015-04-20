@@ -9,7 +9,7 @@ class Xapi::StatementsController < Xapi::BaseController
     elsif params[:voidedStatementId]
       @result = Statement.where(statement_id: params[:statementId], voided: true).first
     else
-      @results = Statement.where(voided:false)
+      @results = Statement.where(voided:false).order_by(['statement.stored', :desc])
     end
   end
 
@@ -20,7 +20,7 @@ class Xapi::StatementsController < Xapi::BaseController
     if params[:statementId]
       render json: {error: true, success: false, message: 'Statement ID parameter is invalid.', code: 400}, status: :bad_request
     else
-      statement = Statement.create({lrs: @lrs, statement: statement_parameters})
+      statement = Statement.create_from(@lrs, statement_parameters)
       if statement.valid?
         @statement_ids = [statement.statement[:id]]
       else
@@ -35,7 +35,7 @@ class Xapi::StatementsController < Xapi::BaseController
     # TODO: Check the parameter
     # TODO: Check if statement exists and if so check if they are the same
     if params[:statementId]
-      statement = Statement.create({lrs: @lrs, statement: statement_parameters.merge({id: params[:statementId]})})
+      statement = Statement.create_from(@lrs, statement_parameters.merge({id: params[:statementId]}))
       if statement.valid?
         render status: :no_content
       else

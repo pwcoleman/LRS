@@ -16,7 +16,7 @@ class Xapi::ActivityStatesController < Xapi::BaseController
       # TODO Check if it already exists
       # If exists and both JSON then merge
       # else create
-      state = State.create(@lrs, request.content_type, state_params)
+      state = State.create_from(@lrs, request.content_type, state_params)
       if state.valid?
         render status: :no_content
       else
@@ -33,7 +33,7 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     errors = check_parameters
     if errors.empty?
       # TODO Check if it already exists
-      state = State.create(@lrs, request.content_type, state_params)
+      state = State.create_from(@lrs, request.content_type, state_params)
       if state.valid?
         render status: :no_content
       else
