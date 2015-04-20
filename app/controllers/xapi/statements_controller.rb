@@ -4,7 +4,13 @@ class Xapi::StatementsController < Xapi::BaseController
   # GET /statements
   # get a single statement or multiple statements
   def index
-    pp params
+    if params[:statementId]
+      @result = Statement.where(statement_id: params[:statementId], voided: false).first
+    elsif params[:voidedStatementId]
+      @result = Statement.where(statement_id: params[:statementId], voided: true).first
+    else
+      @results = Statement.where(voided:false)
+    end
   end
 
   # POST /statements
