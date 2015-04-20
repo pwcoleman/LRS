@@ -57,3 +57,5 @@ gem 'mongoid',  '~> 4.0.0'
 
 gem 'addressable', '~> 2.3.8'
 
+gem 'rack-cors', '~> 0.4.0', :require => 'rack/cors'
+
