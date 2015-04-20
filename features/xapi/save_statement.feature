@@ -46,6 +46,7 @@ Feature: Save statement
     | 401  | minimal | authority header       |
     | 400  | minimal | Content-Type header    |
 
+    @focus
   Scenario Outline: Bad save statement: [<type>] request with bad [<property>] '[<value>]'
 
     Given a [<type>] saveStatement request
