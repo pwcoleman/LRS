@@ -23,6 +23,7 @@ class Statement
   validate :check_object
   validate :check_statement_id
   validates :actor, agent: true
+  validates :object, object: true
 
   set_callback(:validation, :before) do |document|
     unless document.statement[:id]

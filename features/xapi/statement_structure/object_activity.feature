@@ -1,12 +1,13 @@
 # encoding: UTF-8
 Feature: statement structure object activity test
 
+
   Scenario Outline: Good object activity: [<modifier>] activity
 
     Given a [<type>] saveStatement request
     Given the statement object is changed to a [<modifier>] activity
     When the request is made
-    Then the request was successful
+    Then the request was successful (204)
 
   Examples:
     | type    | modifier          |
@@ -15,9 +16,10 @@ Feature: statement structure object activity test
     | typical | idAndDefinition   |
     | typical | allProperties     |
 
+
   Scenario Outline: Bad object activity: [<modifier>] activity with bad [<property>] '[<value>]'
 
-    Given a typical saveStatement request
+    Given a [typical] saveStatement request
     Given the statement object is changed to a [<modifier>] activity
     Given the statement object [<property>] is changed to '[<value>]'
     When the request is made
@@ -32,6 +34,7 @@ Feature: statement structure object activity test
     | allProperties | definition interactionType | bad interaction    |
     | allProperties | definition moreInfo        | bad IRL            |
 
+
   Scenario Outline: Bad object activity: [<modifier>] activity missing [<property>]
 
     Given a [<type>] saveStatement request
@@ -44,12 +47,13 @@ Feature: statement structure object activity test
     | HTTP | type    | modifier      | property   |
     | 400  | typical | allProperties | id         |
 
+
   Scenario Outline: Good activity definition permutation: [<modifier>] definition
 
     Given an activity saveStatement request
     Given the statement object definition is set to a [<modifier>] activityDefinition
     When the request is made
-    Then the request was successful
+    Then the request was successful (204)
 
   Examples:
     | modifier                          |
