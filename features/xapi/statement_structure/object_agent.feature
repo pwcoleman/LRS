@@ -1,12 +1,13 @@
 # encoding: UTF-8
 Feature: statement structure object agent test
 
+
   Scenario Outline: Good object agent: [<object>]
 
     Given a [<type>] saveStatement request
     Given the statement object is changed to a [<object>]
     When the request is made
-    Then the request was successful
+    Then the request was successful (204)
 
   Examples:
     | type    | object                    |
@@ -14,6 +15,8 @@ Feature: statement structure object agent test
     | typical | mboxSha1AndType agent     |
     | typical | openidAndType agent       |
     | typical | accountAndType agent      |
+
+
 
   Scenario Outline: Bad object agent: [<object>] with bad [<property>] '[<value>]'
 
@@ -31,6 +34,7 @@ Feature: statement structure object agent test
     | 400  | typical | openidAndType agent                   | openid                    | bad openid                     |
     | 400  | typical | mboxAndType agent                     | objectType                | agent                          |
     | 400  | typical | accountAndType agent                  | account homePage          | bad homePage                   |
+
 
   Scenario Outline: Bad object agent: [<object>] missing [<property>]
 

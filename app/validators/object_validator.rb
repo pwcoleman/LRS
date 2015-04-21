@@ -47,7 +47,11 @@ class ObjectValidator < ActiveModel::EachValidator
   end
 
   def validate_agent(record, attribute, value)
-
+    check_inverse_functional_identifier(record, attribute, value)
+    check_mbox(record, attribute, value)
+    check_openid(record, attribute, value)
+    check_account(record, attribute, value)
+    check_account_home_page(record, attribute, value)
   end
 
   def validate_group(record, attribute, value)
@@ -72,6 +76,53 @@ class ObjectValidator < ActiveModel::EachValidator
       end
     end
     success
+  end
+
+  def check_inverse_functional_identifier(record, attribute, value)
+    return if value && (value['mbox'] || value['mbox_sha1sum'] || value['openid'] || value['account'])
+    record.errors[attribute] << (options[:message] || "Agent missing inverse functional identifier")
+  end
+
+  def check_mbox(record, attribute, value)
+    return unless value && value['mbox']
+    unless value['mbox'] =~ /\Amailto:([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+      record.errors[attribute] << (options[:message] || "invalid agent mbox")
+    end
+  end
+
+  def check_openid(record, attribute, value)
+    return unless value && value['openid']
+    success = false
+    base_uri = value['openid']
+    begin
+      uri = Addressable::URI.parse(base_uri)
+      success = uri.scheme && uri.host && uri.to_s == base_uri && uri
+    rescue URI::InvalidURIError, Addressable::URI::InvalidURIError, TypeError
+    end
+    record.errors[attribute] << (options[:message] || "invalid agent openid") unless success
+  end
+
+  def check_account(record, attribute, value)
+    return unless value && value['account']
+    unless value['account']['homePage']
+      record.errors[attribute] << (options[:message] || "missing agent account home page")
+    end
+
+    unless value['account']['name']
+      record.errors[attribute] << (options[:message] || "missing agent account name")
+    end
+  end
+
+  def check_account_home_page(record, attribute, value)
+    return unless value && value['account'] && value['account']['homePage']
+    success = false
+    base_uri = value['account']['homePage']
+    begin
+      uri = Addressable::URI.parse(base_uri)
+      success = uri.scheme && uri.host && uri.to_s == base_uri && uri
+    rescue URI::InvalidURIError, Addressable::URI::InvalidURIError, TypeError
+    end
+    record.errors[attribute] << (options[:message] || "invalid agent home page") unless success
   end
 
 end

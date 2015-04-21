@@ -72,7 +72,6 @@ class AgentValidator < ActiveModel::EachValidator
     unless value['account']['name']
       record.errors[attribute] << (options[:message] || "missing agent account name")
     end
-
   end
 
   def check_group_members(record, attribute, value)
