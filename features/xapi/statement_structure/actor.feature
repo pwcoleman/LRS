@@ -82,6 +82,7 @@ Feature: statement structure actor test
     | 400  | typical | accountAndType group               | account homePage    |
     | 400  | typical | allPropertiesMboxAgentMember group | objectType          |
 
+  @focus
   Scenario Outline: Good actor: [<object>] missing [<property>]
 
     Given a [<type>] saveStatement request
