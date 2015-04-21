@@ -15,7 +15,7 @@ module Property
                 'en-US' => 'test'
             }
           when 'idOnly'
-            ver['id'] = 'http://tincanapi.com/conformancetest/verbid'
+            verb['id'] = 'http://tincanapi.com/conformancetest/verbid'
           when 'idAndDisplay'
             verb['id'] = 'http://tincanapi.com/conformancetest/verbid'
             verb['display'] = {

@@ -59,6 +59,19 @@ class Statement
 
   def check_verb
     errors.add(:statement, "Missing property verb in statement") if verb.nil?
+    success = false
+    if verb['id']
+      begin
+        uri = Addressable::URI.parse(verb['id'])
+        success = uri.scheme && uri.host && uri.to_s == verb['id'] && uri
+      rescue URI::InvalidURIError, Addressable::URI::InvalidURIError, TypeError
+      end
+    end
+    errors.add(:statement, "Invalid verb ID") unless success
+    #TODO: FIX THIS
+    if verb['display']
+      errors.add(:statement, "Invalid verb ID") unless verb['display'].is_a?(Hash)
+    end
   end
 
   def check_object
@@ -67,6 +80,5 @@ class Statement
 
   def check_statement_id
     errors.add(:statement, "Invalid statement ID") unless statement[:id] =~ /\A(urn:uuid:)?[\da-f]{8}-[\da-f]{4}-4[\da-f]{3}-[8 9 a b][\da-f]{3}-[\da-f]{12}\z/i
-
   end
 end

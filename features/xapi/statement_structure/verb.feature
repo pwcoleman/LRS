@@ -1,18 +1,20 @@
 # encoding: UTF-8
 Feature: statement structure verb test
 
+  @focus
   Scenario Outline: Good verb: [<modifier>] verb
 
     Given a [<type>] saveStatement request
     Given the statement verb is changed to a [<modifier>] verb
     When the request is made
-    Then the request was successful
+    Then the request was successful (204)
 
   Examples:
     | type    | modifier        |
     | typical | idOnly          |
     | typical | idAndDisplay    |
 
+  @focus
   Scenario Outline: Bad verb: [<object>] with bad [<property>] '[<value>]'
 
     Given a [<type>] saveStatement request
@@ -27,6 +29,7 @@ Feature: statement structure verb test
     | 400  | typical | idAndDisplay verb | display  | bad display   |
     | 400  | typical | idAndDisplay verb | id       | bad id        |
 
+  @focus
   Scenario Outline: Bad verb: [<object>] missing [<property>]
 
     Given a [<type>] saveStatement request
@@ -40,13 +43,14 @@ Feature: statement structure verb test
     | 400  | typical | idAndDisplay verb | id         |
     | 400  | typical | idOnly verb       | id         |
 
+    @focus
   Scenario Outline: Good verb: [<object>] missing [<property>]
 
     Given a [<type>] saveStatement request
     Given the statement verb is changed to a [<object>]
     Given the statement verb [<property>] is removed
     When the request is made
-    Then the request was successful
+    Then the request was successful (204)
 
   Examples:
     | type    | object            | property  |

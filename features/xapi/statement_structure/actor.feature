@@ -1,7 +1,6 @@
 # encoding: UTF-8
 Feature: statement structure actor test
 
-  @focus
   Scenario Outline: Good actor: [<object>]
 
     Given a [<type>] saveStatement request

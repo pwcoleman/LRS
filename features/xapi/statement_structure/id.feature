@@ -1,7 +1,6 @@
 # encoding: UTF-8
 Feature: statement structure id test
 
-  @focus
   Scenario: Good id: unique
 
     Given a minimal saveStatement request
@@ -9,7 +8,6 @@ Feature: statement structure id test
     When the request is made
     Then the request was successful
 
-  @focus
   Scenario Outline: Bad id: '[<value>]' ([<description>])
 
     Given a [<type>] saveStatement request
