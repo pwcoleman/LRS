@@ -1,20 +1,27 @@
 # encoding: UTF-8
 Given(/^a minimal saveStatement request$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Request::SaveStatement.build(@lrs, 'minimal')
+  if @context['headers']
+    @context['headers'].each_pair do |key, value|
+      header(key, value) if value
+    end
+  end
+  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
 end
 
 Given(/^the statement id is changed to a unique UUID$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['id'] = SecureRandom.uuid
 end
 
 Given(/^the statement id is changed to '\[bad id\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['id'] = 'bad id'
 end
 
-Given(/^the statement id is changed to '\[(\d+)c\-(\d+)\-e(\d+)\-b(\d+)\-a(\d+)d(\d+)c(\d+)d(\d+)f\]'$/) do |arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement id is changed to '\[7396683c-0759-e411-b974-a0d3c123d81f\]'$/) do
+  @context['content']['id'] = '7396683c-0759-e411-b974-a0d3c123d81f'
 end
 
-Given(/^the statement id is changed to '\[(\d+)c\-(\d+)\-(\d+)\-c(\d+)\-a(\d+)d(\d+)c(\d+)d(\d+)f\]'$/) do |arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement id is changed to '\[7396683c-0759-1411-c974-a0d3c123d81f\]'$/) do
+  @context['content']['id'] = '7396683c-0759-1411-c974-a0d3c123d81f'
 end

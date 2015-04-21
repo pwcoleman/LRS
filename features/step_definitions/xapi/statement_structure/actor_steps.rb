@@ -1,10 +1,13 @@
 # encoding: UTF-8
 Given(/^the statement actor is changed to a \[mboxAndType agent\]$/) do
-  pp @context
   @context['content']['actor'] = Property::Agent.build('mboxAndType')
 end
 
 Then(/^the request was successful$/) do
+  expect(last_response.status).to eq(200)
+end
+
+Then(/^the request was successful \(204\)$/) do
   expect(last_response.status).to eq(204)
 end
 

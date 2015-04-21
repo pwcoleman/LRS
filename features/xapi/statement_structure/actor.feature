@@ -7,7 +7,7 @@ Feature: statement structure actor test
     Given a [<type>] saveStatement request
     Given the statement actor is changed to a [<object>]
     When the request is made
-    Then the request was successful
+    Then the request was successful (204)
 
   Examples:
     | type    | object                  |
@@ -24,7 +24,6 @@ Feature: statement structure actor test
     | typical | openidAndType group     |
     | typical | accountAndType group    |
 
-  @focus
   Scenario Outline: Bad actor: [<object>] with bad [<property>] '[<value>]'
 
     Given a [<type>] saveStatement request
@@ -53,7 +52,6 @@ Feature: statement structure actor test
     | 400  | typical | allPropertiesAccountAgentMember group | member 0 account homePage | bad homePage                     |
     | 400  | typical | openidOnly agent                      | openid                    | bad URI                          |
 
-  @focus
   Scenario Outline: Bad actor: [<object>] missing [<property>]
 
     Given a [<type>] saveStatement request
@@ -82,7 +80,6 @@ Feature: statement structure actor test
     | 400  | typical | accountAndType group               | account homePage    |
     | 400  | typical | allPropertiesMboxAgentMember group | objectType          |
 
-  @focus
   Scenario Outline: Good actor: [<object>] missing [<property>]
 
     Given a [<type>] saveStatement request
