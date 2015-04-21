@@ -52,67 +52,67 @@ Given(/^the statement actor is changed to a \[accountAndType group\]$/) do
 end
 
 Given(/^the statement actor \[mbox\] is changed to '\[conformancetest@tincanapi\.com\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor']['mbox'] = 'conformancetest@tincanapi.com'
 end
 
 Given(/^the statement actor \[mbox\] is changed to '\[bad mbox\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor']['mbox'] = 'bad mbox'
 end
 
 Given(/^the statement actor \[objectType\] is changed to '\[notAgent\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor']['objectType'] = 'notAgent'
 end
 
 Given(/^the statement actor \[objectType\] is changed to '\[notGroup\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor']['objectType'] = 'notGroup'
 end
 
 Given(/^the statement actor is changed to a \[allPropertiesMboxAgentMember group\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'] = Property::Group.build('allPropertiesMboxAgentMember')
 end
 
-Given(/^the statement actor \[member (\d+) mbox\] is changed to '\[conformancetest@tincanapi\.com\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement actor \[member 0 mbox\] is changed to '\[conformancetest@tincanapi\.com\]'$/) do
+  @context['content']['actor']['member'][0]['mbox'] = 'conformancetest@tincanapi.com'
 end
 
-Given(/^the statement actor \[member (\d+) mbox\] is changed to '\[bad mbox\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement actor \[member 0 mbox\] is changed to '\[bad mbox\]'$/) do
+  @context['content']['actor']['member'][0]['mbox'] = 'bad mbox'
 end
 
 Given(/^the statement actor \[openid\] is changed to '\[bad openid\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor']['openid'] = 'bad openid'
 end
 
 Given(/^the statement actor \[account homePage\] is changed to '\[bad homePage\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor']['account']['homePage'] = 'bad homePage'
 end
 
 Given(/^the statement actor \[objectType\] is changed to '\[agent\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor']['objectType'] = 'agent'
 end
 
 Given(/^the statement actor \[objectType\] is changed to '\[group\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor']['objectType'] = 'group'
 end
 
 Given(/^the statement actor is changed to a \[allPropertiesOpenidAgentMember group\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'] = Property::Group.build('allPropertiesOpenidAgentMember')
 end
 
-Given(/^the statement actor \[member (\d+) openid\] is changed to '\[bad openid\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement actor \[member 0 openid\] is changed to '\[bad openid\]'$/) do
+  @context['content']['actor']['member'][0]['openid'] = 'bad openid'
 end
 
 Given(/^the statement actor is changed to a \[allPropertiesAccountAgentMember group\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'] = Property::Group.build('allPropertiesAccountAgentMember')
 end
 
-Given(/^the statement actor \[member (\d+) account homePage\] is changed to '\[bad homePage\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement actor \[member 0 account homePage\] is changed to '\[bad homePage\]'$/) do
+  @context['content']['actor']['member'][0]['account']['homePage'] = 'bad homePage'
 end
 
 Given(/^the statement actor \[openid\] is changed to '\[bad URI\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor']['openid'] = 'bad URI'
 end
 
 Given(/^the statement actor \[mbox\] is removed$/) do

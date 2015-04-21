@@ -6,6 +6,7 @@ class AgentValidator < ActiveModel::EachValidator
     check_openid(record, attribute, value)
     check_account(record, attribute, value)
     check_account_home_page(record, attribute, value)
+    check_group_members(record, attribute, value)
   end
 
   private
@@ -17,14 +18,14 @@ class AgentValidator < ActiveModel::EachValidator
 
   def check_mbox(record, attribute, value)
     return unless value && value['mbox']
-    unless value['mbox'] =~ /\Amailto:([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+    unless value['mbox'] =~ /\Amailto:([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i || (value['mbox'] =~ /^[A-Fa-f0-9]{40}$/)
       record.errors[attribute] << (options[:message] || "invalid agent mbox")
     end
   end
 
   def check_object_type(record, attribute, value)
     return unless value && value['objectType']
-    unless value && value['objectType'] && value['objectType'] == 'Agent'
+    unless value && value['objectType'] && (value['objectType'] == 'Agent' || value['objectType'] == 'Group')
       record.errors[attribute] << (options[:message] || "invalid agent object type")
     end
   end
@@ -63,5 +64,16 @@ class AgentValidator < ActiveModel::EachValidator
       record.errors[attribute] << (options[:message] || "missing agent account name")
     end
 
+  end
+
+  def check_group_members(record, attribute, value)
+    return unless value && value['objectType'] == 'Group'
+    if value['member']
+      value['member'].each do |member|
+        check_mbox(record, attribute, member)
+        check_openid(record, attribute, member)
+        check_account_home_page(record, attribute, member)
+      end
+    end
   end
 end

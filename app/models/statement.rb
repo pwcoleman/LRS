@@ -1,4 +1,6 @@
 # encoding: UTF-8
+require "addressable/uri"
+
 class Statement
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -20,6 +22,7 @@ class Statement
   validate :check_verb
   validate :check_object
   validate :check_statement_id
+  validates :actor, agent: true
 
   set_callback(:validation, :before) do |document|
     unless document.statement[:id]

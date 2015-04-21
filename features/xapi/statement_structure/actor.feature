@@ -1,7 +1,6 @@
 # encoding: UTF-8
 Feature: statement structure actor test
 
-  @focus
   Scenario Outline: Good actor: [<object>]
 
     Given a [<type>] saveStatement request
@@ -24,6 +23,7 @@ Feature: statement structure actor test
     | typical | openidAndType group     |
     | typical | accountAndType group    |
 
+  @focus
   Scenario Outline: Bad actor: [<object>] with bad [<property>] '[<value>]'
 
     Given a [<type>] saveStatement request
