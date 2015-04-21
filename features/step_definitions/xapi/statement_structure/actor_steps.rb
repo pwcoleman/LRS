@@ -1,54 +1,54 @@
 # encoding: UTF-8
 Given(/^the statement actor is changed to a \[mboxAndType agent\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'] = Property::Agent.build('mboxAndType')
 end
 
 Then(/^the request was successful$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(last_response.status).to eq(204)
 end
 
-Given(/^the statement actor is changed to a \[mboxSha(\d+)AndType agent\]$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement actor is changed to a \[mboxSha1AndType agent\]$/) do
+  @context['content']['actor'] = Property::Agent.build('mboxSha1AndType')
 end
 
 Given(/^the statement actor is changed to a \[openidAndType agent\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'] = Property::Agent.build('openidAndType')
 end
 
 Given(/^the statement actor is changed to a \[accountAndType agent\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'] = Property::Agent.build('accountAndType')
 end
 
 Given(/^the statement actor is changed to a \[mboxOnly agent\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'] = Property::Agent.build('mboxOnly')
 end
 
-Given(/^the statement actor is changed to a \[mboxSha(\d+)Only agent\]$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement actor is changed to a \[mboxSha1Only agent\]$/) do
+  @context['content']['actor'] = Property::Agent.build('mboxSha1Only')
 end
 
 Given(/^the statement actor is changed to a \[openidOnly agent\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'] = Property::Agent.build('openidOnly')
 end
 
 Given(/^the statement actor is changed to a \[accountOnly agent\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'] = Property::Agent.build('accountOnly')
 end
 
 Given(/^the statement actor is changed to a \[mboxAndType group\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'] = Property::Group.build('mboxAndType')
 end
 
-Given(/^the statement actor is changed to a \[mboxSha(\d+)AndType group\]$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement actor is changed to a \[mboxSha1AndType group\]$/) do
+  @context['content']['actor'] = Property::Group.build('mboxSha1AndType')
 end
 
 Given(/^the statement actor is changed to a \[openidAndType group\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'] = Property::Group.build('openidAndType')
 end
 
 Given(/^the statement actor is changed to a \[accountAndType group\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'] = Property::Group.build('accountAndType')
 end
 
 Given(/^the statement actor \[mbox\] is changed to '\[conformancetest@tincanapi\.com\]'$/) do
