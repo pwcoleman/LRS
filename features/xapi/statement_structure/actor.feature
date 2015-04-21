@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: statement structure actor test
 
+  @focus
   Scenario Outline: Good actor: [<object>]
 
     Given a [<type>] saveStatement request
@@ -52,6 +53,7 @@ Feature: statement structure actor test
     | 400  | typical | allPropertiesAccountAgentMember group | member 0 account homePage | bad homePage                     |
     | 400  | typical | openidOnly agent                      | openid                    | bad URI                          |
 
+  @focus
   Scenario Outline: Bad actor: [<object>] missing [<property>]
 
     Given a [<type>] saveStatement request

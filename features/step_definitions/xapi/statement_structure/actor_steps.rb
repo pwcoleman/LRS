@@ -1,5 +1,6 @@
 # encoding: UTF-8
 Given(/^the statement actor is changed to a \[mboxAndType agent\]$/) do
+  pp @context
   @context['content']['actor'] = Property::Agent.build('mboxAndType')
 end
 
@@ -116,29 +117,29 @@ Given(/^the statement actor \[openid\] is changed to '\[bad URI\]'$/) do
 end
 
 Given(/^the statement actor \[mbox\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'].delete('mbox')
 end
 
-Given(/^the statement actor \[mbox_sha(\d+)sum\] is removed$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement actor \[mbox_sha1sum\] is removed$/) do
+  @context['content']['actor'].delete('mbox_sha1sum')
 end
 
 Given(/^the statement actor \[openid\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'].delete('openid')
 end
 
 Given(/^the statement actor \[account\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'].delete('account')
 end
 
 Given(/^the statement actor \[account name\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor']['account'].delete('name')
 end
 
 Given(/^the statement actor \[account homePage\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor']['account'].delete('homePage')
 end
 
 Given(/^the statement actor \[objectType\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['actor'].delete('objectType')
 end

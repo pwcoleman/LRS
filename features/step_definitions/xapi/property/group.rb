@@ -16,7 +16,7 @@ module Property
           group['mbox'] = MBOX
           group['objectType'] = 'Group'
         when 'mboxSha1AndType'
-          group['mbox'] = MBOX_SHA1SUM
+          group['mbox_sha1sum'] = MBOX_SHA1SUM
           group['objectType'] = 'Group'
         when 'openidAndType'
           group['openid'] = OPENID
@@ -29,7 +29,7 @@ module Property
           group['objectType'] = 'Group'
           group['name'] = 'test group'
         when 'mboxSha1TypeAndName'
-          group['mbox'] = MBOX_SHA1SUM
+          group['mbox_sha1sum'] = MBOX_SHA1SUM
           group['objectType'] = 'Group'
           group['name'] = 'test group'
         when 'openidTypeAndName'
@@ -45,7 +45,7 @@ module Property
           group['objectType'] = 'Group'
           group['member'] = [Property::Agent.build('typical')]
         when 'mboxSha1TypeAndMember'
-          group['mbox'] = MBOX_SHA1SUM
+          group['mbox_sha1sum'] = MBOX_SHA1SUM
           group['objectType'] = 'Group'
           group['member'] = [Property::Agent.build('typical')]
         when 'openidTypeAndMember'
