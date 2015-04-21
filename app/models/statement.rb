@@ -9,6 +9,9 @@ class Statement
   field :active, type: Boolean, default: false
   field :voided, type: Boolean, default: false
   field :statement_id, type: String
+  field :actor, type: Hash
+  field :verb, type: Hash
+  field :object, type: Hash
 
   index({ statement_id: 1 }, { unique: true, name: "statement_id_index" })
 
@@ -37,33 +40,12 @@ class Statement
     statement.statement = params
     statement.statement['stored'] = Time.now
     statement.statement['timestamp'] = statement.statement['stored'] unless statement.statement['timestamp']
+    statement.actor = params['actor']
+    statement.verb = params['verb']
+    statement.object = params['object']
 
     statement.save
     statement
-  end
-
-  def actor
-    statement[:actor]
-  end
-
-  def actor=(value)
-    statement[:actor] = value
-  end
-
-  def verb
-    statement[:verb]
-  end
-
-  def verb=(value)
-    statement[:verb] = value
-  end
-
-  def object
-    statement[:object]
-  end
-
-  def object=(value)
-    statement[:object] = value
   end
 
   private
