@@ -49,13 +49,20 @@ class ObjectValidator < ActiveModel::EachValidator
   def validate_agent(record, attribute, value)
     check_inverse_functional_identifier(record, attribute, value)
     check_mbox(record, attribute, value)
+    check_mbox_sha1sum(record, attribute, value)
     check_openid(record, attribute, value)
     check_account(record, attribute, value)
     check_account_home_page(record, attribute, value)
   end
 
   def validate_group(record, attribute, value)
-
+    check_inverse_functional_identifier(record, attribute, value)
+    check_mbox(record, attribute, value)
+    check_mbox_sha1sum(record, attribute, value)
+    check_openid(record, attribute, value)
+    check_account(record, attribute, value)
+    check_account_home_page(record, attribute, value)
+    check_group_members(record, attribute, value)
   end
 
   def validate_sub_statement(record, attribute, value)
@@ -87,6 +94,13 @@ class ObjectValidator < ActiveModel::EachValidator
     return unless value && value['mbox']
     unless value['mbox'] =~ /\Amailto:([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
       record.errors[attribute] << (options[:message] || "invalid agent mbox")
+    end
+  end
+
+  def check_mbox_sha1sum(record, attribute, value)
+    return unless value && value['mbox_sha1sum']
+    unless value['mbox_sha1sum'] =~ /^[A-Fa-f0-9]{40}$/
+      record.errors[attribute] << (options[:message] || "invalid agent mbox_sha1sum")
     end
   end
 
@@ -123,6 +137,18 @@ class ObjectValidator < ActiveModel::EachValidator
     rescue URI::InvalidURIError, Addressable::URI::InvalidURIError, TypeError
     end
     record.errors[attribute] << (options[:message] || "invalid agent home page") unless success
+  end
+
+  def check_group_members(record, attribute, value)
+    return unless value && value['objectType'] == 'Group'
+    if value['member']
+      value['member'].each do |member|
+        check_mbox(record, attribute, member)
+        check_mbox_sha1sum(record, attribute, value)
+        check_openid(record, attribute, member)
+        check_account_home_page(record, attribute, member)
+      end
+    end
   end
 
 end

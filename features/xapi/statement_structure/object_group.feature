@@ -1,12 +1,13 @@
 # encoding: UTF-8
 Feature: statement structure object group test
 
+
   Scenario Outline: Good object group: [<object>]
 
     Given a [<type>] saveStatement request
     Given the statement object is changed to a [<object>]
     When the request is made
-    Then the request was successful
+    Then the request was successful (204)
 
   Examples:
     | type    | object                    |
@@ -14,6 +15,7 @@ Feature: statement structure object group test
     | typical | mboxSha1AndType group     |
     | typical | openidAndType group       |
     | typical | accountAndType group      |
+
 
   Scenario Outline: Bad object group: [<object>] with bad [<property>] '[<value>]'
 
@@ -35,6 +37,7 @@ Feature: statement structure object group test
     | 400  | typical | openidAndType group                   | openid                    | bad openid                       |
     | 400  | typical | allPropertiesOpenidAgentMember group  | member 0 openid           | bad openid                       |
     | 400  | typical | allPropertiesAccountAgentMember group | member 0 account homePage | bad homePage                     |
+
 
   Scenario Outline: Bad object group: [<object>] missing [<property>]
 
