@@ -71,135 +71,135 @@ Given(/^the statement context \[statement\] is changed to \[an empty statementRe
 end
 
 Given(/^the statement context \[registration\] is changed to '\[bad id\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['registration'] = 'bad id'
 end
 
 Given(/^the statement context \[instructor\] is changed to '\[notAnAgent\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor'] = 'notAnAgent'
 end
 
 Given(/^the statement context \[instructor mbox\] is changed to '\[conformancetest@tincanapi\.com\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor']['mbox'] = 'conformancetest@tincanapi.com'
 end
 
 Given(/^the statement context \[instructor mbox\] is changed to '\[bad mbox\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor']['mbox'] = 'bad mbox'
 end
 
 Given(/^the statement context \[instructor objectType\] is changed to '\[notAgent\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor']['objectType'] = 'notAgent'
 end
 
 Given(/^the statement context is changed to a \[typicalGroupTeam\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('typicalGroupTeam')
 end
 
 Given(/^the statement context \[team objectType\] is changed to '\[notAGroup\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['team']['objectType'] = 'notAGroup'
 end
 
 Given(/^the statement context \[team mbox\] is changed to '\[conformancetest@tincanapi\.com\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['team']['mbox'] = 'conformancetest@tincanapi.com'
 end
 
 Given(/^the statement context \[team mbox\] is changed to '\[bad mbox\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['team']['mbox'] = 'bad mbox'
 end
 
 Given(/^the statement context \[language\] is changed to '\[bad language\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['language'] = 'bad language'
 end
 
 Given(/^the statement context is changed to a \[statementOnly\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('statementOnly')
 end
 
 Given(/^the statement context \[statement id\] is changed to '\[bad id\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['statement']['id'] = 'bad id'
 end
 
 Given(/^the statement context \[statement objectType\] is changed to '\[notStatementRef\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['statement']['objectType'] = 'notStatementRef'
 end
 
 Given(/^the statement context \[statement objectType\] is changed to '\[statementRef\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['statement']['objectType'] = 'statementRef'
 end
 
 Given(/^the statement context \[instructor openid\] is changed to '\[bad openid\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor']['openid'] = 'bad openid'
 end
 
 Given(/^the statement context \[instructor account homePage\] is changed to '\[bad homePage\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor']['account']['homePage'] = 'bad homePage'
 end
 
 Given(/^the statement context is changed to a \[typicalAgentInstructor\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('typicalAgentInstructor')
 end
 
 Given(/^the statement context \[instructor objectType\] is changed to '\[agent\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor']['objectType'] = 'agent'
 end
 
 Given(/^the statement context \[team objectType\] is changed to '\[group\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['team']['objectType'] = 'group'
 end
 
 Given(/^the statement context is changed to a \[contextActivitiesAllPropertiesOnly\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('contextActivitiesAllPropertiesOnly')
 end
 
-Given(/^the statement context \[contextActivities category (\d+) objectType\] is changed to '\[notActivity\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities category 0 objectType\] is changed to '\[notActivity\]'$/) do
+  @context['content']['context']['contextActivities']['category'][0]['objectType'] = 'notActivity'
 end
 
-Given(/^the statement context \[contextActivities parent (\d+) objectType\] is changed to '\[notActivity\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities parent 0 objectType\] is changed to '\[notActivity\]'$/) do
+  @context['content']['context']['contextActivities']['parent'][0]['objectType'] = 'notActivity'
 end
 
-Given(/^the statement context \[contextActivities grouping (\d+) objectType\] is changed to '\[notActivity\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities grouping 0 objectType\] is changed to '\[notActivity\]'$/) do
+  @context['content']['context']['contextActivities']['grouping'][0]['objectType'] = 'notActivity'
 end
 
-Given(/^the statement context \[contextActivities other (\d+) objectType\] is changed to '\[notActivity\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities other 0 objectType\] is changed to '\[notActivity\]'$/) do
+  @context['content']['context']['contextActivities']['other'][0]['objectType'] = 'notActivity'
 end
 
-Given(/^the statement context \[contextActivities category (\d+) id\] is changed to '\[bad id\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities category 0 id\] is changed to '\[bad id\]'$/) do
+  @context['content']['context']['contextActivities']['category'][0]['id'] = 'bad id'
 end
 
-Given(/^the statement context \[contextActivities parent (\d+) id\] is changed to '\[bad id\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities parent 0 id\] is changed to '\[bad id\]'$/) do
+  @context['content']['context']['contextActivities']['parent'][0]['id'] = 'bad id'
 end
 
-Given(/^the statement context \[contextActivities grouping (\d+) id\] is changed to '\[bad id\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities grouping 0 id\] is changed to '\[bad id\]'$/) do
+  @context['content']['context']['contextActivities']['grouping'][0]['id'] = 'bad id'
 end
 
-Given(/^the statement context \[contextActivities other (\d+) id\] is changed to '\[bad id\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities other 0 id\] is changed to '\[bad id\]'$/) do
+  @context['content']['context']['contextActivities']['other'][0]['id'] = 'bad id'
 end
 
-Given(/^the statement context \[contextActivities category (\d+) objectType\] is changed to '\[activity\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities category 0 objectType\] is changed to '\[activity\]'$/) do
+  @context['content']['context']['contextActivities']['category'][0]['objectType'] = 'activity'
 end
 
-Given(/^the statement context \[contextActivities parent (\d+) objectType\] is changed to '\[activity\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities parent 0 objectType\] is changed to '\[activity\]'$/) do
+  @context['content']['context']['contextActivities']['parent'][0]['objectType'] = 'activity'
 end
 
-Given(/^the statement context \[contextActivities grouping (\d+) objectType\] is changed to '\[activity\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities grouping 0 objectType\] is changed to '\[activity\]'$/) do
+  @context['content']['context']['contextActivities']['grouping'][0]['objectType'] = 'activity'
 end
 
-Given(/^the statement context \[contextActivities other (\d+) objectType\] is changed to '\[activity\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities other 0 objectType\] is changed to '\[activity\]'$/) do
+  @context['content']['context']['contextActivities']['other'][0]['objectType'] = 'activity'
 end
 
 Given(/^the statement context \[extensions badkey\] is changed to '\[some value\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['extensions']['badkey'] = 'some value'
 end
 
 Given(/^the statement context \[instructor mbox\] is removed$/) do

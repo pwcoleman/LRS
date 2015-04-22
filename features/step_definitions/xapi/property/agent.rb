@@ -1,5 +1,4 @@
 # encoding: UTF-8
-require_relative 'agent_account'
 module Property
   class Agent
     MBOX = 'mailto:conformancetest@tincanapi.com'

@@ -1,7 +1,7 @@
 # encoding: UTF-8
 Feature: statement structure context test
 
-@focus
+
   Scenario Outline: Good context: [<modifier>] context
 
     Given a typical saveStatement request
@@ -40,7 +40,7 @@ Feature: statement structure context test
     | 400  | typical | empty                   | language                                | an emptyString content    |
     | 400  | typical | empty                   | statement                               | an empty statementRef     |
 
-  @focus
+
   Scenario Outline: Bad context: [<modifier>] context with bad [<property>] '[<value>]'
 
     Given a [<type>] saveStatement request

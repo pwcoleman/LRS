@@ -20,7 +20,7 @@ class AgentValidator < ActiveModel::EachValidator
   def check_mbox(record, attribute, value)
     return unless value && value['mbox']
     unless value['mbox'] =~ /\Amailto:([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-      record.errors[attribute] << (options[:message] || "invalid agent mbox")
+      record.errors[attribute] << (options[:message] || "mbox value [#{value['mbox']}] did not start with mailto:")
     end
   end
 
