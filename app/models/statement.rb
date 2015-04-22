@@ -14,6 +14,7 @@ class Statement
   field :actor, type: Hash
   field :verb, type: Hash
   field :object, type: Hash
+  field :context, type: Hash
 
   index({ statement_id: 1 }, { unique: true, name: "statement_id_index" })
 
@@ -24,6 +25,7 @@ class Statement
   validate :check_statement_id
   validates :actor, agent: true
   validates :object, object: true
+  validates :context, context: true
 
   set_callback(:validation, :before) do |document|
     unless document.statement[:id]
@@ -47,6 +49,7 @@ class Statement
     statement.actor = params['actor']
     statement.verb = params['verb']
     statement.object = params['object']
+    statement.context = params['context'] if params['context']
 
     statement.save
     statement
@@ -82,4 +85,5 @@ class Statement
   def check_statement_id
     errors.add(:statement, "Invalid statement ID") unless statement[:id] =~ /\A(urn:uuid:)?[\da-f]{8}-[\da-f]{4}-4[\da-f]{3}-[8 9 a b][\da-f]{3}-[\da-f]{12}\z/i
   end
+
 end

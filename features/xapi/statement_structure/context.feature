@@ -1,12 +1,13 @@
 # encoding: UTF-8
 Feature: statement structure context test
 
+  @focus
   Scenario Outline: Good context: [<modifier>] context
 
     Given a typical saveStatement request
     Given the statement context is changed to a [<modifier>] context
     When the request is made
-    Then the request was successful
+    Then the request was successful (204)
 
   Examples:
     | modifier                                  |
@@ -22,6 +23,8 @@ Feature: statement structure context test
     | emptyContextActivitiesAllPropertiesEmpty  |
     | allProperties                             |
 
+
+  @focus
   Scenario Outline: Bad context: [<modifier>] context with bad [<property>] [<value>]
 
     Given a [<type>] saveStatement request

@@ -1,66 +1,73 @@
 # encoding: UTF-8
 Given(/^a typical saveStatement request$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Request::SaveStatement.build(@lrs, 'typical')
+  if @context['headers']
+    @context['headers'].each_pair do |key, value|
+      header(key, value) if value
+    end
+  end
+  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
 end
 
 Given(/^the statement context is changed to a \[empty\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('empty')
 end
 
 Given(/^the statement context is changed to a \[typical\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('typical')
 end
 
 Given(/^the statement context is changed to a \[mboxAndTypeAgentInstructor\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('mboxAndTypeAgentInstructor')
 end
 
-Given(/^the statement context is changed to a \[mboxSha(\d+)AndTypeAgentInstructor\] context$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context is changed to a \[mboxSha1AndTypeAgentInstructor\] context$/) do
+  @context['content']['context'] = Property::Context.build('mboxAndTypeAgentInstructor')
 end
 
 Given(/^the statement context is changed to a \[openidAndTypeAgentInstructor\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('openidAndTypeAgentInstructor')
 end
 
 Given(/^the statement context is changed to a \[accountAndTypeAgentInstructor\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('accountAndTypeAgentInstructor')
 end
 
 Given(/^the statement context is changed to a \[extensionsOnly\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('extensionsOnly')
 end
 
 Given(/^the statement context is changed to a \[emptyExtensionsOnly\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('emptyExtensionsOnly')
 end
 
 Given(/^the statement context is changed to a \[emptyContextActivities\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('emptyContextActivities')
 end
 
 Given(/^the statement context is changed to a \[emptyContextActivitiesAllPropertiesEmpty\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('emptyContextActivitiesAllPropertiesEmpty')
 end
 
 Given(/^the statement context is changed to a \[allProperties\] context$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context'] = Property::Context.build('allProperties')
 end
 
 Given(/^the statement context \[instructor\] is changed to \[an empty agent\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor'] = Property::Agent.build('empty')
 end
 
 Given(/^the statement context \[team\] is changed to \[an empty group\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor'] = Property::Group.build('empty')
 end
 
 Given(/^the statement context \[language\] is changed to \[an emptyString content\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['language'] = ''
 end
 
 Given(/^the statement context \[statement\] is changed to \[an empty statementRef\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['statement'] = Property::StatementRef.build('empty')
 end
 
 Given(/^the statement context \[registration\] is changed to '\[bad id\]'$/) do

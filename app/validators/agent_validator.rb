@@ -13,8 +13,8 @@ class AgentValidator < ActiveModel::EachValidator
   private
 
   def check_inverse_functional_identifier(record, attribute, value)
-    return if value && (value['mbox'] || value['mbox_sha1sum'] || value['openid'] || value['account'])
-    record.errors[attribute] << (options[:message] || "Agent missing inverse functional identifier")
+    ids = value.select{|k, v| ['mbox', 'mbox_sha1sum', 'openid', 'account'].include?(k) }
+    record.errors[attribute] << (options[:message] || "One and only one of mbox, mbox_sha1sum, openid, account may be suplied with an agent") unless ids.count == 1
   end
 
   def check_mbox(record, attribute, value)
