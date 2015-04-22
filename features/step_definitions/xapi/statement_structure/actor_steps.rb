@@ -3,14 +3,6 @@ Given(/^the statement actor is changed to a \[mboxAndType agent\]$/) do
   @context['content']['actor'] = Property::Agent.build('mboxAndType')
 end
 
-Then(/^the request was successful$/) do
-  expect(last_response.status).to eq(200)
-end
-
-Then(/^the request was successful \(204\)$/) do
-  expect(last_response.status).to eq(204)
-end
-
 Given(/^the statement actor is changed to a \[mboxSha1AndType agent\]$/) do
   @context['content']['actor'] = Property::Agent.build('mboxSha1AndType')
 end

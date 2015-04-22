@@ -7,7 +7,7 @@ Feature: statement structure object activity test
     Given a [<type>] saveStatement request
     Given the statement object is changed to a [<modifier>] activity
     When the request is made
-    Then the request was successful (204)
+    Then the request was successful
 
   Examples:
     | type    | modifier          |
@@ -53,7 +53,7 @@ Feature: statement structure object activity test
     Given an activity saveStatement request
     Given the statement object definition is set to a [<modifier>] activityDefinition
     When the request is made
-    Then the request was successful (204)
+    Then the request was successful
 
   Examples:
     | modifier                          |

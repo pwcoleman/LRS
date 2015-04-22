@@ -6,7 +6,7 @@ Feature: statement structure actor test
     Given a [<type>] saveStatement request
     Given the statement actor is changed to a [<object>]
     When the request is made
-    Then the request was successful (204)
+    Then the request was successful
 
   Examples:
     | type    | object                  |

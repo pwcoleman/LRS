@@ -6,7 +6,7 @@ Feature: statement structure verb test
     Given a [<type>] saveStatement request
     Given the statement verb is changed to a [<modifier>] verb
     When the request is made
-    Then the request was successful (204)
+    Then the request was successful
 
   Examples:
     | type    | modifier        |
@@ -46,7 +46,7 @@ Feature: statement structure verb test
     Given the statement verb is changed to a [<object>]
     Given the statement verb [<property>] is removed
     When the request is made
-    Then the request was successful (204)
+    Then the request was successful
 
   Examples:
     | type    | object            | property  |

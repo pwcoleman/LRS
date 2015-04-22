@@ -7,7 +7,7 @@ Feature: statement structure object agent test
     Given a [<type>] saveStatement request
     Given the statement object is changed to a [<object>]
     When the request is made
-    Then the request was successful (204)
+    Then the request was successful
 
   Examples:
     | type    | object                    |
