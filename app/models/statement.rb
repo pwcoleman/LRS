@@ -15,6 +15,7 @@ class Statement
   field :verb, type: Hash
   field :object, type: Hash
   field :context, type: Hash
+  field :result, type: Hash
 
   index({ statement_id: 1 }, { unique: true, name: "statement_id_index" })
 
@@ -26,6 +27,7 @@ class Statement
   validates :actor, agent: true
   validates :object, object: true
   validates :context, context: true
+  validates :result, result: true
 
   set_callback(:validation, :before) do |document|
     unless document.statement[:id]
@@ -50,8 +52,13 @@ class Statement
     statement.verb = params['verb']
     statement.object = params['object']
     statement.context = params['context'] if params['context']
+    statement.result = params['result'] if params['result']
 
     statement.save
+    pp '============================='
+    pp statement
+    pp statement.errors
+    pp '============================='
     statement
   end
 

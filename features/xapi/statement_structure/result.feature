@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: statement structure result test
 
+  @focus
   Scenario Outline: Good result: [<modifier>] result
 
     Given a [<type>] saveStatement request
