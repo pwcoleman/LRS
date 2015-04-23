@@ -81,6 +81,7 @@ Feature: statement structure context test
     | 400  | typical | contextActivitiesAllPropertiesOnly | contextActivities other 0 objectType    | activity                            |
     | 400  | typical | extensionsOnly                     | extensions badkey                       | some value                          |
 
+  @focus
   Scenario Outline: Bad context: [<modifier>] context missing [<property>]
 
     Given a [<type>] saveStatement request

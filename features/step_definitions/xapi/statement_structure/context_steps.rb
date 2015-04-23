@@ -23,7 +23,7 @@ Given(/^the statement context is changed to a \[mboxAndTypeAgentInstructor\] con
 end
 
 Given(/^the statement context is changed to a \[mboxSha1AndTypeAgentInstructor\] context$/) do
-  @context['content']['context'] = Property::Context.build('mboxAndTypeAgentInstructor')
+  @context['content']['context'] = Property::Context.build('mboxSha1AndTypeAgentInstructor')
 end
 
 Given(/^the statement context is changed to a \[openidAndTypeAgentInstructor\] context$/) do
@@ -203,35 +203,35 @@ Given(/^the statement context \[extensions badkey\] is changed to '\[some value\
 end
 
 Given(/^the statement context \[instructor mbox\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor'].delete('mbox')
 end
 
-Given(/^the statement context \[instructor mbox_sha(\d+)sum\] is removed$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[instructor mbox_sha1sum\] is removed$/) do
+  @context['content']['context']['instructor'].delete('mbox_sha1sum')
 end
 
 Given(/^the statement context \[instructor openid\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor'].delete('openid')
 end
 
 Given(/^the statement context \[instructor account\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor'].delete('account')
 end
 
 Given(/^the statement context \[instructor account name\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor']['account'].delete('name')
 end
 
 Given(/^the statement context \[instructor account homePage\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['instructor']['account'].delete('homePage')
 end
 
 Given(/^the statement context \[team mbox\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['team'].delete('mbox')
 end
 
 Given(/^the statement context \[statement id\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['statement'].delete('id')
 end
 
 Given(/^the statement context \[team objectType\] is removed$/) do

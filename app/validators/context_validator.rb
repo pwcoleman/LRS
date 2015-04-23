@@ -27,6 +27,7 @@ class ContextValidator < ActiveModel::EachValidator
       check_agent_object_type(record, attribute, value['instructor'])
       check_mbox(record, attribute, value['instructor'])
       check_openid(record, attribute, value['instructor'])
+      check_account(record, attribute, value['instructor'])
       check_account_home_page(record, attribute, value['instructor'])
     else
       record.errors[attribute] << (options[:message] || "Agent in Context instructor is not a properly formatted dictionary")
@@ -134,8 +135,19 @@ class ContextValidator < ActiveModel::EachValidator
     record.errors[attribute] << (options[:message] || "invalid agent openid") unless success
   end
 
+  def check_account(record, attribute, value)
+    return unless value && value['account']
+    unless value['account']['name']
+      record.errors[attribute] << (options[:message] || "missing agent account name")
+    end
+  end
+
   def check_account_home_page(record, attribute, value)
-    return unless value && value['account'] && value['account']['homePage']
+    return unless value && value['account']
+    unless value['account']['homePage']
+      record.errors[attribute] << (options[:message] || "missing agent account home page")
+      return
+    end
     success = false
     base_uri = value['account']['homePage']
     begin
