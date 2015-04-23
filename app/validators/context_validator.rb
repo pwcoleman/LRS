@@ -1,5 +1,7 @@
 class ContextValidator < ActiveModel::EachValidator
 
+  include CommonValidations
+
   def validate_each(record, attribute, value)
     check_registration(record, attribute, value)
     check_instructor(record, attribute, value)
@@ -14,7 +16,7 @@ class ContextValidator < ActiveModel::EachValidator
 
   def check_registration(record, attribute, value)
     return unless value && value['registration']
-    unless value['registration'] && value['registration'] =~ /\A(urn:uuid:)?[\da-f]{8}-[\da-f]{4}-4[\da-f]{3}-[8 9 a b][\da-f]{3}-[\da-f]{12}\z/i
+    unless validate_uuid(value['registration'])
       record.errors[attribute] << (options[:message] || "Invalid registration")
     end
   end
@@ -47,7 +49,7 @@ class ContextValidator < ActiveModel::EachValidator
     unless value['statement']['objectType'] && value['statement']['objectType'] == 'StatementRef'
       record.errors[attribute] << (options[:message] || "objectType must be set to StatementRef")
     end
-    unless value['statement']['id'] && value['statement']['id'] =~ /\A(urn:uuid:)?[\da-f]{8}-[\da-f]{4}-4[\da-f]{3}-[8 9 a b][\da-f]{3}-[\da-f]{12}\z/i
+    unless validate_uuid(value['statement']['id'])
       record.errors[attribute] << (options[:message] || "Invalid statement ID")
     end
   end
@@ -70,14 +72,7 @@ class ContextValidator < ActiveModel::EachValidator
         activities.each do |activity|
           record.errors[attribute] << (options[:message] || "#{type} objectType must be set to Activity") unless (activity['objectType'].nil? || activity['objectType'] == 'Activity')
           if activity['id']
-            success = false
-            base_uri = activity['id']
-            begin
-              uri = Addressable::URI.parse(base_uri)
-              success = uri.scheme && uri.host && uri.to_s == base_uri && uri
-            rescue URI::InvalidURIError, Addressable::URI::InvalidURIError, TypeError
-            end
-            record.errors[attribute] << (options[:message] || "#{type} : invalid activity ID") unless success
+            record.errors[attribute] << (options[:message] || "#{type} : invalid activity ID") unless validate_iri(activity['id'])
           else
             record.errors[attribute] << (options[:message] || "#{type} : invalid activity ID")
           end
@@ -89,14 +84,7 @@ class ContextValidator < ActiveModel::EachValidator
   def check_extensions(record, attribute, value)
     return unless value && value['extensions']
     value['extensions'].keys.each do |key|
-      success = false
-      base_uri = key
-      begin
-        uri = Addressable::URI.parse(base_uri)
-        success = uri.scheme && uri.host && uri.to_s == base_uri && uri
-      rescue URI::InvalidURIError, Addressable::URI::InvalidURIError, TypeError
-      end
-      record.errors[attribute] << (options[:message] || "context with value key was not a valid URI") unless success
+      record.errors[attribute] << (options[:message] || "context with value key was not a valid URI") unless validate_iri(key)
     end
   end
 
@@ -129,14 +117,7 @@ class ContextValidator < ActiveModel::EachValidator
 
   def check_openid(record, attribute, value)
     return unless value && value['openid']
-    success = false
-    base_uri = value['openid']
-    begin
-      uri = Addressable::URI.parse(base_uri)
-      success = uri.scheme && uri.host && uri.to_s == base_uri && uri
-    rescue URI::InvalidURIError, Addressable::URI::InvalidURIError, TypeError
-    end
-    record.errors[attribute] << (options[:message] || "invalid agent openid") unless success
+    record.errors[attribute] << (options[:message] || "invalid agent openid") unless validate_iri(value['openid'])
   end
 
   def check_account(record, attribute, value)
@@ -152,13 +133,6 @@ class ContextValidator < ActiveModel::EachValidator
       record.errors[attribute] << (options[:message] || "missing agent account home page")
       return
     end
-    success = false
-    base_uri = value['account']['homePage']
-    begin
-      uri = Addressable::URI.parse(base_uri)
-      success = uri.scheme && uri.host && uri.to_s == base_uri && uri
-    rescue URI::InvalidURIError, Addressable::URI::InvalidURIError, TypeError
-    end
-    record.errors[attribute] << (options[:message] || "invalid agent home page") unless success
+    record.errors[attribute] << (options[:message] || "invalid agent home page") unless validate_iri(value['account']['homePage'])
   end
 end
