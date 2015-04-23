@@ -73,11 +73,12 @@ class ObjectValidator < ActiveModel::EachValidator
 
   def validate_sub_statement_actor(record, attribute, value)
     if value
-      check_mbox(record, attribute, value)
-      check_openid(record, attribute, value)
-      check_account(record, attribute, value)
-      check_account_home_page(record, attribute, value)
-      record.errors[attribute] << (options[:message] || "Invalid objectType") unless (value['objectType'] == 'Agent' || value['objectType'] == 'Group')
+      record.errors[attribute] << (options[:message] || "Invalid objectType") unless (value['objectType'].nil? || ['Agent', 'Group'].include?(value['objectType']))
+      if value['objectType'] == 'Group'
+        validate_group(record, attribute, value)
+      else
+        validate_agent(record, attribute, value)
+      end
     else
       record.errors[attribute] << (options[:message] || "SubStatement missing actor")
     end
@@ -106,11 +107,16 @@ class ObjectValidator < ActiveModel::EachValidator
   def validate_sub_statement_object(record, attribute, value)
     if value
       record.errors[attribute] << (options[:message] || "Invalid objectType") unless (value['objectType'].nil? || ['Activity', 'Agent', 'Group', 'StatementRef'].include?(value['objectType']))
-      check_mbox(record, attribute, value)
-      check_openid(record, attribute, value)
-      check_account(record, attribute, value)
-      check_account_home_page(record, attribute, value)
-      validate_statement_ref(record, attribute, value)
+      case value['objectType']
+        when 'Agent'
+          validate_agent(record, attribute, value)
+        when 'Group'
+          validate_group(record, attribute, value)
+        when 'StatementRef'
+          validate_statement_ref(record, attribute, value)
+        when 'Activity', nil
+          validate_activity(record, attribute, value)
+      end
     else
       record.errors[attribute] << (options[:message] || "SubStatement missing object")
     end
@@ -196,6 +202,7 @@ class ObjectValidator < ActiveModel::EachValidator
         check_mbox_sha1sum(record, attribute, value)
         check_openid(record, attribute, member)
         check_account_home_page(record, attribute, member)
+        record.errors[attribute] << (options[:message] || "Invalid objectType") unless (['Agent', 'Group'].include?(member['objectType']))
       end
     end
   end

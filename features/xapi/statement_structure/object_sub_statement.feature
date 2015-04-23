@@ -71,6 +71,7 @@ Feature: statement structure object substatement test
     | 400  | typical | typicalStatementRefObject                  | object objectType          | notStatementRef                |
     | 400  | typical | typicalStatementRefObject                  | object id                  | bad id                         |
 
+
   Scenario Outline: Bad object subStatement: [<modifier>] subStatement missing [<property>]
 
     Given a [<type>] saveStatement request

@@ -93,65 +93,61 @@ Given(/^the statement object \[object id\] is set to '\[bad id\]'$/) do
 end
 
 Given(/^the statement object \[actor mbox\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['actor'].delete('mbox')
 end
 
-Given(/^the statement object \[actor mbox_sha(\d+)sum\] is removed$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement object \[actor mbox_sha1sum\] is removed$/) do
+  @context['content']['object']['actor'].delete('mbox_sha1sum')
 end
 
 Given(/^the statement object \[actor openid\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['actor'].delete('openid')
 end
 
 Given(/^the statement object \[actor account\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['actor'].delete('account')
 end
 
 Given(/^the statement object \[actor account name\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['actor']['account'].delete('name')
 end
 
 Given(/^the statement object \[actor account homePage\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['actor']['account'].delete('homePage')
 end
 
 Given(/^the statement object \[verb id\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['verb'].delete('id')
 end
 
 Given(/^the statement object \[object mbox\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object'].delete('mbox')
 end
 
-Given(/^the statement object \[object mbox_sha(\d+)sum\] is removed$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement object \[object mbox_sha1sum\] is removed$/) do
+  @context['content']['object']['object'].delete('mbox_sha1sum')
 end
 
 Given(/^the statement object \[object openid\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object'].delete('openid')
 end
 
 Given(/^the statement object \[object account\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object'].delete('account')
 end
 
 Given(/^the statement object \[object account name\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object']['account'].delete('name')
 end
 
 Given(/^the statement object \[object account homePage\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the statement object is changed to a \[mboxSha(\d+)OnlyAgentObject\] subStatement$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object']['account'].delete('homePage')
 end
 
 Given(/^the statement object \[object id\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object'].delete('id')
 end
 
 Given(/^the statement object \[object objectType\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object'].delete('objectType')
 end
