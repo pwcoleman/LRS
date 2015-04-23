@@ -1,12 +1,12 @@
 # encoding: UTF-8
 Given(/^the statement object is changed to a \[allProperties statementRef\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object'] = Property::StatementRef.build('allProperties')
 end
 
 Given(/^the statement object \[objectType\] is changed to '\[notStatementRef\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['objectType'] = 'notStatementRef'
 end
 
 Given(/^the statement object \[objectType\] is changed to '\[statementRef\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['objectType'] = 'statementRef'
 end

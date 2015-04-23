@@ -70,7 +70,9 @@ class ObjectValidator < ActiveModel::EachValidator
   end
 
   def validate_statement_ref(record, attribute, value)
-
+    unless value['id'] && value['id'] =~ /\A(urn:uuid:)?[\da-f]{8}-[\da-f]{4}-4[\da-f]{3}-[8 9 a b][\da-f]{3}-[\da-f]{12}\z/i
+      record.errors[attribute] << (options[:message] || "Invalid StatementRef ID")
+    end
   end
 
   def validate_uri(value)

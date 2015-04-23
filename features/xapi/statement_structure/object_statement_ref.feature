@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: statement structure statementRef test
 
+
   Scenario Outline: Good object statementRef: [<object>]
 
     Given a [<type>] saveStatement request
@@ -11,6 +12,7 @@ Feature: statement structure statementRef test
   Examples:
     | type    | object                      |
     | typical | allProperties statementRef  |
+
 
   Scenario Outline: Bad object statementRef: [<object>] with bad [<property>] '[<value>]'
 
