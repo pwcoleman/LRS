@@ -1,7 +1,7 @@
 # encoding: UTF-8
 Feature: statement structure result test
 
-  @focus
+
   Scenario Outline: Good result: [<modifier>] result
 
     Given a [<type>] saveStatement request
@@ -44,6 +44,7 @@ Feature: statement structure result test
     | typical | successCompletionResponseAndDuration  |
     | typical | allProperties                         |
 
+
   Scenario Outline: Good duration format test ([<explanation>]): [<value>]
 
     Given a typical saveStatement request
@@ -55,6 +56,7 @@ Feature: statement structure result test
   Examples:
     | value        | explanation    |
     | PT0H0M0.000S | decimal        |
+
 
   Scenario Outline: Bad result: [<object>] with bad [<property>] '[<value>]'
 
@@ -70,6 +72,7 @@ Feature: statement structure result test
     | 400  | typical | completionOnly | completion | not a boolean            |
     | 400  | typical | allProperties  | duration   | not ISO 8601 formatted   |
     | 400  | typical | scoreOnly      | score      | not a score object       |
+
 
   Scenario Outline: Good result: [<object>] missing [<property>]
     Given a [<type>] saveStatement request

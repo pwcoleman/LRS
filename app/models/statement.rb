@@ -55,10 +55,6 @@ class Statement
     statement.result = params['result'] if params['result']
 
     statement.save
-    pp '============================='
-    pp statement
-    pp statement.errors
-    pp '============================='
     statement
   end
 
