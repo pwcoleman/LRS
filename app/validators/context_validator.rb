@@ -88,19 +88,6 @@ class ContextValidator < ActiveModel::EachValidator
     end
   end
 
-  def check_inverse_functional_identifier(record, attribute, value)
-    return unless value and value.is_a?(Hash)
-    ids = value.select{|k, v| ['mbox', 'mbox_sha1sum', 'openid', 'account'].include?(k) }
-    record.errors[attribute] << (options[:message] || "One and only one of mbox, mbox_sha1sum, openid, account may be suplied with an agent") unless ids.count == 1
-  end
-
-  def check_mbox(record, attribute, value)
-    return unless value && value['mbox']
-    unless value['mbox'] =~ /\Amailto:([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-      record.errors[attribute] << (options[:message] || "mbox value [#{value['mbox']}] did not start with mailto:")
-    end
-  end
-
   def check_agent_object_type(record, attribute, value)
     return unless value && value['objectType']
     unless value && value['objectType'] && value['objectType'] == 'Agent'
@@ -115,24 +102,4 @@ class ContextValidator < ActiveModel::EachValidator
     end
   end
 
-  def check_openid(record, attribute, value)
-    return unless value && value['openid']
-    record.errors[attribute] << (options[:message] || "invalid agent openid") unless validate_iri(value['openid'])
-  end
-
-  def check_account(record, attribute, value)
-    return unless value && value['account']
-    unless value['account']['name']
-      record.errors[attribute] << (options[:message] || "missing agent account name")
-    end
-  end
-
-  def check_account_home_page(record, attribute, value)
-    return unless value && value['account']
-    unless value['account']['homePage']
-      record.errors[attribute] << (options[:message] || "missing agent account home page")
-      return
-    end
-    record.errors[attribute] << (options[:message] || "invalid agent home page") unless validate_iri(value['account']['homePage'])
-  end
 end
