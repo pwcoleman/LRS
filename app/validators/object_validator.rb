@@ -66,7 +66,54 @@ class ObjectValidator < ActiveModel::EachValidator
   end
 
   def validate_sub_statement(record, attribute, value)
+    validate_sub_statement_actor(record, attribute, value['actor'])
+    validate_sub_statement_verb(record, attribute, value['verb'])
+    validate_sub_statement_object(record, attribute, value['object'])
+  end
 
+  def validate_sub_statement_actor(record, attribute, value)
+    if value
+      check_mbox(record, attribute, value)
+      check_openid(record, attribute, value)
+      check_account(record, attribute, value)
+      check_account_home_page(record, attribute, value)
+      record.errors[attribute] << (options[:message] || "Invalid objectType") unless (value['objectType'] == 'Agent' || value['objectType'] == 'Group')
+    else
+      record.errors[attribute] << (options[:message] || "SubStatement missing actor")
+    end
+  end
+
+  def validate_sub_statement_verb(record, attribute, value)
+    if value
+      success = false
+      if value['id']
+        begin
+          uri = Addressable::URI.parse(value['id'])
+          success = uri.scheme && uri.host && uri.to_s == value['id'] && uri
+        rescue URI::InvalidURIError, Addressable::URI::InvalidURIError, TypeError
+        end
+      end
+      record.errors[attribute] << (options[:message] || "Invalid verb ID") unless success
+      #TODO: FIX THIS
+      if value['display']
+        record.errors[attribute] << (options[:message] || "Invalid verb display") unless value['display'].is_a?(Hash)
+      end
+    else
+      record.errors[attribute] << (options[:message] || "SubStatement missing verb")
+    end
+  end
+
+  def validate_sub_statement_object(record, attribute, value)
+    if value
+      record.errors[attribute] << (options[:message] || "Invalid objectType") unless (value['objectType'].nil? || ['Activity', 'Agent', 'Group', 'StatementRef'].include?(value['objectType']))
+      check_mbox(record, attribute, value)
+      check_openid(record, attribute, value)
+      check_account(record, attribute, value)
+      check_account_home_page(record, attribute, value)
+      validate_statement_ref(record, attribute, value)
+    else
+      record.errors[attribute] << (options[:message] || "SubStatement missing object")
+    end
   end
 
   def validate_statement_ref(record, attribute, value)

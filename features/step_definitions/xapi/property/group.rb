@@ -76,6 +76,11 @@ module Property
           group['objectType'] = 'Group'
           group['name'] = 'test group'
           group['member'] = [Property::Agent.build('accountOnly')]
+        when 'allPropertiesTypicalAgentMember'
+          group['mbox'] = MBOX
+          group['objectType'] = 'Group'
+          group['name'] = 'test group'
+          group['member'] = [Property::Agent.build('typical'), Property::Agent.build('typical')]
         when 'allPropertiesTwoTypicalAgentsMember'
           group['mbox'] = MBOX
           group['objectType'] = 'Group'

@@ -1,7 +1,7 @@
 # encoding: UTF-8
 Feature: statement structure object substatement test
 
-  @focus
+
   Scenario Outline: Good object subStatement: [<modifier>] subStatement
 
     Given a [<type>] saveStatement request
@@ -36,6 +36,7 @@ Feature: statement structure object substatement test
     | typical | allPropertiesActivityObject                 |
     | typical | typicalStatementRefObject                   |
     | typical | allProperties                               |
+
 
   Scenario Outline: Bad object subStatement: [<modifier>] subStatement with bad [<property>] '[<value>]'
 

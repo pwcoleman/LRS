@@ -5,107 +5,91 @@ Given(/^the statement object is changed to a \[(\w+)\] subStatement$/) do |optio
 end
 
 Given(/^the statement object \[objectType\] is set to '\[notSubStatement\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['objectType'] = 'notSubStatement'
 end
 
 Given(/^the statement object \[objectType\] is set to '\[subStatement\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['objectType'] = 'subStatement'
 end
 
 Given(/^the statement object \[actor mbox\] is set to '\[conformancetest@tincanapi\.com\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['actor']['mbox'] = 'conformancetest@tincanapi.com'
 end
 
 Given(/^the statement object \[actor mbox\] is set to '\[badMbox\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['actor']['mbox'] = 'badMbox'
 end
 
 Given(/^the statement object \[actor openid\] is set to '\[bad openid\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['actor']['openid'] = 'bad openid'
 end
 
 Given(/^the statement object \[actor account homePage\] is set to '\[bad homePage\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['actor']['account']['homePage'] = 'bad homePage'
 end
 
 Given(/^the statement object \[actor objectType\] is set to '\[notAgent\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['actor']['objectType'] = 'notAgent'
 end
 
 Given(/^the statement object \[actor objectType\] is set to '\[agent\]'$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the statement object is changed to a \[typical\] subStatement$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['actor']['objectType'] = 'agent'
 end
 
 Given(/^the statement object \[verb id\] is set to '\[bad id\]'$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the statement object is changed to a \[mboxOnlyAgentObject\] subStatement$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['verb']['id'] = 'bad id'
 end
 
 Given(/^the statement object \[object mbox\] is set to '\[conformancetest@tincanapi\.com\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object']['mbox'] = 'conformancetest@tincanapi.com'
 end
 
 Given(/^the statement object \[object mbox\] is set to '\[badMbox\]'$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the statement object is changed to a \[openidOnlyAgentObject\] subStatement$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object']['mbox'] = 'badMbox'
 end
 
 Given(/^the statement object \[object openid\] is set to '\[bad openid\]'$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^the statement object is changed to a \[accountOnlyAgentObject\] subStatement$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object']['openid'] = 'bad openid'
 end
 
 Given(/^the statement object \[object account homePage\] is set to '\[bad homePage\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object']['account']['homePage'] = 'bad homePage'
 end
 
 Given(/^the statement object \[object objectType\] is set to '\[notAgent\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object']['objectType'] = 'notAgent'
 end
 
 Given(/^the statement object \[objectType\] is set to '\[agent\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object']['objectType'] = 'agent'
 end
 
-Given(/^the statement object \[object member (\d+) mbox\] is set to '\[conformancetest@tincanapi\.com\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement object \[object member 0 mbox\] is set to '\[conformancetest@tincanapi\.com\]'$/) do
+  @context['content']['object']['object']['member'][0]['mbox'] = 'conformancetest@tincanapi.com'
 end
 
-Given(/^the statement object \[object member (\d+) mbox\] is set to '\[bad mbox\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement object \[object member 0 mbox\] is set to '\[bad mbox\]'$/) do
+  @context['content']['object']['object']['member'][0]['mbox'] = 'bad mbox'
 end
 
 Given(/^the statement object \[object member (\d+) objectType\] is set to '\[notAgent\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object']['member'][0]['objectType'] = 'notAgent'
 end
 
 Given(/^the statement object \[object member (\d+) objectType\] is set to '\[agent\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object']['member'][0]['objectType'] = 'agent'
 end
 
 Given(/^the statement object \[object objectType\] is set to '\[statementRef\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object']['objectType'] = 'statementRef'
 end
 
 Given(/^the statement object \[object objectType\] is set to '\[notStatementRef\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object']['objectType'] = 'notStatementRef'
 end
 
 Given(/^the statement object \[object id\] is set to '\[bad id\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['object']['object']['id'] = 'bad id'
 end
 
 Given(/^the statement object \[actor mbox\] is removed$/) do
