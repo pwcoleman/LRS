@@ -68,15 +68,19 @@ class ContextValidator < ActiveModel::EachValidator
       activities = value['contextActivities'][type]
       if activities
         activities.each do |activity|
-          record.errors[attribute] << (options[:message] || "#{type} objectType must be set to Activity") unless activity['objectType'] == 'Activity'
-          success = false
-          base_uri = activity['id']
-          begin
-            uri = Addressable::URI.parse(base_uri)
-            success = uri.scheme && uri.host && uri.to_s == base_uri && uri
-          rescue URI::InvalidURIError, Addressable::URI::InvalidURIError, TypeError
+          record.errors[attribute] << (options[:message] || "#{type} objectType must be set to Activity") unless (activity['objectType'].nil? || activity['objectType'] == 'Activity')
+          if activity['id']
+            success = false
+            base_uri = activity['id']
+            begin
+              uri = Addressable::URI.parse(base_uri)
+              success = uri.scheme && uri.host && uri.to_s == base_uri && uri
+            rescue URI::InvalidURIError, Addressable::URI::InvalidURIError, TypeError
+            end
+            record.errors[attribute] << (options[:message] || "#{type} : invalid activity ID") unless success
+          else
+            record.errors[attribute] << (options[:message] || "#{type} : invalid activity ID")
           end
-          record.errors[attribute] << (options[:message] || "#{type} : invalid activity ID") unless success
         end
       end
     end

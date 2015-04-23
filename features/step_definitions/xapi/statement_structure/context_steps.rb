@@ -235,42 +235,42 @@ Given(/^the statement context \[statement id\] is removed$/) do
 end
 
 Given(/^the statement context \[team objectType\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['team'].delete('objectType')
 end
 
 Given(/^the statement context \[statement objectType\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['content']['context']['statement'].delete('objectType')
 end
 
-Given(/^the statement context \[contextActivities category (\d+) id\] is removed$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities category 0 id\] is removed$/) do
+  @context['content']['context']['contextActivities']['category'][0].delete('id')
 end
 
-Given(/^the statement context \[contextActivities parent (\d+) id\] is removed$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities parent 0 id\] is removed$/) do
+  @context['content']['context']['contextActivities']['parent'][0].delete('id')
 end
 
-Given(/^the statement context \[contextActivities grouping (\d+) id\] is removed$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities grouping 0 id\] is removed$/) do
+  @context['content']['context']['contextActivities']['grouping'][0].delete('id')
 end
 
-Given(/^the statement context \[contextActivities other (\d+) id\] is removed$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities other 0 id\] is removed$/) do
+  @context['content']['context']['contextActivities']['other'][0].delete('id')
 end
 
-Given(/^the statement context \[contextActivities category (\d+) objectType\] is removed$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities category 0 objectType\] is removed$/) do
+  @context['content']['context']['contextActivities']['category'][0].delete('objectType')
 end
 
-Given(/^the statement context \[contextActivities parent (\d+) objectType\] is removed$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities parent 0 objectType\] is removed$/) do
+  @context['content']['context']['contextActivities']['parent'][0].delete('objectType')
 end
 
-Given(/^the statement context \[contextActivities grouping (\d+) objectType\] is removed$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities grouping 0 objectType\] is removed$/) do
+  @context['content']['context']['contextActivities']['grouping'][0].delete('objectType')
 end
 
-Given(/^the statement context \[contextActivities other (\d+) objectType\] is removed$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the statement context \[contextActivities other 0 objectType\] is removed$/) do
+  @context['content']['context']['contextActivities']['other'][0].delete('objectType')
 end
 

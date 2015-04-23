@@ -81,7 +81,7 @@ Feature: statement structure context test
     | 400  | typical | contextActivitiesAllPropertiesOnly | contextActivities other 0 objectType    | activity                            |
     | 400  | typical | extensionsOnly                     | extensions badkey                       | some value                          |
 
-  @focus
+
   Scenario Outline: Bad context: [<modifier>] context missing [<property>]
 
     Given a [<type>] saveStatement request
@@ -101,6 +101,7 @@ Feature: statement structure context test
     | 400  | typical | allProperties                  | team mbox                     |
     | 400  | typical | allProperties                  | statement id                  |
 
+
   Scenario Outline: Good context: [<modifier>] context missing [<property>]
 
     Given a [<type>] saveStatement request
@@ -113,6 +114,7 @@ Feature: statement structure context test
     | type    | modifier      | property                |
     | typical | allProperties | team objectType         |
     | typical | allProperties | statement objectType    |
+
 
   Scenario Outline: Bad context: [<modifier>] context missing [<property>]
 
@@ -128,6 +130,7 @@ Feature: statement structure context test
     | 400  | typical | allProperties | contextActivities parent 0 id        |
     | 400  | typical | allProperties | contextActivities grouping 0 id      |
     | 400  | typical | allProperties | contextActivities other 0 id         |
+
 
   Scenario Outline: Good context: [<modifier>] context missing [<property>]
 
