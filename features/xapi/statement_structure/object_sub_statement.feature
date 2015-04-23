@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: statement structure object substatement test
 
+  @focus
   Scenario Outline: Good object subStatement: [<modifier>] subStatement
 
     Given a [<type>] saveStatement request
