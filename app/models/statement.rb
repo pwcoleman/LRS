@@ -24,7 +24,7 @@ class Statement
   validate :check_verb
   validate :check_object
   validate :check_statement_id
-  validates :actor, agent: true
+  validates :actor, actor: true
   validates :object, object: true
   validates :context, context: true
   validates :result, result: true

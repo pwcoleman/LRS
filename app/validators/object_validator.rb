@@ -26,24 +26,20 @@ class ObjectValidator < ActiveModel::EachValidator
 
   def validate_activity(record, attribute, value)
     return unless value
-    success = false
-    success = validate_iri(value['id'])
-    record.errors[attribute] << (options[:message] || "Invalid activity ID") unless success
+    record.errors[attribute] << (options[:message] || "Invalid activity ID") unless validate_iri(value['id'])
     validate_activity_definition(record, attribute, value['definition'])
   end
 
   def validate_activity_definition(record, attribute, value)
     return if value.nil? or value.empty?
     if value['type']
-      success = validate_iri(value['type'])
-      record.errors[attribute] << (options[:message] || "Invalid activity definition type") unless success
+      record.errors[attribute] << (options[:message] || "Invalid activity definition type") unless validate_iri(value['type'])
     end
     if value['interactionType']
       record.errors[attribute] << (options[:message] || "Invalid activity definition interaction type") unless INTERACTION_TYPES.include?(value['interactionType'])
     end
     if value['moreInfo']
-      success = validate_iri(value['moreInfo'])
-      record.errors[attribute] << (options[:message] || "Invalid activity definition moreInfo") unless success
+      record.errors[attribute] << (options[:message] || "Invalid activity definition moreInfo") unless validate_iri(value['moreInfo'])
     end
   end
 
