@@ -1,7 +1,7 @@
 # encoding: UTF-8
 Feature: statement structure object activity test
 
-@focus
+
   Scenario Outline: Good object activity: [<modifier>] activity
 
     Given a [<type>] saveStatement request

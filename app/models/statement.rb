@@ -24,6 +24,7 @@ class Statement
   validate :check_verb
   validate :check_object
   validate :check_statement_id
+  validate :check_timestamp
   validates :actor, actor: true
   validates :object, object: true
   validates :context, context: true
@@ -47,7 +48,7 @@ class Statement
     statement = Statement.new(lrs: lrs)
     statement.statement = params
     statement.statement['stored'] = Time.now
-    statement.statement['timestamp'] = statement.statement['stored'] unless statement.statement['timestamp']
+    statement.statement['timestamp'] = statement.statement['stored'].iso8601 unless statement.statement['timestamp']
     statement.actor = params['actor']
     statement.verb = params['verb']
     statement.object = params['object']
@@ -87,6 +88,11 @@ class Statement
 
   def check_statement_id
     errors.add(:statement, "Invalid statement ID") unless statement[:id] =~ /\A(urn:uuid:)?[\da-f]{8}-[\da-f]{4}-4[\da-f]{3}-[8 9 a b][\da-f]{3}-[\da-f]{12}\z/i
+  end
+
+  def check_timestamp
+    errors.add(:statement, "Invalid timestamp in statement") if statement['timestamp'].nil?
+    errors.add(:statement, "Invalid timestamp in statement: #{statement['timestamp']}") unless statement['timestamp'] =~ /^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|((?!-0{2}(:0{2})?)([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?)?$/
   end
 
 end

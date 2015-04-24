@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: statement structure timestamp test
 
+
   Scenario Outline: Good timestamp: '[<value>]'
 
     Given a [<type>] saveStatement request
@@ -18,6 +19,7 @@ Feature: statement structure timestamp test
     | typical | 2014-07-23T12:34:02.365-05:00     |
     | typical | 2014-07-23T12:34:02.36578-05:00   |
 
+
   Scenario Outline: Bad timestamp: '[<value>]'
 
     Given a [<type>] saveStatement request
@@ -32,6 +34,7 @@ Feature: statement structure timestamp test
     | 400  | typical | 2014-07-23T12:34:02-5:00         |
     | 400  | typical | 2014-07-23T12:34:02.365-5:00     |
     | 400  | typical | 2014-07-23T12:34:02.36578-5:00   |
+
 
   Scenario: Good timestamp: no timestamp
 
