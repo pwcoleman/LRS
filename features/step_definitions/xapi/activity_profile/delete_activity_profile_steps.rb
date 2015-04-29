@@ -12,7 +12,7 @@ Given(/^a typical deleteActivityProfile request$/) do
 end
 
 Given(/^the \[profileId parameter\] is removed$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params'].delete('profileId')
 end
 
 Given(/^the version header is removed$/) do

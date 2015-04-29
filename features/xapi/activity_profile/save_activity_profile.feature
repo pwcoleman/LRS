@@ -63,7 +63,7 @@ Feature: Save activity profile
     When the request is made
     Then the LRS responds with HTTP 400
 
-  @focus
+
   Scenario Outline: Bad save activity profile: typical request with bad [<property>] '[<value>]'
 
     Given a typical saveActivityProfile request

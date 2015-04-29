@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: Save agent profile
 
+
   Scenario Outline: Good save agent profile: [<type>] request
 
     Given a [<type>] saveAgentProfile request
@@ -11,6 +12,7 @@ Feature: Save agent profile
     | type    |
     | typical |
     | JSON    |
+
 
   Scenario Outline: Good save agent profile: [<type>] request missing [<property>]
 
@@ -24,6 +26,7 @@ Feature: Save agent profile
     | typical | Content-Type header |
     | typical | content             |
     | JSON    | content             |
+
 
   Scenario Outline: Good save agent profile: typical request with [<property>] set to [<value>]
 
@@ -44,6 +47,7 @@ Feature: Save agent profile
     | agent parameter | an accountOnly agent      |
     | content         | a typical statement       |
 
+
   Scenario Outline: Good save agent profile: [<type>] request with [<property>] set to '[<value>]'
 
     Given a [<type>] saveAgentProfile request
@@ -57,6 +61,7 @@ Feature: Save agent profile
     | typical | stateId parameter    | test state id      |
     | typical | content              | test content       |
     | JSON    | method               | POST               |
+
 
   Scenario Outline: Bad save agent profile: typical request missing [<property>]
 
@@ -72,12 +77,14 @@ Feature: Save agent profile
     | 400  | profileId parameter  |
     | 400  | agent parameter      |
 
+
   Scenario: Bad save agent profile: typical request with bad agent parameter an empty agent
 
     Given a typical saveAgentProfile request
     Given the agent parameter is set to an empty agent
     When the request is made
     Then the LRS responds with HTTP 400
+
 
   Scenario Outline: Bad save agent profile: typical request with bad [<property>] '[<value>]'
 
@@ -96,6 +103,7 @@ Feature: Save agent profile
     | 400  | authority header | Basic badAuth                                               |
     | 401  | authority header | Basic TnsHNWplME1YZnc0VzdLTHRIWTo0aDdBb253Ml85WU53vSZLNlVZ  |
     | 400  | method           | POST                                                        |
+
 
   Scenario Outline: Bad save agent profile: typical request with [<modifier>] agent parameter with bad [<property>] '[<value>]'
 
@@ -118,6 +126,7 @@ Feature: Save agent profile
     | openidOnly     | openid           | bad URI                         |
     | accountAndType | account homePage | bad URI                         |
     | accountOnly    | account homePage | bad URI                         |
+
 
   Scenario Outline: Bad save agent profile: typical request [<modifier>] agent parameter missing [<property>]
 

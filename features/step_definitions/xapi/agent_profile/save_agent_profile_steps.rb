@@ -1,14 +1,35 @@
 # encoding: UTF-8
 Given(/^a \[typical\] saveAgentProfile request$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Request::SaveAgentProfile.build(@lrs, 'typical')
+  if @context['headers']
+    @context['headers'].each_pair do |key, value|
+      header(key, value) if value
+    end
+  end
+  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
 end
 
 Given(/^a \[JSON\] saveAgentProfile request$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Request::SaveAgentProfile.build(@lrs, 'JSON')
+  if @context['headers']
+    @context['headers'].each_pair do |key, value|
+      header(key, value) if value
+    end
+  end
+  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
 end
 
 Given(/^a typical saveAgentProfile request$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Request::SaveAgentProfile.build(@lrs, 'typical')
+  if @context['headers']
+    @context['headers'].each_pair do |key, value|
+      header(key, value) if value
+    end
+  end
+  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
 end
 
 Given(/^the \[agent parameter\] is set to \[an mboxAndType agent\]$/) do
