@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: Save activity profile
 
+
   Scenario Outline: Good save activity profile: [<type>] request
 
     Given a [<type>] saveActivityProfile request
@@ -11,6 +12,7 @@ Feature: Save activity profile
     | type      |
     | typical   |
     | JSON      |
+
 
   Scenario Outline: Good save activity profile: [<type>] request missing [<property>]
 
@@ -25,6 +27,7 @@ Feature: Save activity profile
     | typical | content             |
     | JSON    | content             |
 
+
   Scenario Outline: Good save activity profile: [<type>] request with [<property>] set to '[<value>]'
 
     Given a [<type>] saveActivityProfile request
@@ -37,6 +40,7 @@ Feature: Save activity profile
     | typical | Content-Type header | test content type |
     | typical | content             | test content      |
     | JSON    | method              | POST              |
+
 
   Scenario Outline: Bad save activity profile: typical request missing [<property>]
 
@@ -59,6 +63,7 @@ Feature: Save activity profile
     When the request is made
     Then the LRS responds with HTTP 400
 
+  @focus
   Scenario Outline: Bad save activity profile: typical request with bad [<property>] '[<value>]'
 
     Given a typical saveActivityProfile request

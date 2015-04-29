@@ -30,6 +30,17 @@ Rails.application.routes.draw do
     delete 'activities/state' => 'activity_states#destroy'
     match 'activities/states', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
     match 'activity/state', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
+
+    # activity profiles
+    get 'activities/profile' => 'activity_profiles#index'
+    post 'activities/profile' => 'activity_profiles#create'
+    put 'activities/profile' => 'activity_profiles#update'
+    delete 'activities/profile' => 'activity_profiles#destroy'
+    match 'activities/profiles', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
+    match 'activity/profile', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
+
+    match 'activities', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
+
   end
 
   root to: 'admin/lrs#index'
