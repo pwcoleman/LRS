@@ -16,11 +16,15 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
     # TODO Check if it already exists
     # If exists and both JSON then merge
     # else create
-    profile = AgentProfile.create_from(@lrs, request.content_type, profile_params)
-    if profile.valid?
-      render status: :no_content
+    if request.content_type =~ /application\/json/
+      profile = AgentProfile.create_from(@lrs, request.content_type, profile_params)
+      if profile.valid?
+        render status: :no_content
+      else
+        render json: {error: true, success: false, message: profile.errors[:state].join('. '), code: 400}, status: :bad_request
+      end
     else
-      render json: {error: true, success: false, message: profile.errors[:state].join('. '), code: 400}, status: :bad_request
+      render json: {error: true, success: false, message: 'invalid header content type', code: 400}, status: :bad_request
     end
   end
 
