@@ -3,9 +3,6 @@ class Xapi::ActivityStatesController < Xapi::BaseController
   # GET /activities/state
   # gets ids of all state data for this context
   def index
-    pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    pp params
-    pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     if params['stateId']
       # single
       @state = State.where(state_id: params['stateId'], activity_id: params['activityId'], agent: params['agent']).first

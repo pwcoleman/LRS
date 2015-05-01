@@ -13,6 +13,7 @@ Feature: Retrieve state
     | typical           |
     | withRegistration  |
 
+  @focus
   Scenario Outline: Good retrieve state: [<type>] request cluster with agent parameter set to an [<value>] agent
 
     Given a [<type>] retrieveState request cluster
