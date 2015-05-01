@@ -63,87 +63,87 @@ Given(/^the \[voidedStatementId\] parameter is set to good UUID$/) do
 end
 
 Given(/^the \[agent parameter\] is set to '\[test agent\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['agent'] = 'test agent'
 end
 
 Given(/^the \[verb parameter\] is set to '\[test verb id\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['verb'] = 'test verb id'
 end
 
 Given(/^the \[activity parameter\] is set to '\[test activity id\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['activity'] = 'test activity id'
 end
 
 Given(/^the \[registration parameter\] is set to '\[test registration\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['registration'] = 'test registration'
 end
 
 Given(/^the \[related_activities parameter\] is set to '\[not a bool\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['related_activities'] = 'not a bool'
 end
 
-Given(/^the \[related_activities parameter\] is set to '\[(\d+)\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the \[related_activities parameter\] is set to '\[(\d+)\]'$/) do |value|
+  @context['params']['related_activities'] = value
 end
 
-Given(/^the \[related_activities parameter\] is set to '\["(.*?)"\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the \[related_activities parameter\] is set to '\["(.*?)"\]'$/) do |value|
+  @context['params']['related_activities'] = value
 end
 
 Given(/^the \[related_agents parameter\] is set to '\[not a bool\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['related_agents'] = 'not a bool'
 end
 
-Given(/^the \[related_agents parameter\] is set to '\[(\d+)\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the \[related_agents parameter\] is set to '\[(\d+)\]'$/) do |value|
+  @context['params']['related_agents'] = value
 end
 
-Given(/^the \[related_agents parameter\] is set to '\["(.*?)"\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the \[related_agents parameter\] is set to '\["(.*?)"\]'$/) do |value|
+  @context['params']['related_agents'] = value
 end
 
 Given(/^the \[since parameter\] is set to '\[bad timestamp\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['since'] = 'bad timestamp'
 end
 
 Given(/^the \[until parameter\] is set to '\[bad timestamp\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['until'] = 'bad timestamp'
 end
 
 Given(/^the \[limit parameter\] is set to '\[not an integer\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['limit'] = 'not an integer'
 end
 
-Given(/^the \[limit parameter\] is set to '\[\-(\d+)\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the \[limit parameter\] is set to '\[(\-\d+)\]'$/) do |value|
+  @context['params']['limit'] = value
 end
 
 Given(/^the \[format parameter\] is set to '\[unrecognized\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['format'] = 'unrecognized'
 end
 
 Given(/^the \[attachments parameter\] is set to '\[not a bool\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['attachments'] = 'not a bool'
 end
 
-Given(/^the \[attachments parameter\] is set to '\[(\d+)\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the \[attachments parameter\] is set to '\[(\d+)\]'$/) do |value|
+  @context['params']['attachments'] = value
 end
 
-Given(/^the \[attachments parameter\] is set to '\["(.*?)"\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the \[attachments parameter\] is set to '\["(.*?)"\]'$/) do |value|
+  @context['params']['attachments'] = value
 end
 
 Given(/^the \[ascending parameter\] is set to '\[not a bool\]'$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['ascending'] = 'not a bool'
 end
 
-Given(/^the \[ascending parameter\] is set to '\[(\d+)\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the \[ascending parameter\] is set to '\[(\d+)\]'$/) do |value|
+  @context['params']['ascending'] = value
 end
 
-Given(/^the \[ascending parameter\] is set to '\["(.*?)"\]'$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the \[ascending parameter\] is set to '\["(.*?)"\]'$/) do |value|
+  @context['params']['ascending'] = value
 end
 
 

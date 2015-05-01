@@ -70,6 +70,7 @@ class Statement
 
   def check_verb
     errors.add(:statement, "Missing property verb in statement") if verb.nil?
+    return if verb.nil?
     success = false
     if verb['id']
       begin
