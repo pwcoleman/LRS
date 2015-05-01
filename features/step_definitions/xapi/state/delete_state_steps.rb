@@ -19,7 +19,12 @@ Given(/^a \[withRegistration\] deleteState request cluster$/) do
 end
 
 Given(/^all requests' stateId parameter are set to 'test state id'$/) do
-  pending # express the regexp above with the code you wish you had
+  state_id = 'test state id'
+  @cluster['primers'].each do |primer|
+    primer.state_id = state_id
+    primer.save
+  end
+  @cluster['main']['params']['stateId'] = state_id
 end
 
 Given(/^a \[typical\] deleteState request$/) do
