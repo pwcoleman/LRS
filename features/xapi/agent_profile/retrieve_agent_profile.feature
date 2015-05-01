@@ -27,7 +27,7 @@ Feature: Retrieve agent profile
     | openidOnly        |
     | accountOnly       |
 
-  @focus
+
   Scenario Outline: Bad retrieve agent profile: typical request missing [<property>]
 
     Given a typical retrieveAgentProfile request
@@ -41,12 +41,14 @@ Feature: Retrieve agent profile
     | 401  | authority header |
     | 400  | agent parameter  |
 
+
   Scenario: Bad retrieve agent profile: typical request with bad agent parameter an empty agent
 
     Given a typical retrieveAgentProfile request
     Given the agent parameter is set to an empty agent
     When the request is made
     Then the LRS responds with HTTP 400
+
 
   Scenario Outline: Bad retrieve agent profile: typical request with bad [<property>] '[<value>]'
 
@@ -64,6 +66,7 @@ Feature: Retrieve agent profile
     | 400  | authority header     | Basic badAuth                                               |
     | 401  | authority header     | Basic TnsHNWplME1YZnc0VzdLTHRIWTo0aDdBb253Ml85WU53vSZLNlVZ  |
 
+  @focus
   Scenario Outline: Bad retrieve agent profile: typical request with [<modifier>] agent parameter with bad [<property>] '[<value>]'
 
     Given a typical retrieveAgentProfile request
