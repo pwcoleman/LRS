@@ -1,7 +1,11 @@
 # encoding: UTF-8
 
+When(/^the request is made$/) do
+  perform_request
+end
+
 def perform_get
-  get "/xapi/#{@context['resource']}"
+  get "/xapi/#{@context['resource']}", @context['params']
 end
 
 def perform_post
@@ -32,8 +36,7 @@ def perform_delete
   delete "/xapi/#{@context['resource']}"
 end
 
-
-When(/^the request is made$/) do
+def perform_request
   case @context['method']
     when 'GET'
       perform_get

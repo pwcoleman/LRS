@@ -1,6 +1,13 @@
 # encoding: UTF-8
 Given(/^a \[typical\] deleteState request cluster$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Cluster::DeleteState.build(@lrs, 'typical')
+  if @context['headers']
+    @context['headers'].each_pair do |key, value|
+      header(key, value) if value
+    end
+  end
+  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
 end
 
 Then(/^the deleteState response is verified$/) do

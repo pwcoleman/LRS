@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: Retrieve state
 
+
   Scenario Outline: Good retrieve state: [<type>] request cluster
 
     Given a [<type>] retrieveState request cluster

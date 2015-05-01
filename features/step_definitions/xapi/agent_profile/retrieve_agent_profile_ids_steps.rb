@@ -11,9 +11,6 @@ Given(/^all requests' agent parameter is set to an \[mboxAndType\] agent$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^the retrieveState response is verified$/) do
-  pending # express the regexp above with the code you wish you had
-end
 
 Given(/^all requests' agent parameter is set to an \[mboxSha(\d+)AndType\] agent$/) do |arg1|
   pending # express the regexp above with the code you wish you had

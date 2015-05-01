@@ -71,7 +71,6 @@ Feature: Save state
     | typical | content             | test content        |
     | JSON    | method              | POST                |
 
-
   Scenario Outline: Bad save state: typical request missing [<property>]
 
     Given a typical saveState request
