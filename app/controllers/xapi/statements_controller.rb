@@ -65,19 +65,20 @@ class Xapi::StatementsController < Xapi::BaseController
 
   def check_query_parameters
     errors = []
-    errors << 'Cannot have both statementId and voidedStatementId' if params['statementId'] && params['voidedStatementId']
-    if params['statementId'] || params['voidedStatementId']
+    query_parameters = request.query_parameters
+    errors << 'Cannot have both statementId and voidedStatementId' if query_parameters['statementId'] && query_parameters['voidedStatementId']
+    if query_parameters['statementId'] || query_parameters['voidedStatementId']
       excluded = %w(agent verb activity registration related_activities related_agents since until limit ascending)
-      errors << 'Additional parameters not allowed when statementId or voidedStatementId present' if (params.keys & excluded).any?
+      errors << 'Additional parameters not allowed when statementId or voidedStatementId present' if (query_parameters.keys & excluded).any?
     else
-      if params['agent']
+      if query_parameters['agent']
         validator = AgentValidator.new({attributes: [:agent], class: State})
         state = State.new
-        if params['agent'].is_a?(Hash)
-          validator.validate_each(state, :agent, params['agent'])
+        if query_parameters['agent'].is_a?(Hash)
+          validator.validate_each(state, :agent, query_parameters['agent'])
         else
           begin
-            agent = JSON.parse(params['agent'])
+            agent = JSON.parse(query_parameters['agent'])
             validator.validate_each(state, :agent, agent)
           rescue
             errors << 'Invalid agent'
@@ -85,38 +86,38 @@ class Xapi::StatementsController < Xapi::BaseController
         end
         errors.concat(state.errors[:agent])
       end
-      if params['verb']
-        errors << 'Invalid verb' unless validate_iri(params['verb'])
+      if query_parameters['verb']
+        errors << 'Invalid verb' unless validate_iri(query_parameters['verb'])
       end
-      if params['activity']
-        errors << 'Invalid activity' unless validate_iri(params['activity'])
+      if query_parameters['activity']
+        errors << 'Invalid activity' unless validate_iri(query_parameters['activity'])
       end
-      if params['registration']
-        errors << 'Invalid registration' unless validate_uuid(params['registration'])
+      if query_parameters['registration']
+        errors << 'Invalid registration' unless validate_uuid(query_parameters['registration'])
       end
-      if params['related_activities']
-        errors << 'related_activities must be true or false' unless params['related_activities'].is_a?(Boolean)
+      if query_parameters['related_activities']
+        errors << 'related_activities must be true or false' unless query_parameters['related_activities'].is_a?(Boolean)
       end
-      if params['related_agents']
-        errors << 'related_agents must be true or false' unless params['related_agents'].is_a?(Boolean)
+      if query_parameters['related_agents']
+        errors << 'related_agents must be true or false' unless query_parameters['related_agents'].is_a?(Boolean)
       end
-      if params['since']
-        errors << 'since is invalid' unless validate_timestamp(params['since'])
+      if query_parameters['since']
+        errors << 'since is invalid' unless validate_timestamp(query_parameters['since'])
       end
-      if params['until']
-        errors << 'until is invalid' unless validate_timestamp(params['until'])
+      if query_parameters['until']
+        errors << 'until is invalid' unless validate_timestamp(query_parameters['until'])
       end
-      if params['limit']
-        errors << 'limit must be a positive number' unless validate_integer(params['limit'])
+      if query_parameters['limit']
+        errors << 'limit must be a positive number' unless validate_integer(query_parameters['limit'])
       end
-      if params['format']
-        errors << 'invalid format' unless %w(ids exact canonical).include?(params['format'])
+      if query_parameters['format']
+        errors << 'invalid format' unless %w(ids exact canonical).include?(query_parameters['format'])
       end
-      if params['attachments']
-        errors << 'attachments must be true or false' unless params['attachments'].is_a?(Boolean)
+      if query_parameters['attachments']
+        errors << 'attachments must be true or false' unless query_parameters['attachments'].is_a?(Boolean)
       end
-      if params['ascending']
-        errors << 'ascending must be true or false' unless params['ascending'].is_a?(Boolean)
+      if query_parameters['ascending']
+        errors << 'ascending must be true or false' unless query_parameters['ascending'].is_a?(Boolean)
       end
     end
     errors
