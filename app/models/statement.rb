@@ -30,6 +30,9 @@ class Statement
   validates :context, context: true
   validates :result, result: true
 
+  scope :voided, ->{ where(voided: true) }
+  scope :unvoided, ->{ where(voided: false) }
+
   set_callback(:validation, :before) do |document|
     unless document.statement[:id]
       document.statement[:id] = loop do

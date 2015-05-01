@@ -4,12 +4,20 @@ class Xapi::StatementsController < Xapi::BaseController
   # GET /statements
   # get a single statement or multiple statements
   def index
-    if params[:statementId]
-      @result = Statement.where(statement_id: params[:statementId], voided: false).first
-    elsif params[:voidedStatementId]
-      @result = Statement.where(statement_id: params[:statementId], voided: true).first
+    pp '=============================='
+    pp params
+    pp '=============================='
+    errors = check_query_parameters
+    if errors.empty?
+      if params[:statementId]
+        @result = Statement.unvoided.where(statement_id: params[:statementId]).first
+      elsif params[:voidedStatementId]
+        @result = Statement.voided.where(statement_id: params[:statementId]).first
+      else
+        @results = Statement.unvoided.order_by(['statement.stored', :desc])
+      end
     else
-      @results = Statement.where(voided:false).order_by(['statement.stored', :desc])
+      render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
     end
   end
 
@@ -53,6 +61,16 @@ class Xapi::StatementsController < Xapi::BaseController
 
   def statement_parameters
     params.select {|k,v| ['id', 'actor', 'verb', 'object', 'result', 'context', 'timestamp', 'stored', 'authority', 'version', 'attachments'].include?(k) }
+  end
+
+  def check_query_parameters
+    errors = []
+    errors << 'Cannot have both statementId and voidedStatementId' if params['statementId'] && params['voidedStatementId']
+    if params['statementId'] || params['voidedStatementId']
+      excluded = %w(agent verb activity registration related_activities related_agents since until limit ascending)
+      errors << 'Additional parameters not allowed when statementId or voidedStatementId present' if (params.keys & excluded).any?
+    end
+    errors
   end
 
 end

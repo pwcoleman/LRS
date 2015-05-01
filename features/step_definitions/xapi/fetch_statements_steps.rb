@@ -1,59 +1,65 @@
 # encoding: UTF-8
 Given(/^a query fetchStatements request$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Request::FetchStatements.build(@lrs, 'query')
+  if @context['headers']
+    @context['headers'].each_pair do |key, value|
+      header(key, value) if value
+    end
+  end
+  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
 end
 
-
 Given(/^the \[statementId\] parameter is set to good UUID$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['statementId'] = Property::UUID.build('good')
 end
 
 Given(/^the \[voidedStatementId\] parameter is set to \[a good UUID\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['voidedStatementId'] = Property::UUID.build('good')
 end
 
 Given(/^the \[agent\] parameter is set to \[a forQueryMbox agent\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['agent'] = Property::Agent.build('forQueryMbox')
 end
 
 Given(/^the \[verb\] parameter is set to \[a forQuery verb\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['verb'] = Property::Verb.build('forQuery')
 end
 
 Given(/^the \[activity\] parameter is set to \['http:\/\/tincanapi\.com\/conformancetest\/activityid\/forQuery'\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['activity'] = 'http://tincanapi.com/conformancetest/activityid/forQuery'
 end
 
 Given(/^the \[registration\] parameter is set to \[a good UUID\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['registration'] = Property::UUID.build('good')
 end
 
 Given(/^the \[related_activities\] parameter is set to \['true'\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['related_activities'] = true
 end
 
 Given(/^the \[related_agents\] parameter is set to \['true'\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['related_agents'] = true
 end
 
-Given(/^the \[since\] parameter is set to \['(\d+)\-(\d+)\-(\d+)T(\d+):(\d+):(\d+)Z'\]$/) do |arg1, arg2, arg3, arg4, arg5, arg6|
-  pending # express the regexp above with the code you wish you had
+Given(/^the \[since\] parameter is set to \['2014\-07\-23T12\:34\:02Z'\]$/) do
+  @context['params']['since'] = '2014-07-23T12:34:02Z'
 end
 
-Given(/^the \[until\] parameter is set to \['(\d+)\-(\d+)\-(\d+)T(\d+):(\d+):(\d+)Z'\]$/) do |arg1, arg2, arg3, arg4, arg5, arg6|
-  pending # express the regexp above with the code you wish you had
+Given(/^the \[until\] parameter is set to \['2014\-07\-23T12\:34\:02Z'\]$/) do
+  @context['params']['until'] = '2014-07-23T12:34:02Z'
 end
 
-Given(/^the \[limit\] parameter is set to \['(\d+)'\]$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the \[limit\] parameter is set to \['(\d+)'\]$/) do |limit|
+  @context['params']['limit'] = limit
 end
 
 Given(/^the \[ascending\] parameter is set to \['true'\]$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['ascending'] = true
 end
 
 Given(/^the \[voidedStatementId\] parameter is set to good UUID$/) do
-  pending # express the regexp above with the code you wish you had
+  @context['params']['voidedStatementId'] = Property::UUID.build('good')
 end
 
 Given(/^the \[agent parameter\] is set to '\[test agent\]'$/) do
