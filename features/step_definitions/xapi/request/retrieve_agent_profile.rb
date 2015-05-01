@@ -1,18 +1,19 @@
 # encoding: UTF-8
 module Request
-  class RetrieveActivityProfile
+  class RetrieveAgentProfile
     def self.build(lrs, type)
       request = {}
+
       case type
         when 'typical'
-          request['resource'] = 'activities/profile'
+          request['resource'] = 'agents/profile'
           request['headers'] = {
               'X-Experience-API-Version' => lrs.version
           }
           request['method'] = 'GET'
           request['params'] = {
-              'activityId' => Property::Activity.build('typical')['id'],
-              'profileId' =>  'Activity profileId'
+              'agent' => Property::Agent.build('typical'),
+              'profileId' =>  'Agent profileId'
           }
       end
       request

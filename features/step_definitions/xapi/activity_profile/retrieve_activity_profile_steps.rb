@@ -20,9 +20,9 @@ Given(/^a typical retrieveActivityProfile request$/) do
 end
 
 
-def activity_profile_to_hash(state)
+def activity_profile_to_hash(profile)
   hash = {}
-  hash['activityId'] = state.activity_id
-  hash['profileId'] = state.profile_id
+  hash['activityId'] = profile.activity_id
+  hash['profileId'] = profile.profile_id
   hash
 end

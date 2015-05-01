@@ -6,6 +6,9 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
     pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
     pp params
     pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    if params['profileId']
+      @profile = AgentProfile.where(agent: params['agent'], profile_id: params['profileId']).first
+    end
   end
 
   # POST /agents/profile
