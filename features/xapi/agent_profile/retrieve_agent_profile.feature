@@ -1,12 +1,13 @@
 # encoding: UTF-8
 Feature: Retrieve agent profile
 
-  @focus
+
   Scenario: Good retrieve agent profile: typical request cluster
 
     Given a typical retrieveAgentProfile request cluster
     When the request is made on the primed LRS
     Then the retrieveAgentProfile response is verified
+
 
   Scenario Outline: Good retrieve agent profile: typical request cluster with agent parameter set to an [<value>] agent
 
@@ -26,6 +27,7 @@ Feature: Retrieve agent profile
     | openidOnly        |
     | accountOnly       |
 
+  @focus
   Scenario Outline: Bad retrieve agent profile: typical request missing [<property>]
 
     Given a typical retrieveAgentProfile request

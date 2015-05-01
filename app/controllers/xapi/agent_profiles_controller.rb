@@ -6,8 +6,13 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
     pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
     pp params
     pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-    if params['profileId']
-      @profile = AgentProfile.where(agent: params['agent'], profile_id: params['profileId']).first
+    errors = check_query_parameters
+    if errors.empty?
+      if params['profileId']
+        @profile = AgentProfile.where(agent: params['agent'], profile_id: params['profileId']).first
+      end
+    else
+      render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
     end
   end
 
@@ -55,6 +60,12 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
 
   def profile_params
     params.reject {|k,v| ['format', 'controller', 'action'].include?(k) }
+  end
+
+  def check_query_parameters
+    errors = []
+    errors << 'Agent is missing' unless params['agent']
+    errors
   end
 
 end

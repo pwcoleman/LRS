@@ -9,7 +9,14 @@ Then(/^the retrieveAgentProfile response is verified$/) do
 end
 
 Given(/^a typical retrieveAgentProfile request$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Request::RetrieveAgentProfile.build(@lrs, 'typical')
+  if @context['headers']
+    @context['headers'].each_pair do |key, value|
+      header(key, value) if value
+    end
+  end
+  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
 end
 
 def agent_profile_to_hash(profile)
