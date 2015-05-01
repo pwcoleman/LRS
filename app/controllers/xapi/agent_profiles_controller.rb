@@ -3,9 +3,6 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
   # GET /agents/profile
   # gets ids of all state data for this context
   def index
-    pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    pp params
-    pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     errors = check_query_parameters
     if errors.empty?
       if params['profileId']
@@ -18,9 +15,6 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
 
   # POST /agents/profile
   def create
-    pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    pp params
-    pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     # TODO Check if it already exists
     # If exists and both JSON then merge
     # else create
@@ -38,9 +32,6 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
 
   # PUT /agents/profile
   def update
-    pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    pp params
-    pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     profile = AgentProfile.create_from(@lrs, request.content_type, profile_params)
     if profile.valid?
       render status: :no_content
