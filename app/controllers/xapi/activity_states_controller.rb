@@ -82,7 +82,9 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     errors << 'Agent is missing' unless params['agent']
     errors << 'Activity ID is missing' unless params['activityId']
     errors << 'Invalid activity id' unless validate_iri(params['activityId'])
-    errors << 'Invalid registartio' unless validate_uuid(params['registration'])
+    if params['registration']
+      errors << 'Invalid registration' unless validate_uuid(params['registration'])
+    end
     errors
   end
 
