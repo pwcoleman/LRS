@@ -3,10 +3,7 @@ class Xapi::ActivityStatesController < Xapi::BaseController
   # GET /activities/state
   # gets ids of all state data for this context
   def index
-    errors = []
-    errors << 'Agent is missing' unless params['agent']
-    errors << 'Activity ID is missing' unless params['activityId']
-    errors
+    errors = check_query_parameters
     if errors.empty?
       if params['stateId']
         # single
@@ -78,5 +75,31 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     errors << 'Activity ID is missing' unless params['activityId']
     errors << 'Agent is missing' unless params['agent']
     errors
+  end
+
+  def check_query_parameters
+    errors = []
+    errors << 'Agent is missing' unless params['agent']
+    errors << 'Activity ID is missing' unless params['activityId']
+    errors << 'Invalid activity id' unless validate_iri(params['activityId'])
+    errors << 'Invalid registartio' unless validate_uuid(params['registration'])
+    errors
+  end
+
+  def validate_uuid(value)
+    value && value =~ /\A(urn:uuid:)?[\da-f]{8}-[\da-f]{4}-4[\da-f]{3}-[8 9 a b][\da-f]{3}-[\da-f]{12}\z/i
+  end
+
+  def validate_iri(value)
+    success = false
+    if value
+      base_uri = value
+      begin
+        uri = Addressable::URI.parse(base_uri)
+        success = uri.scheme && uri.host && uri.to_s == base_uri && uri
+      rescue URI::InvalidURIError, Addressable::URI::InvalidURIError, TypeError
+      end
+    end
+    success
   end
 end
