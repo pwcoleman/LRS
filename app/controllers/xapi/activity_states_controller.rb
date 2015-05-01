@@ -3,11 +3,19 @@ class Xapi::ActivityStatesController < Xapi::BaseController
   # GET /activities/state
   # gets ids of all state data for this context
   def index
-    if params['stateId']
-      # single
-      @state = State.where(state_id: params['stateId'], activity_id: params['activityId'], agent: params['agent']).first
-    else
+    errors = []
+    errors << 'Agent is missing' unless params['agent']
+    errors << 'Activity ID is missing' unless params['activityId']
+    errors
+    if errors.empty?
+      if params['stateId']
+        # single
+        @state = State.where(state_id: params['stateId'], activity_id: params['activityId'], agent: params['agent']).first
+      else
 
+      end
+    else
+      render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
     end
   end
 

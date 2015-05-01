@@ -40,7 +40,7 @@ Feature: Retrieve state
     | withRegistration | openidOnly           |
     | withRegistration | accountOnly          |
 
-  @focus
+
   Scenario Outline: Good retrieve state: [<type>] request cluster with stateId parameter set to 'test state id'
 
     Given a [<type>] retrieveState request cluster
@@ -53,6 +53,7 @@ Feature: Retrieve state
     | typical             |
     | withRegistration    |
 
+  @focus
   Scenario Outline: Bad retrieve state: [<type>] request missing [<property>]
 
     Given a [<type>] retrieveState request

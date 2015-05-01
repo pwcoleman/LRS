@@ -1,8 +1,8 @@
 
 ###########################################################
 
-1035 scenarios (26 failed, 502 pending, 507 passed)
+1035 scenarios (29 failed, 481 pending, 525 passed)
 
-4517 steps (26 failed, 1669 skipped, 502 pending, 2320 passed)
+4517 steps (29 failed, 1608 skipped, 481 pending, 2399 passed)
 
-0m32.608s
+0m31.707s
