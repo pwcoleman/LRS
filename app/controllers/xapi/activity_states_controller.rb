@@ -85,6 +85,10 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     if params['registration']
       errors << 'Invalid registration' unless validate_uuid(params['registration'])
     end
+    validator = AgentValidator.new({attributes: [:agent], class: State})
+    state = State.new
+    validator.validate_each(state, :agent, params['agent'])
+    errors.concat(state.errors[:agent])
     errors
   end
 
