@@ -6,8 +6,13 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
     pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
     pp params
     pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-    if params['profileId']
-      @profile = ActivityProfile.where(activity_id: params['activityId'], profile_id: params['profileId']).first
+    errors = check_query_parameters
+    if errors.empty?
+      if params['profileId']
+        @profile = ActivityProfile.where(activity_id: params['activityId'], profile_id: params['profileId']).first
+      end
+    else
+      render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
     end
   end
 
@@ -55,5 +60,11 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
 
   def profile_params
     params.reject {|k,v| ['format', 'controller', 'action'].include?(k) }
+  end
+
+  def check_query_parameters
+    errors = []
+    errors << 'Activity ID is missing' unless params['activityId']
+    errors
   end
 end
