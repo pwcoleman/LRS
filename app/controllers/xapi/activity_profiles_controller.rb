@@ -65,6 +65,7 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
   def check_query_parameters
     errors = []
     errors << 'Activity ID is missing' unless params['activityId']
+    errors << 'Invalid activity id' unless validate_iri(params['activityId'])
     errors
   end
 end

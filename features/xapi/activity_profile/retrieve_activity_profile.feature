@@ -8,7 +8,7 @@ Feature: Retrieve activity profile
     When the request is made on the primed LRS
     Then the retrieveActivityProfile response is verified
 
-  @focus
+
   Scenario Outline: Bad retrieve activityProfile: [<type>] request missing [<property>]
 
     Given a typical retrieveActivityProfile request
@@ -30,6 +30,7 @@ Feature: Retrieve activity profile
     When the request is made
     Then the LRS responds with HTTP 400
 
+  @focus
   Scenario Outline: Bad retrieve state: typical request with bad [<property>] '[<value>]'
 
     Given a typical retrieveActivityProfile request
