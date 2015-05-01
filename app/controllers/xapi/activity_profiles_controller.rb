@@ -6,6 +6,9 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
     pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
     pp params
     pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    if params['profileId']
+      @profile = ActivityProfile.where(activity_id: params['activityId'], profile_id: params['profileId']).first
+    end
   end
 
   # POST /activities/profile

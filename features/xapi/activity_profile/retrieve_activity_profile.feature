@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: Retrieve activity profile
 
+  @focus
   Scenario: Good retrieve activityProfile: typical request cluster
 
     Given a typical retrieveActivityProfile request cluster

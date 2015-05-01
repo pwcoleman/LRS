@@ -10,7 +10,7 @@ module Request
       request['method'] = 'GET'
       request['params'] = {
           'activityId' => Property::Activity.build('typical')['id'],
-          'profileID' =>  'Activity profileId'
+          'profileId' =>  'Activity profileId'
       }
       request
     end

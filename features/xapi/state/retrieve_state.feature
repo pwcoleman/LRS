@@ -13,7 +13,7 @@ Feature: Retrieve state
     | typical           |
     | withRegistration  |
 
-@focus
+
   Scenario Outline: Good retrieve state: [<type>] request cluster with agent parameter set to an [<value>] agent
 
     Given a [<type>] retrieveState request cluster
@@ -128,7 +128,7 @@ Feature: Retrieve state
     | openidOnly     | openid           | bad URI                         |
     | accountOnly    | account homePage | bad URI                         |
 
-    @focus
+
   Scenario Outline: Bad retrieve state: typical request with [<modifier>] agent parameter missing [<property>]
 
     Given a typical retrieveState request
