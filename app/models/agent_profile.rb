@@ -11,7 +11,13 @@ class AgentProfile < Document
   # create a new agent profile - this is the preferred way to create a new AgentProfile
   def self.create_from(lrs, content_type, params)
     profile = AgentProfile.new(lrs: lrs, content_type: content_type)
-    profile.agent = params['agent'] if params['agent']
+    if params['agent']
+      begin
+        profile.agent = JSON.parse(params['agent'])
+      rescue
+        profile.agent = params['agent']
+      end
+    end
     profile.profile_id = params['profileId']
     profile.content = params
 
