@@ -72,7 +72,7 @@ Feature: Retrieve state
     | 400  | withRegistration | activityId parameter    |
     | 400  | withRegistration | agent parameter         |
 
-  @focus
+
   Scenario Outline: Bad retrieve state: [<type>] request with bad agent parameter an empty agent
 
     Given a [<type>] retrieveState request
@@ -85,7 +85,7 @@ Feature: Retrieve state
     | typical           |
     | withRegistration  |
 
-  @focus
+
   Scenario Outline: Bad retrieve state: [<type>] request with bad [<property>] '[<value>]'
 
     Given a [<type>] retrieveState request
@@ -105,6 +105,7 @@ Feature: Retrieve state
     | 400  | withRegistration | activityId parameter   | bad URI                                                      |
     | 400  | withRegistration | registration parameter | bad UUID                                                     |
 
+    @focus
   Scenario Outline: Bad retrieve state: typical request with [<modifier>] agent parameter with bad [<property>] '[<value>]'
 
     Given a typical retrieveState request
