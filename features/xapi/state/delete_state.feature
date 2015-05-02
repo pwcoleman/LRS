@@ -128,7 +128,7 @@ Feature: Delete state
     | openidOnly     | openid           | bad URI                         |
     | accountOnly    | account homePage | bad URI                         |
 
-  @focus
+
   Scenario Outline: Bad delete state: typical request with [<modifier>] agent parameter missing [<property>]
 
     Given a typical deleteState request

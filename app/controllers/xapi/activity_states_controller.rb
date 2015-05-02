@@ -64,9 +64,6 @@ class Xapi::ActivityStatesController < Xapi::BaseController
 
   # DELETE /activities/state
   def destroy
-    pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    pp params
-    pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     errors = check_destroy_parameters
     if errors.empty?
       # TODO: USE registration parameter in query

@@ -47,23 +47,13 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
 
   # DELETE /activities/profile
   def destroy
-    if params['activityId'] && params['profileId']
-      errors = []
-      errors << 'Invalid activity id' unless validate_iri(params['activityId'])
-      if errors.empty?
-        @profile = ActivityProfile.where(activity_id: params['activityId'], profile_id: params['profileId']).first
-        @profile.destroy if @profile
-        render status: :no_content
-      else
-        render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
-      end
+    errors = check_destroy_parameters
+    if errors.empty?
+      @profile = ActivityProfile.where(activity_id: params['activityId'], profile_id: params['profileId']).first
+      @profile.destroy if @profile
+      render status: :no_content
     else
-      errors = []
-      errors << 'activityId is required' unless params['activityId']
-      errors << 'profileId is required' unless params['profileId']
-      if errors.any?
-        render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
-      end
+      render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
     end
   end
 
@@ -76,6 +66,14 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
   def check_query_parameters
     errors = []
     errors << 'Activity ID is missing' unless params['activityId']
+    errors << 'Invalid activity id' unless validate_iri(params['activityId'])
+    errors
+  end
+
+  def check_destroy_parameters
+    errors = []
+    errors << 'activityId is missing' unless params['activityId']
+    errors << 'profileId is missing' unless params['profileId']
     errors << 'Invalid activity id' unless validate_iri(params['activityId'])
     errors
   end
