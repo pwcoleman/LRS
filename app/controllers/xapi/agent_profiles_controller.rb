@@ -47,9 +47,6 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
 
   # DELETE /agents/profile
   def destroy
-    pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    pp params
-    pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     errors = check_destroy_parameters
     if errors.empty?
       @profile = AgentProfile.where(agent: params['agent'], profile_id: params['profileId']).first
