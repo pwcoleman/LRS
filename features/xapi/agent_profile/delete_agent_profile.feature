@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: Delete agent profile
 
+  @focus
   Scenario: Good delete agent profile: typical request cluster
 
     Given a typical deleteAgentProfile request cluster

@@ -50,6 +50,14 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
     pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
     pp params
     pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    errors = check_destroy_parameters
+    if errors.empty?
+      @profile = AgentProfile.where(agent: params['agent'], profile_id: params['profileId']).first
+      @profile.destroy if @profile
+      render status: :no_content
+    else
+      render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
+    end
   end
 
   private
@@ -71,6 +79,11 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
       end
       errors.concat(state.errors[:agent])
     end
+    errors
+  end
+
+  def check_destroy_parameters
+    errors = []
     errors
   end
 

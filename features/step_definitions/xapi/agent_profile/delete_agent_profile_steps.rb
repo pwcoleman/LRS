@@ -1,10 +1,11 @@
 # encoding: UTF-8
 Given(/^a typical deleteAgentProfile request cluster$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @cluster = Cluster::DeleteAgentProfile.build(@lrs, 'typical')
 end
 
 Then(/^the deleteAgentProfile response is verified$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(AgentProfile.where(id: @cluster['primers'].first.id).exists?).to eq(false)
 end
 
 Given(/^all requests' agent parameter are set to an \[(\w+)\] agent$/) do |type|
