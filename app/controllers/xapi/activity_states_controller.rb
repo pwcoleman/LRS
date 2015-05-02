@@ -115,6 +115,20 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     errors = []
     errors << 'Activity ID is missing' unless params['activityId']
     errors << 'Agent is missing' unless params['agent']
+    errors << 'Invalid activity id' unless validate_iri(params['activityId'])
+    if params['registration']
+      errors << 'Invalid registration' unless validate_uuid(params['registration'])
+    end
+    if params['agent']
+      validator = AgentValidator.new({attributes: [:agent], class: State})
+      state = State.new
+      if params['agent'].is_a?(Hash)
+        validator.validate_each(state, :agent, params['agent'])
+      else
+        validator.validate_each(state, :agent, JSON.parse(params['agent']))
+      end
+      errors.concat(state.errors[:agent])
+    end
     errors
   end
 
