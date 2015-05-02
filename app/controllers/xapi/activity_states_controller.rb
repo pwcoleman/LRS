@@ -66,9 +66,14 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
     pp params
     pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-    @state = State.where(activity_id: params['activityId'], agent: params['agent'], state_id: params['stateId']).first
-    @state.destroy if @state
-    render status: :no_content
+    errors = check_destroy_parameters
+    if errors.empty?
+      @state = State.where(activity_id: params['activityId'], agent: params['agent'], state_id: params['stateId']).first
+      @state.destroy if @state
+      render status: :no_content
+    else
+      render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
+    end
   end
 
   private
@@ -103,6 +108,13 @@ class Xapi::ActivityStatesController < Xapi::BaseController
       end
       errors.concat(state.errors[:agent])
     end
+    errors
+  end
+
+  def check_destroy_parameters
+    errors = []
+    errors << 'Activity ID is missing' unless params['activityId']
+    errors << 'Agent is missing' unless params['agent']
     errors
   end
 

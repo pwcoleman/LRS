@@ -13,7 +13,7 @@ Feature: Delete state
     | typical           |
     | withRegistration  |
 
-  @focus
+
   Scenario Outline: Good delete state: [<type>] request cluster with agent parameter set to an [<value>] agent
 
     Given a [<type>] deleteState request cluster
@@ -40,6 +40,7 @@ Feature: Delete state
     | withRegistration | openidOnly         |
     | withRegistration | accountOnly        |
 
+
   Scenario Outline: Good delete state: [<type>] request cluster with stateId parameter set to 'test state id'
 
     Given a [<type>] deleteState request cluster
@@ -52,6 +53,7 @@ Feature: Delete state
     | typical           |
     | withRegistration  |
 
+  @focus
   Scenario Outline: Bad delete state: [<type>] request missing [<property>]
 
     Given a [<type>] deleteState request
