@@ -8,7 +8,7 @@ Feature: Delete activity profile
     When the request is made on the primed LRS
     Then the deleteActivityProfile response is verified
 
-  @focus
+
   Scenario Outline: Bad delete activityProfile: typical request missing [<property>]
 
     Given a typical deleteActivityProfile request
@@ -31,6 +31,7 @@ Feature: Delete activity profile
     When the request is made
     Then the LRS responds with HTTP 400
 
+  @focus
   Scenario Outline: Bad delete state: typical request with  bad [<property>] '[<value>]'
 
     Given a typical deleteActivityProfile request

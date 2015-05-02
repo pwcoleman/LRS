@@ -51,9 +51,15 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
     pp params
     pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     if params['activityId'] && params['profileId']
-      @profile = ActivityProfile.where(activity_id: params['activityId'], profile_id: params['profileId']).first
-      @profile.destroy if @profile
-      render status: :no_content
+      errors = []
+      errors << 'Invalid activity id' unless validate_iri(params['activityId'])
+      if errors.empty?
+        @profile = ActivityProfile.where(activity_id: params['activityId'], profile_id: params['profileId']).first
+        @profile.destroy if @profile
+        render status: :no_content
+      else
+        render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
+      end
     else
       errors = []
       errors << 'activityId is required' unless params['activityId']
