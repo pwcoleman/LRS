@@ -8,7 +8,6 @@ class Xapi::ActivityStatesController < Xapi::BaseController
       if params['stateId']
         # single
         @state = State.where(state_id: params['stateId'], activity_id: params['activityId'], agent: params['agent']).first
-        pp @state
         if @state
 
         else

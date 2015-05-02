@@ -47,9 +47,6 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
 
   # DELETE /activities/profile
   def destroy
-    pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    pp params
-    pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     if params['activityId'] && params['profileId']
       errors = []
       errors << 'Invalid activity id' unless validate_iri(params['activityId'])
