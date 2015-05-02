@@ -50,7 +50,7 @@ Feature: Delete agent profile
     When the request is made
     Then the LRS responds with HTTP 400
 
-  @focus
+
   Scenario Outline: Bad delete agent profile: typical request with bad [<property>] '[<value>]'
 
     Given a typical deleteAgentProfile request
@@ -68,6 +68,7 @@ Feature: Delete agent profile
     | 400  | authority header | Basic badAuth                                               |
     | 401  | authority header | Basic TnsHNWplME1YZnc0VzdLTHRIWTo0aDdBb253Ml85WU53vSZLNlVZ  |
 
+  @focus
   Scenario Outline: Bad delete agent profile: typical request with [<modifier>] agent parameter with bad [<property>] '[<value>]'
 
     Given a typical deleteAgentProfile request
