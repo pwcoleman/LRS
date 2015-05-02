@@ -8,6 +8,11 @@ class Xapi::ActivityStatesController < Xapi::BaseController
       if params['stateId']
         # single
         @state = State.where(state_id: params['stateId'], activity_id: params['activityId'], agent: params['agent']).first
+        if @state
+          render status: :no_content
+        else
+          render status: :not_found
+        end
       else
 
       end

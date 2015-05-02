@@ -38,7 +38,7 @@ Feature: Fetch statements
     | voidedStatementId | limit              | '50'                                                         |
     | voidedStatementId | ascending          | 'true'                                                       |
 
-    @focus
+
   Scenario Outline: Bad fetch statements: request with bad [<property>] '[<value>]'
 
     Given a query fetchStatements request

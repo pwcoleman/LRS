@@ -33,7 +33,7 @@ def perform_put
 end
 
 def perform_delete
-  delete "/xapi/#{@context['resource']}"
+  delete "/xapi/#{@context['resource']}", @context['params']
 end
 
 def perform_request

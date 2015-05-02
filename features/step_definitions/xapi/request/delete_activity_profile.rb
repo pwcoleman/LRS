@@ -13,7 +13,7 @@ module Request
           request['method'] = 'DELETE'
           request['params'] = {
               'activityId' => Property::Activity.build('typical')['id'],
-              'profileID' =>  'Activity profileId'
+              'profileId' =>  'Activity profileId'
           }
       end
       request

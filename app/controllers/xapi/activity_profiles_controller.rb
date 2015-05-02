@@ -7,6 +7,11 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
     if errors.empty?
       if params['profileId']
         @profile = ActivityProfile.where(activity_id: params['activityId'], profile_id: params['profileId']).first
+        if @profile
+          render status: :no_content
+        else
+          render status: :not_found
+        end
       end
     else
       render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
@@ -45,6 +50,13 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
     pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
     pp params
     pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    if params['activityId'] && params['profileId']
+      @profile = ActivityProfile.where(activity_id: params['activityId'], profile_id: params['profileId']).first
+      @profile.destroy if @profile
+      render status: :no_content
+    else
+
+    end
   end
 
   private

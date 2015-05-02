@@ -7,6 +7,11 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
     if errors.empty?
       if params['profileId']
         @profile = AgentProfile.where(agent: params['agent'], profile_id: params['profileId']).first
+        if @profile
+          render status: :no_content
+        else
+          render status: :not_found
+        end
       end
     else
       render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request

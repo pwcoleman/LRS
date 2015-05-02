@@ -7,7 +7,7 @@ module Cluster
       case type
         when 'typical'
           request['primers'] = [
-              Request::SaveActivityProfile.build(lrs, 'typical')
+              FactoryGirl.create(:typical_activity_profile, lrs: lrs)
           ]
           request['main'] = Request::DeleteActivityProfile.build(lrs, 'typical')
           request['verify'] = Request::RetrieveActivityProfile.build(lrs, 'typical')

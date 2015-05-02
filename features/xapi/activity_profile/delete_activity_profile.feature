@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: Delete activity profile
 
+  @focus
   Scenario: Good delete activityProfile: typical request cluster
 
     Given a typical deleteActivityProfile request cluster

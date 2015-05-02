@@ -1,10 +1,11 @@
 # encoding: UTF-8
 Given(/^a typical deleteActivityProfile request cluster$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @cluster = Cluster::DeleteActivityProfile.build(@lrs, 'typical')
 end
 
 Then(/^the deleteActivityProfile response is verified$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(ActivityProfile.where(id: @cluster['primers'].first.id).exists?).to eq(false)
 end
 
 Given(/^a typical deleteActivityProfile request$/) do
