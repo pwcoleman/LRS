@@ -7,6 +7,7 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     if errors.empty?
       if params['stateId']
         # single
+        # TODO: USE registration parameter in query
         @state = State.where(state_id: params['stateId'], activity_id: params['activityId'], agent: params['agent']).first
         if @state
 
@@ -68,6 +69,7 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     errors = check_destroy_parameters
     if errors.empty?
+      # TODO: USE registration parameter in query
       @state = State.where(activity_id: params['activityId'], agent: params['agent'], state_id: params['stateId']).first
       @state.destroy if @state
       render status: :no_content
