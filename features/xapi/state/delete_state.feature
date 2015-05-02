@@ -85,7 +85,7 @@ Feature: Delete state
     | typical           |
     | withRegistration  |
 
-  @focus
+
   Scenario Outline: Bad delete state: [<type>] request with bad [<property>] '[<value>]'
 
     Given a [<type>] deleteState request
@@ -105,6 +105,7 @@ Feature: Delete state
     | 400  | withRegistration | activityId parameter   | bad URI                                                      |
     | 400  | withRegistration | registration parameter | bad UUID                                                     |
 
+  @focus
   Scenario Outline: Bad delete state: typical request with [<modifier>] agent parameter with bad [<property>] '[<value>]'
 
     Given a typical deleteState request
