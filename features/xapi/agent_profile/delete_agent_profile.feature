@@ -1,13 +1,14 @@
 # encoding: UTF-8
 Feature: Delete agent profile
 
-  @focus
+
   Scenario: Good delete agent profile: typical request cluster
 
     Given a typical deleteAgentProfile request cluster
     When the request is made on the primed LRS
     Then the deleteAgentProfile response is verified
 
+  @focus
   Scenario Outline: Good delete agent profile: typical request cluster with agent parameter set to an [<value] agent
 
     Given a typical deleteAgentProfile request cluster
