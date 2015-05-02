@@ -55,7 +55,12 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
       @profile.destroy if @profile
       render status: :no_content
     else
-
+      errors = []
+      errors << 'activityId is required' unless params['activityId']
+      errors << 'profileId is required' unless params['profileId']
+      if errors.any?
+        render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
+      end
     end
   end
 

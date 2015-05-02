@@ -1,13 +1,14 @@
 # encoding: UTF-8
 Feature: Delete activity profile
 
-  @focus
+
   Scenario: Good delete activityProfile: typical request cluster
 
     Given a typical deleteActivityProfile request cluster
     When the request is made on the primed LRS
     Then the deleteActivityProfile response is verified
 
+  @focus
   Scenario Outline: Bad delete activityProfile: typical request missing [<property>]
 
     Given a typical deleteActivityProfile request
