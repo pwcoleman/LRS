@@ -42,7 +42,7 @@ Feature: Delete agent profile
     | 400  | agent parameter      |
     | 400  | profileId parameter  |
 
-  @focus
+
   Scenario: Bad delete agent profile: typical request with bad agent parameter an empty agent
 
     Given a typical deleteAgentProfile request
@@ -50,6 +50,7 @@ Feature: Delete agent profile
     When the request is made
     Then the LRS responds with HTTP 400
 
+  @focus
   Scenario Outline: Bad delete agent profile: typical request with bad [<property>] '[<value>]'
 
     Given a typical deleteAgentProfile request
