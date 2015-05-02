@@ -86,6 +86,16 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
     errors = []
     errors << 'Agent is missing' unless params['agent']
     errors << 'profileId is missing' unless params['profileId']
+    if params['agent']
+      validator = AgentValidator.new({attributes: [:agent], class: State})
+      state = State.new
+      if params['agent'].is_a?(Hash)
+        validator.validate_each(state, :agent, params['agent'])
+      else
+        validator.validate_each(state, :agent, JSON.parse(params['agent']))
+      end
+      errors.concat(state.errors[:agent])
+    end
     errors
   end
 

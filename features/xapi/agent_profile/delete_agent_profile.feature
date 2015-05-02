@@ -27,7 +27,7 @@ Feature: Delete agent profile
     | openidOnly      |
     | accountOnly     |
 
-  @focus
+
   Scenario Outline: Bad delete agent profile: typical request missing [<property>]
 
     Given a typical deleteAgentProfile request
@@ -42,6 +42,7 @@ Feature: Delete agent profile
     | 400  | agent parameter      |
     | 400  | profileId parameter  |
 
+  @focus
   Scenario: Bad delete agent profile: typical request with bad agent parameter an empty agent
 
     Given a typical deleteAgentProfile request
