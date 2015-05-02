@@ -66,6 +66,9 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     pp '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
     pp params
     pp '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    @state = State.where(activity_id: params['activityId'], agent: params['agent'], state_id: params['stateId']).first
+    @state.destroy if @state
+    render status: :no_content
   end
 
   private

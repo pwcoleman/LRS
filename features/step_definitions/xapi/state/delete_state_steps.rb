@@ -5,11 +5,12 @@ Given(/^a \[typical\] deleteState request cluster$/) do
 end
 
 Then(/^the deleteState response is verified$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(State.where(id: @cluster['primers'].first.id).exists?).to eq(false)
 end
 
 Given(/^a \[withRegistration\] deleteState request cluster$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @cluster = Cluster::DeleteState.build(@lrs, 'withRegistration')
 end
 
 Given(/^all requests' stateId parameter are set to 'test state id'$/) do

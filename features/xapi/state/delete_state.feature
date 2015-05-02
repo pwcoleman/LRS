@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: Delete state
 
+  @focus
   Scenario Outline: Good delete state: [<type>] request cluster
 
     Given a [<type>] deleteState request cluster
