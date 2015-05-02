@@ -4,9 +4,6 @@ class Xapi::StatementsController < Xapi::BaseController
   # GET /statements
   # get a single statement or multiple statements
   def index
-    pp '=============================='
-    pp params
-    pp '=============================='
     errors = check_query_parameters
     if errors.empty?
       if params[:statementId]
