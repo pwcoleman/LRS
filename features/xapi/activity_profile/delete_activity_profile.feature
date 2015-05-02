@@ -31,7 +31,7 @@ Feature: Delete activity profile
     When the request is made
     Then the LRS responds with HTTP 400
 
-  @focus
+
   Scenario Outline: Bad delete state: typical request with  bad [<property>] '[<value>]'
 
     Given a typical deleteActivityProfile request

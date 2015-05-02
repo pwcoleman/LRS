@@ -8,7 +8,7 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
       if params['profileId']
         @profile = ActivityProfile.where(activity_id: params['activityId'], profile_id: params['profileId']).first
         if @profile
-          render status: :no_content
+
         else
           render status: :not_found
         end

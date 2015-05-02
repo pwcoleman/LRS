@@ -8,7 +8,7 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
       if params['profileId']
         @profile = AgentProfile.where(agent: params['agent'], profile_id: params['profileId']).first
         if @profile
-          render status: :no_content
+
         else
           render status: :not_found
         end
