@@ -8,7 +8,7 @@ Feature: Delete agent profile
     When the request is made on the primed LRS
     Then the deleteAgentProfile response is verified
 
-  @focus
+
   Scenario Outline: Good delete agent profile: typical request cluster with agent parameter set to an [<value] agent
 
     Given a typical deleteAgentProfile request cluster
@@ -27,6 +27,7 @@ Feature: Delete agent profile
     | openidOnly      |
     | accountOnly     |
 
+  @focus
   Scenario Outline: Bad delete agent profile: typical request missing [<property>]
 
     Given a typical deleteAgentProfile request

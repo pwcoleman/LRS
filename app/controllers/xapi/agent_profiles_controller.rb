@@ -84,6 +84,8 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
 
   def check_destroy_parameters
     errors = []
+    errors << 'Agent is missing' unless params['agent']
+    errors << 'profileId is missing' unless params['profileId']
     errors
   end
 
