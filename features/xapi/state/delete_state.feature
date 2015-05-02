@@ -1,7 +1,7 @@
 # encoding: UTF-8
 Feature: Delete state
 
-  @focus
+
   Scenario Outline: Good delete state: [<type>] request cluster
 
     Given a [<type>] deleteState request cluster
@@ -13,6 +13,7 @@ Feature: Delete state
     | typical           |
     | withRegistration  |
 
+  @focus
   Scenario Outline: Good delete state: [<type>] request cluster with agent parameter set to an [<value>] agent
 
     Given a [<type>] deleteState request cluster
