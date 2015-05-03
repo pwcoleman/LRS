@@ -30,7 +30,7 @@ Feature: Retrieve activity profile ids
     When the request is made
     Then the LRS responds with HTTP 400
 
-  @focus
+
   Scenario Outline: Bad retrieve activity profile ids: typical request with bad [<property>] '[<value>]'
 
     Given a typical retrieveActivityProfileIds request

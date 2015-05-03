@@ -3,6 +3,10 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
   # GET /agents/profile
   # gets ids of all state data for this context
   def index
+    pp '-------------------------'
+    pp params
+    pp '-------------------------'
+
     errors = check_query_parameters
     if errors.empty?
       if params['profileId']
@@ -12,6 +16,8 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
         else
           render status: :not_found
         end
+      else
+        @profiles = AgentProfile.where(agent: params['agent'])
       end
     else
       render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request

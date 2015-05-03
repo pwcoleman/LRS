@@ -1,7 +1,6 @@
 # encoding: UTF-8
 
 When(/^the request is made on the primed LRS$/) do
-
   @context = @cluster['main']
   if @context['headers']
     @context['headers'].each_pair do |key, value|

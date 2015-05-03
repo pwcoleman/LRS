@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: Retrieve agent profile ids
 
+  @focus
   Scenario: Good retrieve agent profile ids: typical request cluster
 
     Given a typical retrieveAgentProfileIds request cluster
