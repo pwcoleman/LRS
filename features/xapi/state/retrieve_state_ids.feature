@@ -92,7 +92,7 @@ Feature: Retrieve state ids
     | 400  | withRegistration | activityId parameter   | bad URI                                                      |
     | 400  | withRegistration | registration parameter | bad UUID                                                     |
 
-  @focus
+
   Scenario Outline: Bad retrieve state ids: typical request with [<modifier>] agent parameter with bad [<property>] '[<value>]'
 
     Given a typical retrieveStateIds request
@@ -115,6 +115,7 @@ Feature: Retrieve state ids
     | openidOnly     | openid           | bad URI                         |
     | accountOnly    | account homePage | bad URI                         |
 
+  @focus
   Scenario Outline: Bad retrieve state ids: typical request with [<modifier>] agent parameter missing [<property>]
 
     Given a typical retrieveStateIds request
