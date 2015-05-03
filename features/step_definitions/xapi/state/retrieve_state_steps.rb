@@ -43,7 +43,7 @@ Given(/^a typical retrieveState request$/) do
 end
 
 Then(/^the retrieveState response is verified$/) do
-  primers = @cluster['primers']['list'] ? @cluster['primers']['list'] : @cluster['primers']
+  primers = @cluster['primers'].is_a?(Array) ? @cluster['primers'] : @cluster['primers']['list']
   if primers.size > 1
     body = JSON.parse(last_response.body)
     expect(body.size).to eq(3)

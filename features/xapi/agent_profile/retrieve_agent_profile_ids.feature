@@ -66,7 +66,7 @@ Feature: Retrieve agent profile ids
     | 400  | authority header | Basic badAuth                                               |
     | 401  | authority header | Basic TnsHNWplME1YZnc0VzdLTHRIWTo0aDdBb253Ml85WU53vSZLNlVZ  |
 
-  @focus
+
   Scenario Outline: Bad retrieve agent profile ids: typical request with [<modifier>] agent parameter with bad [<property>] '[<value>]'
 
     Given a typical retrieveAgentProfileIds request
@@ -88,6 +88,7 @@ Feature: Retrieve agent profile ids
     | accountAndType | account homePage | bad URI                         |
     | openidOnly     | openid           | bad URI                         |
     | accountOnly    | account homePage | bad URI                         |
+
 
   Scenario Outline: Bad retrieve agent profile ids: typical request with [<modifier>] agent parameter missing [<property>]
 

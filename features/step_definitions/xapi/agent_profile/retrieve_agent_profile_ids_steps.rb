@@ -12,7 +12,7 @@ end
 
 Given(/^all requests' agent parameter is set to an \[(\w+)\] agent$/) do |type|
   agent = Property::Agent.build(type)
-  primers = @cluster['primers']['list'] ? @cluster['primers']['list'] : @cluster['primers']
+  primers = @cluster['primers'].is_a?(Array) ? @cluster['primers'] : @cluster['primers']['list']
   primers.each do |primer|
     primer.agent = agent
     primer.save
