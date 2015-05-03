@@ -40,7 +40,7 @@ Feature: Clear state
     | withRegistration | openidOnly         |
     | withRegistration | accountOnly        |
 
-  @focus
+
   Scenario Outline: Bad clear state: [<type>] request missing [<property>]
 
     Given a [<type>] clearState request
@@ -59,6 +59,7 @@ Feature: Clear state
     | 400  | withRegistration | activityId parameter  |
     | 400  | withRegistration | agent parameter       |
 
+  @focus
   Scenario Outline: Bad clear state: [<type>] request with bad agent parameter an empty agent
 
     Given a [<type>] clearState request
