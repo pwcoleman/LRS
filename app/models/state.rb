@@ -33,6 +33,10 @@ class State < Document
     state
   end
 
+  set_callback(:validation, :before) do |state|
+    state.agent['objectType'] = 'Agent' unless state.agent['objectType']
+  end
+
   private
 
   def check_registration

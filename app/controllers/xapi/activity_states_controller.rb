@@ -3,19 +3,26 @@ class Xapi::ActivityStatesController < Xapi::BaseController
   # GET /activities/state
   # gets ids of all state data for this context
   def index
+    pp '========================='
+    pp params
+    pp '========================='
     errors = check_query_parameters
     if errors.empty?
       if params['stateId']
         # single
         # TODO: USE registration parameter in query
-        @state = State.where(state_id: params['stateId'], activity_id: params['activityId'], agent: params['agent']).first
+        agent = params['agent'].is_a?(Hash) ? params['agent'] : JSON.parse(params['agent'])
+        agent['objectType'] = 'Agent' unless agent['objectType']
+        @state = State.where(state_id: params['stateId'], activity_id: params['activityId'], agent: agent).first
         if @state
 
         else
           render status: :not_found
         end
       else
-
+        agent = params['agent'].is_a?(Hash) ? params['agent'] : JSON.parse(params['agent'])
+        agent['objectType'] = 'Agent' unless agent['objectType']
+        @states = State.where(activity_id: params['activityId'], agent: agent)
       end
     else
       render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
@@ -100,11 +107,8 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     if params['agent']
       validator = AgentValidator.new({attributes: [:agent], class: State})
       state = State.new
-      if params['agent'].is_a?(Hash)
-        validator.validate_each(state, :agent, params['agent'])
-      else
-        validator.validate_each(state, :agent, JSON.parse(params['agent']))
-      end
+      agent =  params['agent'].is_a?(Hash) ?params['agent'] : JSON.parse(params['agent'])
+      validator.validate_each(state, :agent, agent)
       errors.concat(state.errors[:agent])
     end
     errors
@@ -121,11 +125,8 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     if params['agent']
       validator = AgentValidator.new({attributes: [:agent], class: State})
       state = State.new
-      if params['agent'].is_a?(Hash)
-        validator.validate_each(state, :agent, params['agent'])
-      else
-        validator.validate_each(state, :agent, JSON.parse(params['agent']))
-      end
+      agent =  params['agent'].is_a?(Hash) ?params['agent'] : JSON.parse(params['agent'])
+      validator.validate_each(state, :agent, agent)
       errors.concat(state.errors[:agent])
     end
     errors
