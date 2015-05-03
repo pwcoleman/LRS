@@ -5,8 +5,9 @@ Given(/^a \[typical\] retrieveStateIds request cluster$/) do
 end
 
 Then(/^the retrieveStateIds response is verified$/) do
-  # TODO: FIX THIS
-  pp last_response
+  body = JSON.parse(last_response.body)
+  expect(body.size).to eq(3)
+  expect(body).to eq(@cluster['primers'].map(&:state_id))
 end
 
 Given(/^a \[withRegistration\] retrieveStateIds request cluster$/) do

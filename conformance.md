@@ -12,10 +12,6 @@
 ### FAILING CONFORMANCE
 ###########################################################
 
-Feature: Retrieve state ids
 
-Scenario Outline: Good retrieve state ids: [<type>] request cluster
-  
-1) Retrieve state id's Good retrieve state ids: typical request cluster (e45a7d21f59d415bbc75acfe302dd4fe) Then the retrieveStateIds response is verified:
 
 ++++++++++++++++
