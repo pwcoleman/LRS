@@ -5,11 +5,11 @@ class Xapi::ActivityStatesController < Xapi::BaseController
   def index
     errors = check_query_parameters
     if errors.empty?
+      agent = params['agent'].is_a?(Hash) ? params['agent'] : JSON.parse(params['agent'])
+      agent['objectType'] = 'Agent' unless agent['objectType']
       if params['stateId']
         # single
         # TODO: USE registration parameter in query
-        agent = params['agent'].is_a?(Hash) ? params['agent'] : JSON.parse(params['agent'])
-        agent['objectType'] = 'Agent' unless agent['objectType']
         @state = State.where(state_id: params['stateId'], activity_id: params['activityId'], agent: agent).first
         if @state
 
@@ -17,8 +17,6 @@ class Xapi::ActivityStatesController < Xapi::BaseController
           render status: :not_found
         end
       else
-        agent = params['agent'].is_a?(Hash) ? params['agent'] : JSON.parse(params['agent'])
-        agent['objectType'] = 'Agent' unless agent['objectType']
         @states = State.where(activity_id: params['activityId'], agent: agent)
       end
     else
