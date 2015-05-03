@@ -59,7 +59,7 @@ Feature: Retrieve state ids
     | 400  | withRegistration | activityId parameter  |
     | 400  | withRegistration | agent parameter       |
 
-  @focus
+
   Scenario Outline: Bad retrieve state ids: [<type>] request with bad agent parameter an empty agent
 
     Given a [<type>] retrieveStateIds request
@@ -72,6 +72,7 @@ Feature: Retrieve state ids
     | typical             |
     | withRegistration    |
 
+  @focus
   Scenario Outline: Bad retrieve state ids: [<type>] request with bad [<property>] '[<value>]'
 
     Given a [<type>] retrieveStateIds request
