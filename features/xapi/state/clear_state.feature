@@ -72,7 +72,7 @@ Feature: Clear state
     | typical           |
     | withRegistration  |
 
-  @focus
+
   Scenario Outline: Bad clear state: [<type>] request with bad [<property>] '[<value>]'
 
     Given a [<type>] clearState request
@@ -92,6 +92,7 @@ Feature: Clear state
     | 400  | withRegistration | activityId parameter   | bad URI                                                      |
     | 400  | withRegistration | registration parameter | bad UUID                                                     |
 
+  @focus
   Scenario Outline: Bad clear state: typical request with [<modifier>] agent parameter with bad [<property>] '[<value>]'
 
     Given a typical clearState request
