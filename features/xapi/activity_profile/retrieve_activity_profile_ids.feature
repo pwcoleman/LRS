@@ -1,13 +1,14 @@
 # encoding: UTF-8
 Feature: Retrieve activity profile ids
 
-  @focus
+
   Scenario: Good retrieve activity profile ids: typical request cluster
 
     Given a typical retrieveActivityProfileIds request cluster
     When the request is made on the primed LRS
     Then the retrieveActivityProfileIds response is verified
 
+  @focus
   Scenario Outline: Bad retrieve activity profile ids: typical request missing [<property>]
 
     Given a typical retrieveActivityProfileIds request
