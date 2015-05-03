@@ -13,7 +13,7 @@ Feature: Clear state
     | typical           |
     | withRegistration  |
 
-  @focus
+
   Scenario Outline: Good clear state: [<type>] request cluster with a [<modifier>] agent parameter
 
     Given a [<type>] clearState request cluster
@@ -40,6 +40,7 @@ Feature: Clear state
     | withRegistration | openidOnly         |
     | withRegistration | accountOnly        |
 
+  @focus
   Scenario Outline: Bad clear state: [<type>] request missing [<property>]
 
     Given a [<type>] clearState request

@@ -14,11 +14,25 @@ Given(/^a \[withRegistration\] clearState request cluster$/) do
 end
 
 Given(/^a \[typical\] clearState request$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Request::ClearState.build(@lrs, 'typical')
+  if @context['headers']
+    @context['headers'].each_pair do |key, value|
+      header(key, value) if value
+    end
+  end
+  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
 end
 
 Given(/^a \[withRegistration\] clearState request$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Request::ClearState.build(@lrs, 'withRegistration')
+  if @context['headers']
+    @context['headers'].each_pair do |key, value|
+      header(key, value) if value
+    end
+  end
+  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
 end
 
 Given(/^a typical clearState request$/) do
