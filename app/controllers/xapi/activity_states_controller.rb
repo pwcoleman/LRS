@@ -69,8 +69,13 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     errors = check_destroy_parameters
     if errors.empty?
       # TODO: USE registration parameter in query
-      @state = State.where(activity_id: params['activityId'], agent: params['agent'], state_id: params['stateId']).first
-      @state.destroy if @state
+      agent =  params['agent'].is_a?(Hash) ? params['agent'] : JSON.parse(params['agent'])
+      if params['stateId']
+        @state = State.where(activity_id: params['activityId'], agent:agent, state_id: params['stateId']).first
+        @state.destroy if @state
+      else
+        State.where(activity_id: params['activityId'], agent: agent).destroy
+      end
       render status: :no_content
     else
       render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
@@ -102,7 +107,7 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     if params['agent']
       validator = AgentValidator.new({attributes: [:agent], class: State})
       state = State.new
-      agent =  params['agent'].is_a?(Hash) ?params['agent'] : JSON.parse(params['agent'])
+      agent =  params['agent'].is_a?(Hash) ? params['agent'] : JSON.parse(params['agent'])
       validator.validate_each(state, :agent, agent)
       errors.concat(state.errors[:agent])
     end

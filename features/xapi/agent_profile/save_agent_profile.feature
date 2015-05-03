@@ -62,7 +62,7 @@ Feature: Save agent profile
     | typical | content              | test content       |
     | JSON    | method               | POST               |
 
-@focus
+
   Scenario Outline: Bad save agent profile: typical request missing [<property>]
 
     Given a typical saveAgentProfile request

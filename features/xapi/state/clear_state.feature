@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Feature: Clear state
 
+  @focus
   Scenario Outline: Good clear state: [<type>] request cluster
 
     Given a [<type>] clearState request cluster

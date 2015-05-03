@@ -1,14 +1,16 @@
 # encoding: UTF-8
 Given(/^a \[typical\] clearState request cluster$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @cluster = Cluster::ClearState.build(@lrs, 'typical')
 end
 
 Then(/^the clearState response is verified$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(last_response.body).to be_empty
 end
 
 Given(/^a \[withRegistration\] clearState request cluster$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @cluster = Cluster::ClearState.build(@lrs, 'withRegistration')
 end
 
 Given(/^a \[typical\] clearState request$/) do
