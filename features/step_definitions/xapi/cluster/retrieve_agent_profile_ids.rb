@@ -7,6 +7,7 @@ module Cluster
 
       case type
         when 'typical'
+          request['type'] = :agent
           request['primers'] = {
               'order' => 'parallel',
               'list' => [

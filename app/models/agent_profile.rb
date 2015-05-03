@@ -25,4 +25,8 @@ class AgentProfile < Document
     profile
   end
 
+  set_callback(:validation, :before) do |state|
+    state.agent['objectType'] = 'Agent' unless state.agent['objectType']
+  end
+
 end

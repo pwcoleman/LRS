@@ -9,15 +9,17 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
 
     errors = check_query_parameters
     if errors.empty?
+      agent = params['agent'].is_a?(Hash) ? params['agent'] : JSON.parse(params['agent'])
+      agent['objectType'] = 'Agent' unless agent['objectType']
       if params['profileId']
-        @profile = AgentProfile.where(agent: params['agent'], profile_id: params['profileId']).first
+        @profile = AgentProfile.where(agent: agent, profile_id: params['profileId']).first
         if @profile
 
         else
           render status: :not_found
         end
       else
-        @profiles = AgentProfile.where(agent: params['agent'])
+        @profiles = AgentProfile.where(agent: agent)
       end
     else
       render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request

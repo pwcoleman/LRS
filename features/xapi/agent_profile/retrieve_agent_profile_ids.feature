@@ -1,13 +1,14 @@
 # encoding: UTF-8
 Feature: Retrieve agent profile ids
 
-  @focus
+
   Scenario: Good retrieve agent profile ids: typical request cluster
 
     Given a typical retrieveAgentProfileIds request cluster
     When the request is made on the primed LRS
     Then the retrieveAgentProfileIds response is verified
 
+  @focus
   Scenario Outline: Good retrieve agent profile ids: typical request cluster with a [<modifier>] agent parameter
 
     Given a typical retrieveAgentProfileIds request cluster

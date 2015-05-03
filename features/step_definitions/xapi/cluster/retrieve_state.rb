@@ -6,14 +6,14 @@ module Cluster
       request = {}
       case type
         when 'typical'
-          request['type'] = State
+          request['type'] = :state
           request['primers'] = [
             FactoryGirl.create(:typical_state, lrs: lrs)
           ]
           request['main'] = Request::RetrieveState.build(lrs, 'typical')
         when 'withRegistration'
           uuid = Property::UUID.build('good')
-          request['type'] = State
+          request['type'] = :state
           request['primers'] = [
               FactoryGirl.create(:state_with_registration, lrs: lrs, registration: uuid)
           ]

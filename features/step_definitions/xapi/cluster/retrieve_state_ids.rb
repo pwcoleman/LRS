@@ -7,7 +7,7 @@ module Cluster
 
       case type
         when 'typical'
-          request['type'] = State
+          request['type'] = :state
           request['primers'] = [
               FactoryGirl.create(:typical_state, lrs: lrs, state_id: 'http://tincanapi.com/conformancetest/statedoc/zero'),
               FactoryGirl.create(:typical_state, lrs: lrs, state_id: 'http://tincanapi.com/conformancetest/statedoc/one'),
@@ -16,7 +16,7 @@ module Cluster
           request['main'] = Request::RetrieveStateIds.build(lrs, 'typical')
         when 'withRegistration'
           uuid = Property::UUID.build('good')
-          request['type'] = State
+          request['type'] = :state
           request['primers'] = [
               FactoryGirl.create(:state_with_registration, lrs: lrs, registration: uuid, state_id: 'http://tincanapi.com/conformancetest/statedoc/zero'),
               FactoryGirl.create(:state_with_registration, lrs: lrs, registration: uuid, state_id: 'http://tincanapi.com/conformancetest/statedoc/one'),

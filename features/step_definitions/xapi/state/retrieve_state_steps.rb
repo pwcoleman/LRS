@@ -43,12 +43,17 @@ Given(/^a typical retrieveState request$/) do
 end
 
 Then(/^the retrieveState response is verified$/) do
-  if @cluster['primers'].size > 1
+  primers = @cluster['primers']['list'] ? @cluster['primers']['list'] : @cluster['primers']
+  if primers.size > 1
     body = JSON.parse(last_response.body)
     expect(body.size).to eq(3)
-    expect(body).to eq(@cluster['primers'].map(&:state_id))
+    if @cluster['type'] == :state
+      expect(body).to eq(primers.map(&:state_id))
+    else
+      expect(body).to eq(primers.map(&:profile_id))
+    end
   else
-    expect(JSON.parse(last_response.body)).to eq(state_to_hash(@cluster['primers'][0]))
+    expect(JSON.parse(last_response.body)).to eq(state_to_hash(primers[0]))
   end
 end
 
