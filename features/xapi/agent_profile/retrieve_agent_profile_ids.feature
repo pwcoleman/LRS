@@ -8,7 +8,7 @@ Feature: Retrieve agent profile ids
     When the request is made on the primed LRS
     Then the retrieveAgentProfileIds response is verified
 
-  @focus
+
   Scenario Outline: Good retrieve agent profile ids: typical request cluster with a [<modifier>] agent parameter
 
     Given a typical retrieveAgentProfileIds request cluster
@@ -27,6 +27,7 @@ Feature: Retrieve agent profile ids
     | openidOnly      |
     | accountOnly     |
 
+  @focus
   Scenario Outline: Bad retrieve agent profile ids: typical request missing [<property>]
 
     Given a typical retrieveAgentProfileIds request
