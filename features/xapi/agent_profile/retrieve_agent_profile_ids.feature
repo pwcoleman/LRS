@@ -27,7 +27,7 @@ Feature: Retrieve agent profile ids
     | openidOnly      |
     | accountOnly     |
 
-  @focus
+
   Scenario Outline: Bad retrieve agent profile ids: typical request missing [<property>]
 
     Given a typical retrieveAgentProfileIds request
@@ -41,6 +41,7 @@ Feature: Retrieve agent profile ids
     | 401  | authority header   |
     | 400  | agent parameter    |
 
+  @focus
   Scenario: Bad retrieve agent profile ids: typical request with bad agent parameter an empty agent
 
     Given a typical retrieveAgentProfileIds request
