@@ -70,6 +70,7 @@ class Xapi::ActivityStatesController < Xapi::BaseController
     if errors.empty?
       # TODO: USE registration parameter in query
       agent =  params['agent'].is_a?(Hash) ? params['agent'] : JSON.parse(params['agent'])
+      agent['objectType'] = 'Agent' unless agent['objectType']
       if params['stateId']
         @state = State.where(activity_id: params['activityId'], agent:agent, state_id: params['stateId']).first
         @state.destroy if @state
