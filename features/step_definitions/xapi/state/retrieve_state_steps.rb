@@ -43,6 +43,7 @@ Given(/^a typical retrieveState request$/) do
 end
 
 Then(/^the retrieveState response is verified$/) do
+  pp last_response
   expect(JSON.parse(last_response.body)).to eq(state_to_hash(@cluster['primers'][0]))
 end
 

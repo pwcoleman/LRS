@@ -1,7 +1,7 @@
 # encoding: UTF-8
 Feature: Retrieve state ids
 
-  @focus
+
   Scenario Outline: Good retrieve state ids: [<type>] request cluster
 
     Given a [<type>] retrieveStateIds request cluster
@@ -40,6 +40,7 @@ Feature: Retrieve state ids
     | withRegistration | openidOnly       |
     | withRegistration | accountOnly      |
 
+  @focus
   Scenario Outline: Bad retrieve state ids: [<type>] request missing [<property>]
 
     Given a [<type>] retrieveStateIds request

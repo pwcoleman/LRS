@@ -16,11 +16,25 @@ Given(/^a \[withRegistration\] retrieveStateIds request cluster$/) do
 end
 
 Given(/^a \[typical\] retrieveStateIds request$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Request::RetrieveStateIds.build(@lrs, 'typical')
+  if @context['headers']
+    @context['headers'].each_pair do |key, value|
+      header(key, value) if value
+    end
+  end
+  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
 end
 
 Given(/^a \[withRegistration\] retrieveStateIds request$/) do
-  pending # express the regexp above with the code you wish you had
+  @lrs = FactoryGirl.create(:lrs)
+  @context = Request::RetrieveStateIds.build(@lrs, 'withRegistration')
+  if @context['headers']
+    @context['headers'].each_pair do |key, value|
+      header(key, value) if value
+    end
+  end
+  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
 end
 
 Given(/^a typical retrieveStateIds request$/) do

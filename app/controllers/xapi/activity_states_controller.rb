@@ -23,6 +23,7 @@ class Xapi::ActivityStatesController < Xapi::BaseController
         agent = params['agent'].is_a?(Hash) ? params['agent'] : JSON.parse(params['agent'])
         agent['objectType'] = 'Agent' unless agent['objectType']
         @states = State.where(activity_id: params['activityId'], agent: agent)
+        pp @states
       end
     else
       render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
