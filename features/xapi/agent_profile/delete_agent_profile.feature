@@ -91,7 +91,7 @@ Feature: Delete agent profile
     | openidOnly     | openid           | bad URI                         |
     | accountOnly    | account homePage | bad URI                         |
 
-  @focus
+
   Scenario Outline: Bad delete agent profile: typical request with [<modifier>] agent parameter missing [<property>]
 
     Given a typical deleteAgentProfile request

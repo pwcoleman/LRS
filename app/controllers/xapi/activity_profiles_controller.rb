@@ -12,6 +12,8 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
         else
           render status: :not_found
         end
+      else
+        @profiles = ActivityProfile.where(activity_id: params['activityId'])
       end
     else
       render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
