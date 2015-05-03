@@ -41,7 +41,7 @@ Feature: Retrieve agent profile ids
     | 401  | authority header   |
     | 400  | agent parameter    |
 
-  @focus
+
   Scenario: Bad retrieve agent profile ids: typical request with bad agent parameter an empty agent
 
     Given a typical retrieveAgentProfileIds request
@@ -49,6 +49,7 @@ Feature: Retrieve agent profile ids
     When the request is made
     Then the LRS responds with HTTP 400
 
+  @focus
   Scenario Outline: Bad retrieve agent profile ids: typical request with bad [<property>] '[<value>]'
 
     Given a typical retrieveAgentProfileIds request

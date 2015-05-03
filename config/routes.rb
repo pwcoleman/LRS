@@ -46,6 +46,8 @@ Rails.application.routes.draw do
     delete 'agents/profile' => 'agent_profiles#destroy'
     match 'agents/profiles', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
     match 'agent/profile', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
+    match 'agent/state', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
+    match 'agents/states', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
 
     match 'activities', to: 'errors#error400', via: [:get, :put, :post], default: {error: true, success: false, message: '', code: 400}
     match 'activities', to: 'errors#error405', via: [:delete], default: {error: true, success: false, message: '', code: 400}
