@@ -3,10 +3,6 @@ class Xapi::AgentProfilesController  < Xapi::BaseController
   # GET /agents/profile
   # gets ids of all state data for this context
   def index
-    pp '-------------------------'
-    pp params
-    pp '-------------------------'
-
     errors = check_query_parameters
     if errors.empty?
       agent = params['agent'].is_a?(Hash) ? params['agent'] : JSON.parse(params['agent'])
