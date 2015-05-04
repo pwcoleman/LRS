@@ -15,14 +15,15 @@ class Xapi::StatementsController < Xapi::BaseController
         query = Statement.unvoided
         # TODO: Move these to scopes!!!
         # agent
-        query = query.where('verb.id' => query_parameters['verb']) if query_parameters['verb']
-        query = query.where('object.objectType' => 'Activity', 'object.id' => query_parameters['activity']) if query_parameters['activity']
+        query = query.by_verb(query_parameters['verb']) if query_parameters['verb']
+        query = query.by_activity(query_parameters['activity']) if query_parameters['activity']
         # registration
         # related_activities
         # related_agents
         # since
         # until
         # limit
+        query = query.limit(query_parameters['limit']) if query_parameters['limit']
         # format
         # attachments
         # ascending
@@ -146,7 +147,6 @@ class Xapi::StatementsController < Xapi::BaseController
         errors << 'attachments must be true or false' unless query_parameters['attachments'].is_a?(Boolean) || query_parameters['attachments'] =~ (/(true|false)$/i)
       end
       if query_parameters['ascending']
-        pp query_parameters['ascending'].class
         errors << 'ascending must be true or false' unless query_parameters['ascending'].is_a?(Boolean) || query_parameters['ascending'] =~ (/(true|false)$/i)
 
       end

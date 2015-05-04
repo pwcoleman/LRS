@@ -32,6 +32,8 @@ class Statement
 
   scope :voided, ->{ where(voided: true) }
   scope :unvoided, ->{ where(voided: false) }
+  scope :by_activity, ->(id) { where('object.objectType' => 'Activity', 'object.id' => id) }
+  scope :by_verb, ->(id) { where('verb.id' => id) }
 
   set_callback(:validation, :before) do |document|
     unless document.statement[:id]

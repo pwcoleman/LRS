@@ -58,13 +58,13 @@ Feature: Fetch statements
     | 400  | related_activities parameter | not a bool          |
     | 400  | related_activities parameter | 1                   |
     | 400  | related_activities parameter | 0                   |
-    | 400  | related_activities parameter | "true"              |
-    | 400  | related_activities parameter | "false"             |
+    | 400  | related_activities parameter | "\"true\""          |
+    | 400  | related_activities parameter | "\"false\""         |
     | 400  | related_agents parameter     | not a bool          |
     | 400  | related_agents parameter     | 1                   |
     | 400  | related_agents parameter     | 0                   |
-    | 400  | related_agents parameter     | "true"              |
-    | 400  | related_agents parameter     | "false"             |
+    | 400  | related_agents parameter     | "\"true\""          |
+    | 400  | related_agents parameter     | "\"false\""         |
     | 400  | since parameter              | bad timestamp       |
     | 400  | until parameter              | bad timestamp       |
     | 400  | limit parameter              | not an integer      |
@@ -73,13 +73,13 @@ Feature: Fetch statements
     | 400  | attachments parameter        | not a bool          |
     | 400  | attachments parameter        | 1                   |
     | 400  | attachments parameter        | 0                   |
-    | 400  | attachments parameter        | "true"              |
-    | 400  | attachments parameter        | "false"             |
+    | 400  | attachments parameter        | "\"true\""          |
+    | 400  | attachments parameter        | "\"false\""         |
     | 400  | ascending parameter          | not a bool          |
     | 400  | ascending parameter          | 1                   |
     | 400  | ascending parameter          | 0                   |
-    | 400  | ascending parameter          | "true"              |
-    | 400  | ascending parameter          | "false"             |
+    | 400  | ascending parameter          | "\"true\""          |
+    | 400  | ascending parameter          | "\"false\""         |
 
   Scenario Outline: Bad fetch statements: request with [<modifier>] agent with bad [<property>] '[<value>]'
 
