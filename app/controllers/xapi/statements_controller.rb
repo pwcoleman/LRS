@@ -20,9 +20,8 @@ class Xapi::StatementsController < Xapi::BaseController
         # registration
         # related_activities
         # related_agents
-        # since
-        # until
-        # limit
+        query = query.since_date(Time.parse(query_parameters['since'])) if query_parameters['since']
+        query = query.until_date(Time.parse(query_parameters['until'])) if query_parameters['until']
         query = query.limit(query_parameters['limit']) if query_parameters['limit']
         # format
         # attachments

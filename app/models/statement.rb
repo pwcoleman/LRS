@@ -34,6 +34,9 @@ class Statement
   scope :unvoided, ->{ where(voided: false) }
   scope :by_activity, ->(id) { where('object.objectType' => 'Activity', 'object.id' => id) }
   scope :by_verb, ->(id) { where('verb.id' => id) }
+  scope :since_date, ->(date) { where(:created_at.gte => date) }
+  scope :until_date, ->(date) { where(:created_at.lte => date) }
+
 
   set_callback(:validation, :before) do |document|
     unless document.statement[:id]
