@@ -49,8 +49,8 @@ Rails.application.routes.draw do
     match 'agent/state', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
     match 'agents/states', to: 'errors#error400', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
 
-    match 'activities', to: 'errors#error400', via: [:get, :put, :post], default: {error: true, success: false, message: '', code: 400}
-    match 'activities', to: 'errors#error405', via: [:delete], default: {error: true, success: false, message: '', code: 400}
+    match 'activities', to: 'errors#error400', via: [:get], default: {error: true, success: false, message: '', code: 400}
+    match 'activities', to: 'errors#error405', via: [:put, :post, :delete], default: {error: true, success: false, message: '', code: 400}
     match 'agents', to: 'errors#error405', via: [:get, :put, :post, :delete], default: {error: true, success: false, message: '', code: 405}
 
   end
