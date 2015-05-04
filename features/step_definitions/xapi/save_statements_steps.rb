@@ -2,7 +2,7 @@
 
 Given(/^a \[(.*?)\] saveStatements request$/) do |type|
   @lrs = FactoryGirl.create(:lrs)
-  @context = Request::SaveStatement.build(@lrs, 'typical')
+  @context = Request::SaveStatements.build(@lrs, 'typical')
   if @context['headers']
     @context['headers'].each_pair do |key, value|
       header(key, value) if value

@@ -1,12 +1,11 @@
 
 ###########################################################
 
-1035 scenarios (5 failed, 110 pending, 920 passed)
+1035 scenarios (2 failed, 110 pending, 923 passed)
 
-4517 steps (5 failed, 298 skipped, 110 pending, 4104 passed)
+4517 steps (2 failed, 298 skipped, 110 pending, 4107 passed)
 
-0m50.039s
-
+0m28.758s
 
 ###########################################################
 ### FAILING CONFORMANCE
