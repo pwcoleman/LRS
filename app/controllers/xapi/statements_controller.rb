@@ -11,7 +11,23 @@ class Xapi::StatementsController < Xapi::BaseController
       elsif params[:voidedStatementId]
         @result = Statement.voided.where(statement_id: params[:statementId]).first
       else
-        @results = Statement.unvoided.order_by(['statement.stored', :desc])
+        query_parameters = request.query_parameters
+        query = Statement.unvoided
+        # TODO: Move these to scopes!!!
+        # agent
+        query = query.where('verb.id' => query_parameters['verb']) if query_parameters['verb']
+        query = query.where('object.objectType' => 'Activity', 'object.id' => query_parameters['activity']) if query_parameters['activity']
+        # registration
+        # related_activities
+        # related_agents
+        # since
+        # until
+        # limit
+        # format
+        # attachments
+        # ascending
+        query = query_parameters['ascending'] ? query.order_by(['statement.stored', :asc]) : query.order_by(['statement.stored', :desc])
+        @results = query
       end
     else
       render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
@@ -109,10 +125,10 @@ class Xapi::StatementsController < Xapi::BaseController
         errors << 'Invalid registration' unless validate_uuid(query_parameters['registration'])
       end
       if query_parameters['related_activities']
-        errors << 'related_activities must be true or false' unless query_parameters['related_activities'].is_a?(Boolean)
+        errors << 'related_activities must be true or false' unless query_parameters['related_activities'].is_a?(Boolean) || query_parameters['related_activities'] =~ (/(true|false)$/i)
       end
       if query_parameters['related_agents']
-        errors << 'related_agents must be true or false' unless query_parameters['related_agents'].is_a?(Boolean)
+        errors << 'related_agents must be true or false' unless query_parameters['related_agents'].is_a?(Boolean) || query_parameters['related_agents'] =~ (/(true|false)$/i)
       end
       if query_parameters['since']
         errors << 'since is invalid' unless validate_timestamp(query_parameters['since'])
@@ -127,10 +143,12 @@ class Xapi::StatementsController < Xapi::BaseController
         errors << 'invalid format' unless %w(ids exact canonical).include?(query_parameters['format'])
       end
       if query_parameters['attachments']
-        errors << 'attachments must be true or false' unless query_parameters['attachments'].is_a?(Boolean)
+        errors << 'attachments must be true or false' unless query_parameters['attachments'].is_a?(Boolean) || query_parameters['attachments'] =~ (/(true|false)$/i)
       end
       if query_parameters['ascending']
-        errors << 'ascending must be true or false' unless query_parameters['ascending'].is_a?(Boolean)
+        pp query_parameters['ascending'].class
+        errors << 'ascending must be true or false' unless query_parameters['ascending'].is_a?(Boolean) || query_parameters['ascending'] =~ (/(true|false)$/i)
+
       end
     end
     errors
