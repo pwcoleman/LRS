@@ -36,9 +36,10 @@ class Xapi::BaseController < ApplicationController
       if username.nil? || password.nil?
         raise BadAuthorization
       end
-      # TODO: FIX THIS -- we need to be able to authenticate properly
-      @lrs = Lrs.where(api: {'basic_key' => username, 'basic_secret' => password}).first
-      @lrs.present?
+      @lrs = nil
+      @user = ApiUser.where({basic_key: username, basic_secret: password}).first
+      @lrs = @user.lrs if @user
+      @user.present? && @lrs.present?
     end
   end
 

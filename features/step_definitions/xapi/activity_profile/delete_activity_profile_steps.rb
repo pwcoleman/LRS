@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Given(/^a typical deleteActivityProfile request cluster$/) do
-  @lrs = FactoryGirl.create(:lrs)
+  @user = FactoryGirl.create(:api_user)
+  @lrs = @user.lrs
   @cluster = Cluster::DeleteActivityProfile.build(@lrs, 'typical')
 end
 
@@ -9,14 +10,15 @@ Then(/^the deleteActivityProfile response is verified$/) do
 end
 
 Given(/^a typical deleteActivityProfile request$/) do
-  @lrs = FactoryGirl.create(:lrs)
+  @user = FactoryGirl.create(:api_user)
+  @lrs = @user.lrs
   @context = Request::DeleteActivityProfile.build(@lrs, 'typical')
   if @context['headers']
     @context['headers'].each_pair do |key, value|
       header(key, value) if value
     end
   end
-  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
+  basic_authorize(@user.username, @user.password)
 end
 
 Given(/^the \[profileId parameter\] is removed$/) do

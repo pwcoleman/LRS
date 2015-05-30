@@ -3,32 +3,18 @@ class Lrs
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  has_many :api_users
   has_many :statements
   has_many :documents
+  has_many :states
+  has_many :activity_profiles
+  has_many :agent_profiles
 
   field :title
   field :description
   field :version, type: String, default: '1.0.1'
-  field :api, type: Hash
 
   validates :title, presence: true
   validates :description, presence: true
-
-  set_callback(:validation, :before) do |document|
-    unless document.api
-      document.api = {
-          basic_key: SecureRandom.hex(20),
-          basic_secret: SecureRandom.hex(20)
-      }
-    end
-  end
-
-  def username
-    api[:basic_key]
-  end
-
-  def password
-    api[:basic_secret]
-  end
 
 end

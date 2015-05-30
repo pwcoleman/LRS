@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Given(/^a \[typical\] deleteState request cluster$/) do
-  @lrs = FactoryGirl.create(:lrs)
+  @user = FactoryGirl.create(:api_user)
+  @lrs = @user.lrs
   @cluster = Cluster::DeleteState.build(@lrs, 'typical')
 end
 
@@ -9,7 +10,8 @@ Then(/^the deleteState response is verified$/) do
 end
 
 Given(/^a \[withRegistration\] deleteState request cluster$/) do
-  @lrs = FactoryGirl.create(:lrs)
+  @user = FactoryGirl.create(:api_user)
+  @lrs = @user.lrs
   @cluster = Cluster::DeleteState.build(@lrs, 'withRegistration')
 end
 
@@ -23,34 +25,37 @@ Given(/^all requests' stateId parameter are set to 'test state id'$/) do
 end
 
 Given(/^a \[typical\] deleteState request$/) do
-  @lrs = FactoryGirl.create(:lrs)
+  @user = FactoryGirl.create(:api_user)
+  @lrs = @user.lrs
   @context = Request::DeleteState.build(@lrs, 'typical')
   if @context['headers']
     @context['headers'].each_pair do |key, value|
       header(key, value) if value
     end
   end
-  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
+  basic_authorize(@user.username, @user.password)
 end
 
 Given(/^a \[withRegistration\] deleteState request$/) do
-  @lrs = FactoryGirl.create(:lrs)
+  @user = FactoryGirl.create(:api_user)
+  @lrs = @user.lrs
   @context = Request::DeleteState.build(@lrs, 'withRegistration')
   if @context['headers']
     @context['headers'].each_pair do |key, value|
       header(key, value) if value
     end
   end
-  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
+  basic_authorize(@user.username, @user.password)
 end
 
 Given(/^a typical deleteState request$/) do
-  @lrs = FactoryGirl.create(:lrs)
+  @user = FactoryGirl.create(:api_user)
+  @lrs = @user.lrs
   @context = Request::DeleteState.build(@lrs, 'typical')
   if @context['headers']
     @context['headers'].each_pair do |key, value|
       header(key, value) if value
     end
   end
-  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
+  basic_authorize(@user.username, @user.password)
 end

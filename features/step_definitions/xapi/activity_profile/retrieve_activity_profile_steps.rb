@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Given(/^a typical retrieveActivityProfile request cluster$/) do
-  @lrs = FactoryGirl.create(:lrs)
+  @user = FactoryGirl.create(:api_user)
+  @lrs = @user.lrs
   @cluster = Cluster::RetrieveActivityProfile.build(@lrs, 'typical')
 end
 
@@ -9,14 +10,15 @@ Then(/^the retrieveActivityProfile response is verified$/) do
 end
 
 Given(/^a typical retrieveActivityProfile request$/) do
-  @lrs = FactoryGirl.create(:lrs)
+  @user = FactoryGirl.create(:api_user)
+  @lrs = @user.lrs
   @context = Request::RetrieveActivityProfile.build(@lrs, 'typical')
   if @context['headers']
     @context['headers'].each_pair do |key, value|
       header(key, value) if value
     end
   end
-  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
+  basic_authorize(@user.username, @user.password)
 end
 
 

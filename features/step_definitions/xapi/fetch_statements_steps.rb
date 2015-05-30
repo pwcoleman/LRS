@@ -1,13 +1,14 @@
 # encoding: UTF-8
 Given(/^a query fetchStatements request$/) do
-  @lrs = FactoryGirl.create(:lrs)
+  @user = FactoryGirl.create(:api_user)
+  @lrs = @user.lrs
   @context = Request::FetchStatements.build(@lrs, 'query')
   if @context['headers']
     @context['headers'].each_pair do |key, value|
       header(key, value) if value
     end
   end
-  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
+  basic_authorize(@user.username, @user.password)
 end
 
 Given(/^the \[statementId\] parameter is set to good UUID$/) do

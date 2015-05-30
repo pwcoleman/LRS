@@ -1,7 +1,8 @@
 # encoding: UTF-8
 
 Given(/^a \[(.*?)\] about request$/) do |type|
-  @lrs = FactoryGirl.create(:lrs)
+  @user = FactoryGirl.create(:api_user)
+  @lrs = @user.lrs
   @context = Request::About.build(@lrs, type)
   if @context['headers']
     @context['headers'].each_pair do |key, value|

@@ -7,7 +7,7 @@ When(/^the request is made on the primed LRS$/) do
       header(key, value) if value
     end
   end
-  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
+  basic_authorize(@user.username, @user.password)
   perform_request
 end
 

@@ -1,6 +1,7 @@
 # encoding: UTF-8
 Given(/^a typical deleteAgentProfile request cluster$/) do
-  @lrs = FactoryGirl.create(:lrs)
+  @user = FactoryGirl.create(:api_user)
+  @lrs = @user.lrs
   @cluster = Cluster::DeleteAgentProfile.build(@lrs, 'typical')
 end
 
@@ -18,13 +19,14 @@ Given(/^all requests' agent parameter are set to an \[(\w+)\] agent$/) do |type|
 end
 
 Given(/^a typical deleteAgentProfile request$/) do
-  @lrs = FactoryGirl.create(:lrs)
+  @user = FactoryGirl.create(:api_user)
+  @lrs = @user.lrs
   @context = Request::DeleteAgentProfile.build(@lrs, 'typical')
   if @context['headers']
     @context['headers'].each_pair do |key, value|
       header(key, value) if value
     end
   end
-  basic_authorize(@lrs.api['basic_key'], @lrs.api['basic_secret'])
+  basic_authorize(@user.username, @user.password)
 end
 
