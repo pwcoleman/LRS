@@ -49,7 +49,7 @@ class Xapi::BaseController < ApplicationController
 
   def validate_xapi_version
     xapi_version = request.headers['X-Experience-API-Version']
-    unless xapi_version && (VALID_EXPERIENCE_API_VERSIONS.include?(xapi_version))
+    unless xapi_version && xapi_version.to_s =~ /^1.0(.d*)+/
       render json: {error: true, success: false, message: 'Invalid XAPI version', code: 400}.to_json, status: 400
     end
   end
