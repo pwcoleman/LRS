@@ -29,6 +29,7 @@ class Xapi::StatementsController < Xapi::BaseController
         query = query_parameters['ascending'] ? query.order_by(['statement.stored', :asc]) : query.order_by(['statement.stored', :desc])
         @results = query
       end
+      response.headers['X-Experience-API-Consistent-Through'] = Time.now.iso8601
     else
       render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
     end
