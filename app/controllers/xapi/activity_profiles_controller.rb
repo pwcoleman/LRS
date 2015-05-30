@@ -25,25 +25,35 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
     # TODO Check if it already exists
     # If exists and both JSON then merge
     # else create
-    if request.content_type =~ /application\/json/
-      profile = ActivityProfile.create_from(@lrs, request.content_type, profile_params)
+    errors = check_create_parameters
+    if errors.empty?
+      if request.content_type =~ /application\/json/
+        profile = ActivityProfile.create_from(@lrs, request.content_type, profile_params)
+        if profile.valid?
+          render status: :no_content
+        else
+          render json: {error: true, success: false, message: profile.errors[:state].join('. '), code: 400}, status: :bad_request
+        end
+      else
+        render json: {error: true, success: false, message: 'invalid header content type', code: 400}, status: :bad_request
+      end
+    else
+      render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
+    end
+  end
+
+  # PUT /activities/profile
+  def update
+    errors = check_update_parameters
+    if errors.empty?
+        profile = ActivityProfile.create_from(@lrs, request.content_type, profile_params)
       if profile.valid?
         render status: :no_content
       else
         render json: {error: true, success: false, message: profile.errors[:state].join('. '), code: 400}, status: :bad_request
       end
     else
-      render json: {error: true, success: false, message: 'invalid header content type', code: 400}, status: :bad_request
-    end
-  end
-
-  # PUT /activities/profile
-  def update
-    profile = ActivityProfile.create_from(@lrs, request.content_type, profile_params)
-    if profile.valid?
-      render status: :no_content
-    else
-      render json: {error: true, success: false, message: profile.errors[:state].join('. '), code: 400}, status: :bad_request
+      render json: {error: true, success: false, message: errors.join('. '), code: 400}, status: :bad_request
     end
   end
 
@@ -69,6 +79,18 @@ class Xapi::ActivityProfilesController < Xapi::BaseController
     errors = []
     errors << 'Activity ID is missing' unless params['activityId']
     errors << 'Invalid activity id' unless validate_iri(params['activityId'])
+    errors
+  end
+
+  def check_create_parameters
+    errors = []
+    errors << 'profileId is missing' unless params['profileId']
+    errors
+  end
+
+  def check_update_parameters
+    errors = []
+    errors << 'profileId is missing' unless params['profileId']
     errors
   end
 
